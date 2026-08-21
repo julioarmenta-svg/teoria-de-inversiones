@@ -120,7 +120,8 @@
  
  .lista-sesiones { display: flex; flex-direction: column; gap: 16px; }
  
- .btn-agrupador {
+ /* TUS BOTONES ORIGINALES CON FUNCIÓN DE APERTURA */
+ .btn-sesion {
  display: flex;
  justify-content: space-between;
  align-items: center;
@@ -137,28 +138,28 @@
  transition: all 0.2s ease;
  user-select: none;
  }
- .btn-agrupador:hover { background-color: #f1f5f9; transform: translateX(4px); }
- .btn-agrupador.practica { border-left-color: #10b981; }
+ .btn-sesion:hover { background-color: #f1f5f9; transform: translateX(4px); }
+ .btn-sesion.ae { border-left-color: #10b981; }
  
  .bloque-desplegable {
  display: none;
- background: #f8fafc;
- border: 1px solid #e2e8f0;
- border-radius: 12px;
+ background: #ffffff;
+ border: 1px solid #cbd5e1;
+ border-radius: 16px;
  padding: 24px;
  margin-top: -6px;
- margin-bottom: 10px;
+ margin-bottom: 12px;
  }
  
  .item-subcontenido {
- background: #ffffff;
+ background: #f8fafc;
  border: 1px solid #e2e8f0;
- border-radius: 8px;
+ border-radius: 12px;
  padding: 16px;
  margin-bottom: 12px;
  }
  .item-subcontenido:last-child { margin-bottom: 0; }
- .item-subcontenido h3 { font-size: 15px; color: #0f172a; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+ .item-subcontenido h3 { font-size: 15px; color: #0f172a; margin-bottom: 6px; }
  .item-subcontenido p { font-size: 13px; color: #64748b; line-height: 1.4; }
  ul { margin-left: 20px; margin-top: 6px; font-size: 13px; color: #475569; }
  li { margin-bottom: 4px; }
@@ -229,7 +230,7 @@
  <div class="lista-sesiones">
  
   <!-- BOTÓN 1: MATERIAL DE CLASE -->
-  <div class="btn-agrupador" onclick="toggleBloque('bloque-material')">
+  <div class="btn-sesion" onclick="toggleBloque('bloque-material')">
       <span>📘 Material de Clase (Sesiones 2.1 y 2.2)</span> <span>▼</span>
   </div>
   <div id="bloque-material" class="bloque-desplegable">
@@ -238,7 +239,7 @@
           <p>Análisis profundo de los mecanismos matemáticos del mercado y la volatilidad:</p>
           <ul>
               <li><b>Riesgo Sistemático (Beta):</b> Riesgo de mercado no diversificable.</li>
-              <li><b>Riesgo No Sistemático:</b> Riesgo propio de la empresa que se puede eliminar diversificando.</li>
+              <li><b>Riesgo No Sistemático:</b> Riesgo de la empresa eliminable mediante diversificación.</li>
               <li><b>Hipótesis de Mercados Eficientes (Fama):</b> Forma débil, semi-fuerte y fuerte.</li>
           </ul>
       </div>
@@ -249,13 +250,13 @@
   </div>
 
   <!-- BOTÓN 2: EJERCICIOS Y TAREAS -->
-  <div class="btn-agrupador" onclick="toggleBloque('bloque-ejercicios')">
+  <div class="btn-sesion" onclick="toggleBloque('bloque-ejercicios')">
       <span>✏️ Ejercicios y Tarea Semanal</span> <span>▼</span>
   </div>
   <div id="bloque-ejercicios" class="bloque-desplegable">
       <div class="item-subcontenido">
           <h3>🔸 Ejercicio Práctico en Clase</h3>
-          <p><b>Caso Práctico:</b> Construcción de la Línea del Mercado de Valores (SML) utilizando las acciones activas del IPC de la Bolsa Mexicana de Valores.</p>
+          <p><b>Caso Práctico:</b> Construcción de la Línea del Mercado de Valores (SML) utilizando las acciones del IPC de la Bolsa Mexicana de Valores.</p>
       </div>
       <div class="item-subcontenido">
           <h3>🔸 Ejercicios sobre Valuación por el Modelo de Gordon</h3>
@@ -263,4 +264,7 @@
       </div>
       <div class="item-subcontenido">
           <h3>🔸 Tarea Semanal Académica</h3>
-          <p><b>Entregable:</b> Resolución de la guía de problemas de valuación multi-modelo (Sharpe, CAPM y Gordon) para entregar en formato PDF.</p>
+          <p><b>Entregable:</b> Guía de problemas de valuación multi-modelo (Sharpe, CAPM y Gordon) en formato PDF.</p>
+      </div>
+  </div>
+
