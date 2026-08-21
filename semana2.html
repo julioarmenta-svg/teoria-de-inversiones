@@ -72,17 +72,7 @@
             border-top: none;
         }
 
-        .epoca-texto-plano {
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 0 0 12px 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-top: none;
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
+        /* DISEÑO DE CARRUSEL PROTEGIDO CONTRA APLASTAMIENTOS */
         .timeline-mini-track {
             display: flex !important;
             gap: 16px;
@@ -91,9 +81,10 @@
             white-space: nowrap;
             padding: 10px 0;
             width: 100%;
-            scrollbar-width: none;
         }
+        /* Oculta barra de scroll en todos los navegadores */
         .timeline-mini-track::-webkit-scrollbar { display: none; }
+        .timeline-mini-track { -ms-overflow-style: none; scrollbar-width: none; }
 
         .arrow-nav {
             position: absolute;
@@ -118,17 +109,18 @@
         .arrow-left { left: 8px; }
         .arrow-right { right: 8px; }
 
+        /* FORMATO DE TARJETA CON ANCHO ABSOLUTO BLINDADO */
         .timeline-node-card {
-            display: inline-block;
+            flex: 0 0 260px !important; /* Evita que el navegador cambie el tamaño o mande al vacío */
+            width: 260px !important;
+            min-width: 260px !important;
+            max-width: 260px !important;
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
             padding: 16px;
             text-align: left;
             white-space: normal;
-            width: 260px;
-            min-width: 260px;
-            max-width: 260px;
             vertical-align: top;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -200,35 +192,40 @@
             <h1>Semana 2: Contenido y Actividades</h1>
         </header>
 
-        <!-- ÉPOCA 1 -->
-        <div class="epoca-collapse-btn" onclick="var el=document.getElementById('ep1_box'); el.style.display=(el.style.display==='none')?'block':'none';">
+        <!-- ÉPOCA 1 (RESTAURADA CON FORMATO TARJETA) -->
+        <div class="epoca-collapse-btn" onclick="var el=document.getElementById('ep1'); el.style.display=(el.style.display==='none')?'block':'none';">
             📖 Época 1: Periodo Pre-Clásico y Clásico (Fines del Siglo XVIII - XIX) <span>▼</span>
         </div>
-        <div id="ep1_box" class="epoca-texto-plano" style="display: none;">
-            <b>Año 1776 - La Riqueza de las Naciones (Adam Smith)</b><br>
-            • Enfoque principal en la asignación estructural de recursos y el valor-trabajo dentro del desarrollo económico temprano.
+        <div id="ep1" class="timeline-slider-box" style="display: none;">
+            <div class="timeline-mini-track">
+                <div class="timeline-node-card disabled-node">
+                    <div class="node-year">1776</div>
+                    <div class="node-title">La Riqueza de las Naciones</div>
+                    <div class="node-desc">• Adam Smith<br>• Asignación estructural de recursos y valor-trabajo.</div>
+                </div>
+            </div>
         </div>
 
-        <!-- ÉPOCA 2 -->
-        <div class="epoca-collapse-btn" onclick="var el=document.getElementById('ep2_box'); el.style.display=(el.style.display==='none')?'block':'none';">
+        <!-- ÉPOCA 2 (RESTAURADA CON FORMATO TARJETA) -->
+        <div class="epoca-collapse-btn" onclick="var el=document.getElementById('ep2'); el.style.display=(el.style.display==='none')?'block':'none';">
             📖 Época 2: Periodo Neoclásico Marginalista (Fines del Siglo XIX - 1950) <span>▼</span>
         </div>
-        <div id="ep2_box" class="epoca-texto-plano" style="display: none;">
-            <b>Año 1871 - Revolución Marginalista (Menger, Jevons, Walras)</b><br>
-            • Introducción de la optimización matemática bajo condiciones de escasez y análisis de utilidad para la toma de decisiones.
+        <div id="ep2" class="timeline-slider-box" style="display: none;">
+            <div class="timeline-mini-track">
+                <div class="timeline-node-card disabled-node">
+                    <div class="node-year">1871</div>
+                    <div class="node-title">Revolución Marginalista</div>
+                    <div class="node-desc">• Menger, Jevons, Walras<br>• Optimización matemática bajo escasez.</div>
+                </div>
+            </div>
         </div>
 
-        <!-- ÉPOCA 3 -->
+        <!-- ÉPOCA 3 (CORREGIDA ABSOLUTAMENTE EN COMPUTADORA Y CELULAR) -->
         <div class="epoca-collapse-btn e3" onclick="var el=document.getElementById('ep3'); el.style.display=(el.style.display==='none')?'block':'none';">
             📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span>▲</span>
         </div>
         <div id="ep3" class="timeline-slider-box" style="display: block;">
-            <div class="arrow-nav arrow-left" onclick="event.stopPropagation(); document.getElementById('masterTrack').scrollBy({left: -300, behavior: 'smooth'});">❮</div>
-            <div class="arrow-nav arrow-right" onclick="event.stopPropagation(); document.getElementById('masterTrack').scrollBy({left: 300, behavior: 'smooth'});">❯</div>
+            <div class="arrow-nav arrow-left" onclick="event.stopPropagation(); document.getElementById('track3').scrollLeft -= 276;">❮</div>
+            <div class="arrow-nav arrow-right" onclick="event.stopPropagation(); document.getElementById('track3').scrollLeft += 276;">❯</div>
 
-            <div class="timeline-mini-track" id="masterTrack">
-                <div class="timeline-node-card" onclick="document.getElementById('workspace21').style.display='block'; document.getElementById('sb-simulador').style.display='block';">
-                    <div class="node-year">1952</div>
-                    <div class="node-title">El Portafolio Moderno</div>
-                    <div class="node-desc">• Markowitz (Portfolio Selection)<br>• Riesgo medido con varianza<br>• Frontera eficiente de inversión</div>
-                </div>
+            <div class="timeline-mini-track" id="track3">
