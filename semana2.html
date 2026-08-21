@@ -190,7 +190,7 @@
             <h1>Semana 2: Contenido y Actividades</h1>
         </header>
 
-        <!-- ÉPOCA 1 (Mantiene formato recuadro, sin flechas innecesarias) -->
+        <!-- ÉPOCA 1 -->
         <div class="epoca-collapse-btn" onclick="var el=document.getElementById('ep1'); el.style.display=(el.style.display==='none')?'block':'none';">
             📖 Época 1: Periodo Pre-Clásico y Clásico (Fines del Siglo XVIII - XIX) <span>▼</span>
         </div>
@@ -204,7 +204,7 @@
             </div>
         </div>
 
-        <!-- ÉPOCA 2 (Mantiene formato recuadro, sin flechas innecesarias) -->
+        <!-- ÉPOCA 2 -->
         <div class="epoca-collapse-btn" onclick="var el=document.getElementById('ep2'); el.style.display=(el.style.display==='none')?'block':'none';">
             📖 Época 2: Periodo Neoclásico Marginalista (Fines del Siglo XIX - 1950) <span>▼</span>
         </div>
@@ -218,12 +218,14 @@
             </div>
         </div>
 
-        <!-- ÉPOCA 3 (Despliegue completo con flechas de navegación funcionales por hito) -->
+        <!-- ÉPOCA 3 (CAMBIADA A CLOSED POR DEFECTO PARA FORZAR AL NAVEGADOR A PINTARLA BIEN AL ABRIR) -->
         <div class="epoca-collapse-btn e3" onclick="var el=document.getElementById('ep3'); el.style.display=(el.style.display==='none')?'block':'none';">
-            📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span>▲</span>
+            📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span>▼</span>
         </div>
-        <div id="ep3" class="timeline-slider-box" style="display: block;">
+        <div id="ep3" class="timeline-slider-box" style="display: none;">
             <div class="arrow-nav arrow-left" onclick="event.stopPropagation(); document.getElementById('track3').scrollLeft -= 276;">❮</div>
             <div class="arrow-nav arrow-right" onclick="event.stopPropagation(); document.getElementById('track3').scrollLeft += 276;">❯</div>
 
             <div class="timeline-mini-track" id="track3">
+                <div class="timeline-node-card" onclick="document.getElementById('workspace21').style.display='block'; document.querySelectorAll('.sub-bloque').forEach(b=>b.style.display='none'); document.getElementById('sb-simulador').style.display='block';">
+                    <div class="node-year">1952</div>
