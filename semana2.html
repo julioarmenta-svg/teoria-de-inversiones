@@ -72,14 +72,14 @@
             border-top: none;
         }
 
+        /* CONTENEDOR TRADICIONAL INMUNE A ERRORES DE TEXTO */
         .timeline-mini-track {
-            display: flex !important;
-            gap: 16px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            white-space: nowrap;
-            padding: 10px 0;
-            width: 100%;
+            display: block !important;
+            white-space: nowrap !important;
+            overflow-x: auto !important;
+            scroll-behavior: smooth !important;
+            padding: 15px 0 !important;
+            width: 100% !important;
             scrollbar-width: none;
         }
         .timeline-mini-track::-webkit-scrollbar { display: none; }
@@ -107,19 +107,20 @@
         .arrow-left { left: 8px; }
         .arrow-right { right: 8px; }
 
+        /* BLINDAJE DE TARJETAS PARA MOSTRAR TODO EL CONTENIDO */
         .timeline-node-card {
-            flex: 0 0 260px !important;
+            display: inline-block !important;
+            white-space: normal !important;
+            vertical-align: top !important;
             width: 260px !important;
             min-width: 260px !important;
             max-width: 260px !important;
-            min-height: 145px !important;
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 16px;
-            text-align: left;
-            white-space: normal;
-            vertical-align: top;
+            background: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 12px !important;
+            padding: 16px !important;
+            margin-right: 14px !important;
+            text-align: left !important;
             cursor: pointer;
             transition: all 0.2s ease;
         }
@@ -130,9 +131,9 @@
         }
         .timeline-node-card.disabled-node { opacity: 0.45; cursor: not-allowed; }
 
-        .node-year { font-size: 16px; font-weight: 800; color: #0033a0; margin-bottom: 6px; }
-        .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
-        .node-desc { font-size: 11px; color: #64748b; line-height: 1.4; }
+        .node-year { font-size: 16px; font-weight: 800; color: #0033a0; margin-bottom: 6px; display: block !important; }
+        .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; display: block !important; }
+        .node-desc { font-size: 11px; color: #64748b; line-height: 1.4; display: block !important; }
 
         .seccion-titulo { font-size: 13px; font-weight: 700; text-transform: uppercase; color: #94a3b8; margin: 40px 0 15px 0; }
         
@@ -218,14 +219,12 @@
             </div>
         </div>
 
-        <!-- ÉPOCA 3 (CAMBIADA A CLOSED POR DEFECTO PARA FORZAR AL NAVEGADOR A PINTARLA BIEN AL ABRIR) -->
+        <!-- ÉPOCA 3 (RESTAURADA CON TODAS LAS FECHAS Y TEXTO INMUNE) -->
         <div class="epoca-collapse-btn e3" onclick="var el=document.getElementById('ep3'); el.style.display=(el.style.display==='none')?'block':'none';">
             📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span>▼</span>
         </div>
         <div id="ep3" class="timeline-slider-box" style="display: none;">
-            <div class="arrow-nav arrow-left" onclick="event.stopPropagation(); document.getElementById('track3').scrollLeft -= 276;">❮</div>
-            <div class="arrow-nav arrow-right" onclick="event.stopPropagation(); document.getElementById('track3').scrollLeft += 276;">❯</div>
+            <div class="arrow-nav arrow-left" onclick="event.stopPropagation(); document.getElementById('track3').scrollLeft -= 274;">❮</div>
+            <div class="arrow-nav arrow-right" onclick="event.stopPropagation(); document.getElementById('track3').scrollLeft += 274;">❯</div>
 
             <div class="timeline-mini-track" id="track3">
-                <div class="timeline-node-card" onclick="document.getElementById('workspace21').style.display='block'; document.querySelectorAll('.sub-bloque').forEach(b=>b.style.display='none'); document.getElementById('sb-simulador').style.display='block';">
-                    <div class="node-year">1952</div>
