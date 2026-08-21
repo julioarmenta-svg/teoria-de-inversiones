@@ -33,7 +33,6 @@
             margin-bottom: 24px;
         }
         
-        /* DISEÑO DE PANEL DUAL SIMÉTRICO */
         .workspace {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -41,7 +40,6 @@
             margin-top: 20px;
         }
 
-        /* ESTILOS COMUNES DE SECCIONES */
         h1 { font-size: 24px; color: #0f172a; margin-bottom: 10px; font-weight: 800; }
         .intro { font-size: 14px; color: #64748b; margin-bottom: 20px; line-height: 1.5; }
         
@@ -58,7 +56,6 @@
             border-left: 5px solid #1e40af;
         }
 
-        /* CONTENEDORES INTERNOS LADO IZQUIERDO */
         .control-wrapper {
             background-color: #f8fafc;
             padding: 20px;
@@ -99,7 +96,6 @@
         .medidor-sist { background-color: #1e40af; height: 100%; width: 30%; }
         .medidor-no-sist { background-color: #10b981; height: 100%; transition: width 0.1s ease; }
 
-        /* CONTENEDORES INTERNOS LADO DERECHO */
         .panel-grafico {
             background: #ffffff;
             border: 1px solid #e2e8f0;
@@ -116,6 +112,69 @@
             border: 1px solid #e2e8f0;
         }
     </style>
+
+    <!-- LOGICA MATEMÁTICA INYECTADA DE FORMA GLOBAL E INMUNE A ERRORES -->
+    <script>
+        function actualizar(val) {
+            const n = parseInt(val);
+            const elValorAcciones = document.getElementById('valorAcciones');
+            if(elValorAcciones) elValorAcciones.textContent = n;
+
+            const sigmaSistematico = 12.0; 
+            const sigmaNoSistInicial = 28.0;
+
+            // Ley asintótica de Markowitz
+            let sigmaNoSistActual = sigmaNoSistInicial / Math.sqrt(n);
+            if (n === 1) sigmaNoSistActual = sigmaNoSistInicial;
+            else if (n >= 35) sigmaNoSistActual = 0;
+
+            let sigmaPortafolioTotal = sigmaSistematico + sigmaNoSistActual;
+
+            // Actualización de bloques numéricos
+            const elValNoSist = document.getElementById('valNoSist');
+            const elValTotal = document.getElementById('valTotal');
+            const elTxtNoSist = document.getElementById('txtNoSist');
+            
+            if(elValNoSist) elValNoSist.textContent = sigmaNoSistActual.toFixed(2) + "%";
+            if(elValTotal) elValTotal.textContent = sigmaPortafolioTotal.toFixed(2) + "%";
+            if(elTxtNoSist) elTxtNoSist.textContent = "■ Riesgo Diversificable (σns = " + sigmaNoSistActual.toFixed(1) + "%)";
+
+            // Actualización física de la barra horizontal
+            const elBarra = document.getElementById('barraNoSist');
+            let porcentajeVisualVerde = (sigmaNoSistActual / sigmaNoSistInicial) * 70;
+            if(elBarra) elBarra.style.width = porcentajeVisualVerde + '%';
+
+            // Actualización espacial del marcador SVG
+            const elPunto = document.getElementById('puntoPortafolio');
+            let puntoX = 60 + ((n - 1) * (370 / 39));
+            let puntoY = 190 - (sigmaPortafolioTotal * (170 / 40));
+            if(elPunto) {
+                elPunto.setAttribute("cx", puntoX);
+                elPunto.setAttribute("cy", puntoY);
+            }
+        }
+
+        // Trazado estructural asintótico fijo de fondo al cargar la ventana
+        window.addEventListener('DOMContentLoaded', function() {
+            const elCurva = document.getElementById('curvaRiesgo');
+            if(elCurva) {
+                let pathData = "";
+                for (let i = 1; i <= 40; i++) {
+                    let xSvg = 60 + ((i - 1) * (370 / 39));
+                    let simNoSist = 28.0 / Math.sqrt(i);
+                    if (i >= 35) simNoSist = 0;
+                    let simTotal = 12.0 + simNoSist;
+                    let ySvg = 190 - (simTotal * (170 / 40));
+                    
+                    if (i === 1) pathData += "M " + xSvg + " " + ySvg;
+                    else pathData += " L " + xSvg + " " + ySvg;
+                }
+                elCurva.setAttribute("d", pathData);
+            }
+            // Forzar disparo inicial matemático en N = 2
+            actualizar(2);
+        });
+    </script>
 </head>
 <body>
 
@@ -137,7 +196,8 @@
 
                 <div class="control-wrapper">
                     <label for="accionesSlider">Modificar tamaño del portafolio (Número de Activos N):</label>
-                    <input type="range" id="accionesSlider" min="1" max="40" value="2">
+                    <!-- LLAMADAS NATIVAS INLINE DIRECTAS PARA EVITAR EL CONGELAMIENTO -->
+                    <input type="range" id="accionesSlider" min="1" max="40" value="2" oninput="actualizar(this.value)" onchange="actualizar(this.value)">
                     <div>Activos en Portafolio (N): <span id="valorAcciones" class="num-acciones">2</span></div>
                 </div>
 
@@ -170,53 +230,3 @@
                 <div style="width: 100%;">
                     <h1>Frontera Estadística de Markowitz (1952)</h1>
                     <p class="intro">
-                        Mueve la barra para observar el efecto cuantitativo real: a medida que el número de acciones (N) tiende al infinito, el riesgo específico se pulveriza de forma asintótica, convergiendo perfectamente hacia la volatilidad sistemática del mercado.
-                    </p>
-
-                    <div class="formula-card">
-                        σₚ = √[ σₛ² + (σns² / N) ] ➔ Covarianza Promedio Proporcional
-                    </div>
-                </div>
-
-                <h4 style="font-size: 12px; text-transform: uppercase; color: #1e293b; margin-bottom: 12px; font-weight: bold; width: 100%; text-align: center;">Curva de Reducción del Riesgo Total</h4>
-                
-                <!-- MAPA VECTORIAL CARTESIANO -->
-                <svg width="460" height="230" id="graficaSvg">
-                    <!-- Ejes Cartesianos -->
-                    <line x1="60" y1="190" x2="430" y2="190" stroke="#64748b" stroke-width="2"/>
-                    <line x1="60" y1="20" x2="60" y2="190" stroke="#64748b" stroke-width="2"/>
-                    
-                    <!-- Límite Asintótico del Mercado Fijo al 12% -->
-                    <line x1="60" y1="139" x2="430" y2="139" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="4,4"/>
-                    <text x="260" y="131" fill="#1e40af" font-size="11" font-weight="bold">Límite Sistemático (12%)</text>
-                    
-                    <!-- Rótulos Técnicos de los Ejes -->
-                    <text x="375" y="208" fill="#64748b" font-size="11" font-weight="bold">N activos</text>
-                    <text x="16" y="32" fill="#64748b" font-size="11" font-weight="bold" transform="rotate(-90,16,32)">Riesgo σₚ</text>
-                    
-                    <!-- Curva de Rendimiento Estática de Fondo -->
-                    <path id="curvaRiesgo" d="" fill="none" stroke="#cbd5e1" stroke-width="2.5"/>
-                    
-                    <!-- Punto de Posición Dinámico Verde -->
-                    <circle id="puntoPortafolio" cx="60" cy="20" r="7" fill="#10b981" stroke="#ffffff" stroke-width="2.5"/>
-                </svg>
-                <div style="font-size: 11px; color: #94a3b8; margin-top: 10px; text-align: center; font-weight: 500;">El punto verde muestra tu posición matemática exacta.</div>
-            </div>
-
-        </div>
-    </div>
-
-    <script>
-        // Constantes matemáticas globales
-        const sigmaSistematico = 12.0; 
-        const sigmaNoSistInicial = 28.0;
-
-        // Trazado de la curva asintótica de fondo
-        function renderizarFrontera() {
-            const curvaRiesgo = document.getElementById('curvaRiesgo');
-            if(!curvaRiesgo) return;
-            let pathData = "";
-            for (let i = 1; i <= 40; i++) {
-                let xSvg = 60 + ((i - 1) * (370 / 39));
-                let simNoSist = sigmaNoSistInicial / Math.sqrt(i);
-                if (i >= 35) simNoSist = 0;
