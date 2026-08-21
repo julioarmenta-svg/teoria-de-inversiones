@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Estadístico de Riesgo - Tec</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: #f1f5f9; padding: 40px 20px; color: #334155; }
+        .container { max-width: 600px; margin: 0 auto; background: white; border-radius: 24px; padding: 40px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+        h1 { font-size: 24px; color: #0f172a; margin-bottom: 10px; font-weight: 800; }
+        .intro { font-size: 14px; color: #64748b; margin-bottom: 20px; line-height: 1.5; }
+        .formula-card { background: #f1f5f9; border-radius: 12px; padding: 14px; text-align: center; font-family: monospace; font-size: 13px; font-weight: bold; color: #1e293b; margin-bottom: 24px; border-left: 5px solid #1e40af; }
+        .control-wrapper { background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center; margin-bottom: 20px; }
+        label { display: block; font-weight: 700; margin-bottom: 10px; color: #1e293b; }
+        input[type=range] { width: 100%; max-width: 400px; cursor: pointer; }
+        .num-acciones { font-size: 24px; font-weight: 800; color: #1e40af; }
+        .panel-metricas { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+        .metrica-box { text-align: center; background: #f8fafc; border: 1px solid #e2e8f0; padding: 16px; border-radius: 12px; }
+        .metrica-titulo { font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: bold; }
+        .metrica-valor { font-size: 24px; font-weight: 800; color: #0f172a; margin-top: 4px; }
+        .card-visualizador { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; }
+        .barra-grafico-contenedor { height: 38px; width: 100%; background: #cbd5e1; border-radius: 8px; overflow: hidden; display: flex; margin-top: 14px; }
+        .medidor-sist { background: #1e40af; height: 100%; width: 30%; }
+        .medidor-no-sist { background: #10b981; height: 100%; width: 50%; transition: width 0.1s ease; }
+    </style>
+    <script>
+        function calcularBarra(val) {
+            const n = parseInt(val);
+            document.getElementById('txtN').textContent = n;
+            
+            // Constantes y fórmula
+            const sist = 12.0;
+            const noSist = 28.0 / Math.sqrt(n);
+            const total = s = sist + noSist;
+
+            // Inyectar textos
+            document.getElementById('txtNoSist').textContent = noSist.toFixed(2) + "%";
+            document.getElementById('txtTotal').textContent = total.toFixed(2) + "%";
+            document.getElementById('lblNoSist').textContent = "■ Riesgo Diversificable (σns = " + noSist.toFixed(1) + "%)";
+
+            // Mover barra verde física
+            let pctVerde = (noSist / 28.0) * 70;
+            document.getElementById('barraVerde').style.width = pctVerde + '%';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador Estadístico de Riesgo (Markowitz)</h1>
+        <p class="intro">Matemáticamente, el riesgo de un portafolio se mide a través de la Desviación Estándar (σ). Al reducir la covarianza mediante la diversificación, el riesgo no sistemático decrece exponencialmente.</p>
+        
+        <div class="formula-card">Riesgo del Portafolio (σₚ) = √[ (Riesgo Sistemático)² + (Riesgo No Sistemático / N) ]</div>
+
+        <div class="control-wrapper">
+            <label>Modificar tamaño del portafolio (Número de Activos N):</label>
+            <input type="range" min="1" max="40" value="2" oninput="calcularBarra(this.value)">
+            <div>Activos en Portafolio (N): <span id="txtN" class="num-acciones">2</span></div>
+        </div>
+
+        <div class="panel-metricas">
+            <div class="metrica-box">
+                <div class="metrica-titulo">Riesgo Diversificable Restante (σ)</div>
+                <div id="txtNoSist" class="metrica-valor" style="color: #10b981;">19.80%</div>
+            </div>
+            <div class="metrica-box">
+                <div class="metrica-titulo">Desviación Estándar Total del Portafolio (σₚ)</div>
+                <div id="txtTotal" class="metrica-valor" style="color: #0f172a;">31.80%</div>
+            </div>
+        </div>
+
+        <div class="card-visualizador">
+            <h3 style="font-size: 12px; text-transform: uppercase; color: #64748b; font-weight: bold;">Descomposición de la Volatilidad Total del Portafolio:</h3>
+            <div class="barra-grafico-contenedor">
+                <div class="medidor-sist"></div>
+                <div id="barraVerde" class="medidor-no-sist" style="width: 49.5%;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 11px; font-weight: bold;">
+                <span style="color: #1e40af;">■ Riesgo de Mercado Base (σₛ = 12.0%)</span>
+                <span id="lblNoSist" style="color: #10b981;">■ Riesgo Diversificable (σns = 19.8%)</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
