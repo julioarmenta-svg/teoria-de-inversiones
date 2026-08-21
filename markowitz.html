@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Riesgo Avanzado - Tec de Monterrey</title>
+    <title>Laboratorio Markowitz - Tec de Monterrey</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
@@ -13,7 +13,7 @@
             color: #334155;
         }
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             background-color: #ffffff;
             border-radius: 24px;
@@ -31,92 +31,89 @@
             font-weight: 600;
             font-size: 14px;
             margin-bottom: 24px;
-            transition: background-color 0.2s;
         }
-        .btn-regresar:hover { background-color: #1e293b; }
-        h1 { font-size: 28px; color: #0f172a; margin-bottom: 4px; }
-        .sub { font-size: 12px; font-weight: bold; color: #0033a0; text-transform: uppercase; margin-bottom: 16px; letter-spacing: 0.05em;}
-        .intro { font-size: 15px; color: #64748b; margin-bottom: 24px; line-height: 1.5; }
         
-        /* Layout en dos columnas para el Simulador Pro */
+        /* DISEÑO DE PANEL DUAL SIMÉTRICO */
         .workspace {
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 24px;
-            margin-top: 24px;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 20px;
         }
+
+        /* ESTILOS COMUNES DE SECCIONES */
+        h1 { font-size: 24px; color: #0f172a; margin-bottom: 10px; font-weight: 800; }
+        .intro { font-size: 14px; color: #64748b; margin-bottom: 20px; line-height: 1.5; }
         
-        .card-control {
+        .formula-card {
+            background-color: #f1f5f9;
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+            font-family: monospace;
+            font-size: 13.5px;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 24px;
+            border-left: 5px solid #1e40af;
+        }
+
+        /* CONTENEDORES INTERNOS LADO IZQUIERDO */
+        .control-wrapper {
             background-color: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 24px;
-        }
-        
-        .graph-box {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            margin-bottom: 20px;
         }
+        label { display: block; font-weight: 700; margin-bottom: 10px; color: #1e293b; font-size: 14px; }
+        input[type=range] { width: 100%; max-width: 400px; margin-bottom: 8px; cursor: pointer; }
+        .num-acciones { font-size: 24px; font-weight: 800; color: #1e40af; }
 
         .panel-metricas {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 16px;
-            margin-top: 20px;
-            background: #ffffff;
-            padding: 16px;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
+            margin-bottom: 24px;
         }
-        .metrica-box { text-align: center; }
+        .metrica-box { text-align: center; background: #f8fafc; border: 1px solid #e2e8f0; padding: 16px; border-radius: 12px; }
         .metrica-titulo { font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: bold; }
-        .metrica-valor { font-size: 22px; font-weight: 800; color: #0f172a; margin-top: 4px; }
+        .metrica-valor { font-size: 24px; font-weight: 800; color: #0f172a; margin-top: 4px; }
 
-        .control-wrapper {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 12px;
+        .card-visualizador {
+            background-color: #f8fafc;
             border: 1px solid #e2e8f0;
-            text-align: center;
+            border-radius: 12px;
+            padding: 20px;
         }
-        label { display: block; font-weight: 700; margin-bottom: 12px; color: #1e293b; }
-        input[type=range] { width: 100%; max-width: 400px; margin-bottom: 12px; cursor: pointer; }
-        .num-acciones { font-size: 24px; font-weight: 800; color: #1e40af; }
-
         .barra-grafico-contenedor {
-            height: 35px;
+            height: 38px;
             width: 100%;
             background-color: #cbd5e1;
             border-radius: 8px;
             overflow: hidden;
             display: flex;
-            margin-top: 20px;
+            margin-top: 14px;
         }
         .medidor-sist { background-color: #1e40af; height: 100%; width: 30%; }
         .medidor-no-sist { background-color: #10b981; height: 100%; transition: width 0.1s ease; }
 
-        .formula-card {
-            background-color: #f1f5f9;
-            border-radius: 12px;
-            padding: 12px;
-            text-align: center;
-            font-family: monospace;
-            font-size: 14px;
-            font-weight: bold;
-            color: #1e293b;
-            border-left: 5px solid #1e40af;
+        /* CONTENEDORES INTERNOS LADO DERECHO */
+        .panel-grafico {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-
         svg {
             background-color: #fafafa;
-            border-radius: 8px;
-            border: 1px dashed #cbd5e1;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
         }
     </style>
 </head>
@@ -125,73 +122,85 @@
     <div class="container">
         <a href="semana2.html" class="btn-regresar">← Volver a Semana 2</a>
         
-        <span class="sub">Laboratorio Financiero de Economía</span>
-        <h1>Frontera Estadística de Markowitz (1952)</h1>
-        <p class="intro">
-            Mueve la barra para observar el efecto cuantitativo real: a medida que el número de acciones (\(N\)) tiende al infinito, el riesgo específico se pulveriza de forma asintótica, convergiendo perfectamente hacia la volatilidad sistemática del mercado.
-        </p>
-
-        <div class="formula-card">
-            &sigma;ₚ = &radic;[ &sigma;ₛ² + (&sigma;ns² / N) ] ➔ Covarianza Promedio Proporcional
-        </div>
-
         <div class="workspace">
             
-            <!-- PANEL IZQUIERDO: CONTROLES Y BARRAS -->
-            <div class="card-control">
+            <!-- SECCIÓN IZQUIERDA: SIMULADOR ESTADÍSTICO -->
+            <div>
+                <h1>Simulador Estadístico de Riesgo (Markowitz)</h1>
+                <p class="intro">
+                    Matemáticamente, el riesgo de un portafolio se mide a través de la Desviación Estándar (σ). Al reducir la covarianza mediante la diversificación, el riesgo no sistemático decrece exponencialmente.
+                </p>
+
+                <div class="formula-card">
+                    Riesgo del Portafolio (σₚ) = √[ (Riesgo Sistemático)² + (Riesgo No Sistemático / N) ]
+                </div>
+
                 <div class="control-wrapper">
-                    <label for="accionesSlider">Tamaño del Portafolio (Número de Activos N):</label>
-                    <input type="range" id="accionesSlider" min="1" max="40" value="1">
-                    <div>Activos seleccionados: <span id="valorAcciones" class="num-acciones">1</span></div>
+                    <label for="accionesSlider">Modificar tamaño del portafolio (Número de Activos N):</label>
+                    <input type="range" id="accionesSlider" min="1" max="40" value="2">
+                    <div>Activos en Portafolio (N): <span id="valorAcciones" class="num-acciones">2</span></div>
                 </div>
 
                 <div class="panel-metricas">
-                    <div class="metrica-box" style="border-right: 1px solid #e2e8f0;">
-                        <div class="metrica-titulo">Riesgo Idiosincrásico (&sigma;ns)</div>
-                        <div id="valNoSist" class="metrica-valor" style="color: #10b981;">28.00%</div>
+                    <div class="metrica-box">
+                        <div class="metrica-titulo">Riesgo Diversificable Restante (σ)</div>
+                        <div id="valNoSist" class="metrica-valor" style="color: #10b981;">19.80%</div>
                     </div>
                     <div class="metrica-box">
-                        <div class="metrica-titulo">Volatilidad Total (&sigma;ₚ)</div>
-                        <div id="valTotal" class="metrica-valor" style="color: #0f172a;">40.00%</div>
+                        <div class="metrica-titulo">Desviación Estándar Total del Portafolio (σₚ)</div>
+                        <div id="valTotal" class="metrica-valor" style="color: #0f172a;">31.80%</div>
                     </div>
                 </div>
 
-                <h3 style="margin-top: 20px; font-size: 12px; text-transform: uppercase; color: #64748b;">Estructura de la Varianza Total:</h3>
-                <div class="barra-grafico-contenedor">
-                    <div class="medidor-sist"></div>
-                    <div id="barraNoSist" class="medidor-no-sist" style="width: 70%;"></div>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; font-weight: bold;">
-                    <span style="color: #1e40af;">■ Sistemático de Mercado (12.0%)</span>
-                    <span id="txtNoSist" style="color: #10b981;">■ Diversificable (28.0%)</span>
+                <div class="card-visualizador">
+                    <h3 style="font-size: 12px; text-transform: uppercase; color: #64748b; font-weight: bold;">Descomposición de la Volatilidad Total del Portafolio:</h3>
+                    <div class="barra-grafico-contenedor">
+                        <div class="medidor-sist"></div>
+                        <div id="barraNoSist" class="medidor-no-sist" style="width: 49.5%;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 11px; font-weight: bold;">
+                        <span style="color: #1e40af;">■ Riesgo de Mercado Base (σₛ = 12.0%)</span>
+                        <span id="txtNoSist" style="color: #10b981;">■ Riesgo Diversificable (σns = 19.8%)</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- PANEL DERECHO: GRÁFICA ASINTÓTICA EN TIEMPO REAL -->
-            <div class="graph-box">
-                <h4 style="font-size: 12px; text-transform: uppercase; color: #1e293b; margin-bottom: 10px; font-weight: bold;">Curva de Reducción del Riesgo Total</h4>
+            <!-- SECCIÓN DERECHA: FRONTERA ESTADÍSTICA Y GRÁFICO -->
+            <div class="panel-grafico">
+                <div style="width: 100%;">
+                    <h1>Frontera Estadística de Markowitz (1952)</h1>
+                    <p class="intro">
+                        Mueve la barra para observar el efecto cuantitativo real: a medida que el número de acciones (N) tiende al infinito, el riesgo específico se pulveriza de forma asintótica, convergiendo perfectamente hacia la volatilidad sistemática del mercado.
+                    </p>
+
+                    <div class="formula-card">
+                        σₚ = √[ σₛ² + (σns² / N) ] ➔ Covarianza Promedio Proporcional
+                    </div>
+                </div>
+
+                <h4 style="font-size: 12px; text-transform: uppercase; color: #1e293b; margin-bottom: 12px; font-weight: bold; width: 100%; text-align: center;">Curva de Reducción del Riesgo Total</h4>
                 
-                <!-- Gráfico SVG Dinámico -->
-                <svg width="360" height="240" id="graficaSvg">
-                    <!-- Ejes -->
-                    <line x1="40" y1="200" x2="340" y2="200" stroke="#64748b" stroke-width="2"/>
-                    <line x1="40" y1="20" x2="40" y2="200" stroke="#64748b" stroke-width="2"/>
+                <!-- MAPA VECTORIAL CARTESIANO -->
+                <svg width="460" height="230" id="graficaSvg">
+                    <!-- Ejes Cartesianos -->
+                    <line x1="60" y1="190" x2="430" y2="190" stroke="#64748b" stroke-width="2"/>
+                    <line x1="60" y1="20" x2="60" y2="190" stroke="#64748b" stroke-width="2"/>
                     
-                    <!-- Línea del Riesgo de Mercado Mínimo (Límite Asintótico) -->
-                    <line x1="40" y1="140" x2="340" y2="140" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="4,4"/>
-                    <text x="210" y="132" fill="#1e40af" font-size="9" font-weight="bold">Límite Sistemático (12%)</text>
+                    <!-- Límite Asintótico del Mercado Fijo al 12% -->
+                    <line x1="60" y1="139" x2="430" y2="139" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="4,4"/>
+                    <text x="260" y="131" fill="#1e40af" font-size="11" font-weight="bold">Límite Sistemático (12%)</text>
                     
-                    <!-- Etiquetas de los Ejes -->
-                    <text x="310" y="215" fill="#64748b" font-size="10" font-weight="bold">N activos</text>
-                    <text x="10" y="30" fill="#64748b" font-size="10" font-weight="bold" transform="rotate(-90,10,30)">Riesgo &sigma;ₚ</text>
+                    <!-- Rótulos Técnicos de los Ejes -->
+                    <text x="375" y="208" fill="#64748b" font-size="11" font-weight="bold">N activos</text>
+                    <text x="16" y="32" fill="#64748b" font-size="11" font-weight="bold" transform="rotate(-90,16,32)">Riesgo σₚ</text>
                     
-                    <!-- Curva de Markowitz Dinámica -->
-                    <path id="curvaRiesgo" d="" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+                    <!-- Curva de Rendimiento Estática de Fondo -->
+                    <path id="curvaRiesgo" d="" fill="none" stroke="#cbd5e1" stroke-width="2.5"/>
                     
-                    <!-- Punto Interactiva de Nuestro Portafolio Actual -->
-                    <circle id="puntoPortafolio" cx="40" cy="40" r="6" fill="#10b981" stroke="#ffffff" stroke-width="2"/>
+                    <!-- Punto de Posición Dinámico Verde -->
+                    <circle id="puntoPortafolio" cx="60" cy="20" r="7" fill="#10b981" stroke="#ffffff" stroke-width="2.5"/>
                 </svg>
-                <div style="font-size: 10px; color: #94a3b8; margin-top: 8px; text-align: center;">El punto verde muestra tu posición matemática exacta.</div>
+                <div style="font-size: 11px; color: #94a3b8; margin-top: 10px; text-align: center; font-weight: 500;">El punto verde muestra tu posición matemática exacta.</div>
             </div>
 
         </div>
@@ -205,24 +214,7 @@
         const valNoSist = document.getElementById('valNoSist');
         const valTotal = document.getElementById('valTotal');
         
-        // Elementos de la Gráfica SVG
         const curvaRiesgo = document.getElementById('curvaRiesgo');
         const puntoPortafolio = document.getElementById('puntoPortafolio');
 
-        // Dibujar la curva matemática estática de fondo al cargar la página
-        function dibujarCurvaBase() {
-            let pathD = "";
-            for (let i = 1; i <= 40; i++) {
-                let xSvg = 40 + ((i - 1) * (300 / 39));
-                let simNoSist = 28.0 / Math.sqrt(i);
-                let simTotal = 12.0 + simNoSist;
-                // Mapear el riesgo (0% a 40%) al alto del SVG (200px a 40px)
-                let ySvg = 200 - (simTotal * (160 / 40));
-                
-                if (i === 1) pathD += `M ${xSvg} ${ySvg}`;
-                else pathD += ` L ${xSvg} ${ySvg}`;
-            }
-            curvaRiesgo.setAttribute("d", pathD);
-        }
-        dibujarCurvaBase();
-
+        const sigmaSistematico = 12.0; 
