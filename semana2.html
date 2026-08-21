@@ -42,7 +42,7 @@
         .epoca-collapse-btn {
             background-color: #475569;
             color: white;
-            padding: 12px 18px;
+            padding: 14px 18px;
             border-radius: 12px;
             font-weight: 700;
             font-size: 13px;
@@ -55,21 +55,18 @@
             align-items: center;
             user-select: none;
         }
-        .epoca-collapse-btn.e3 { background-color: #f97316; } /* Resaltado Naranja */
+        .epoca-collapse-btn.e3 { background-color: #f97316; }
         
         .timeline-slider-box {
-            display: none; /* Oculto por defecto para Épocas 1 y 2 */
+            display: none; /* Controlado dinámicamente por JS */
             position: relative;
             background-color: #fff7ed;
             border-radius: 0 0 12px 12px;
             border: 1px solid #ffedd5;
             margin-bottom: 20px;
             padding: 20px 50px;
-            animation: slideDown 0.2s ease-out;
         }
         .timeline-slider-box.active { display: block; }
-
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
         .timeline-mini-track {
             display: flex;
@@ -118,30 +115,24 @@
             text-align: left;
             white-space: normal;
             transition: all 0.2s ease;
+            cursor: pointer;
         }
-        .timeline-node-card.active-node { border-left: 5px solid #f97316; }
-        .timeline-node-card.active-node:hover {
+        .timeline-node-card:hover {
             transform: translateY(-4px);
             border-color: #f97316;
             box-shadow: 0 8px 16px -4px rgba(249, 115, 22, 0.15);
         }
-        .timeline-node-card.disabled-node { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+        .timeline-node-card.disabled-node { opacity: 0.5; cursor: not-allowed; }
 
         .node-year { font-size: 16px; font-weight: 800; color: #ea580c; margin-bottom: 6px; }
         .timeline-node-card.disabled-node .node-year { color: #94a3b8; }
         .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.3; }
         .node-desc { font-size: 11px; color: #64748b; line-height: 1.4; }
 
-        /* LISTADO DE SESIONES */
-        .seccion-titulo {
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #94a3b8;
-            margin: 35px 0 15px 0;
-        }
+        /* LISTADO DE SESIONES Y WORKSPACE INTERNO */
+        .seccion-titulo { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; margin: 40px 0 15px 0; }
         .lista-sesiones { display: flex; flex-direction: column; gap: 16px; }
+        
         .btn-sesion {
             display: block;
             text-decoration: none;
@@ -154,9 +145,49 @@
             font-weight: 600;
             font-size: 16px;
             transition: all 0.2s ease;
+            cursor: pointer;
         }
         .btn-sesion:hover { background-color: #f1f5f9; transform: translateX(4px); }
         .btn-sesion.ae { border-left-color: #10b981; }
+
+        /* ARQUITECTURA DE CONTENIDO INTERNO DESPLEGABLE */
+        .workspace-sesion {
+            display: none;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: -8px;
+            margin-bottom: 24px;
+            animation: slideDown 0.25s ease-out;
+        }
+        .pilar-wrapper { display: flex; gap: 12px; margin-bottom: 24px; }
+        .btn-pilar {
+            flex: 1; padding: 16px 12px; border-radius: 12px; color: white; text-align: center;
+            font-weight: 800; font-size: 13px; cursor: pointer; user-select: none;
+            transition: transform 0.05s ease, border-bottom 0.05s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .btn-pilar:active { transform: translateY(4px); }
+        .pilar-teoria { background-color: #1e40af; border-bottom: 5px solid #1e3a8a; }
+        .pilar-clase { background-color: #a855f7; border-bottom: 5px solid #7e22ce; }
+        .pilar-simulador { background-color: #10b981; border-bottom: 5px solid #047857; }
+        .pilar-tarea { background-color: #f97316; border-bottom: 5px solid #c2410c; }
+
+        .sub-bloque { display: none; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; }
+        li { margin-left: 20px; margin-top: 6px; font-size: 13.5px; line-height: 1.5; }
+
+        /* SIMULADORES */
+        .toggle-container { display: flex; gap: 8px; margin-bottom: 20px; background: #e2e8f0; padding: 4px; border-radius: 8px; }
+        .toggle-btn { flex: 1; padding: 10px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; background: transparent; color: #64748b; font-size: 12px; }
+        .toggle-btn.active { background: white; color: #0f172a; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .grid-inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 20px; }
+        label { display: block; font-size: 11px; font-weight: 700; color: #64748b; margin-bottom: 4px; }
+        input { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 600; }
+        .btn-calc { background: #0f172a; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; width: 100%; margin-bottom: 16px; }
+        .panel-resultado { padding: 16px; border-radius: 8px; background: white; border: 1px solid #e2e8f0; }
+
+        @media (max-width: 768px) { .pilar-wrapper { flex-direction: column; } }
     </style>
 </head>
 <body>
@@ -166,70 +197,33 @@
             <h1>Semana 2: Contenido y Actividades</h1>
         </header>
 
-        <!-- ÉPOCA 1 (COLAPSADA) -->
-        <div class="epoca-collapse-btn" onclick="toggleEpoca('ep1')">📖 Época 1: Periodo Pre-Clásico y Clásico (Fines del Siglo XVIII - XIX) <span>▼</span></div>
+        <!-- ÉPOCA 1 (CORREGIDA) -->
+        <div class="epoca-collapse-btn" onclick="toggleEpoca('ep1')">📖 Época 1: Periodo Pre-Clásico y Clásico (Fines del Siglo XVIII - XIX) <span class="indicator">▼</span></div>
         <div id="ep1" class="timeline-slider-box">
             <div class="timeline-mini-track">
                 <div class="timeline-node-card disabled-node">
                     <div class="node-year">1776</div>
                     <div class="node-title">La Riqueza de las Naciones</div>
-                    <div class="node-desc">• Adam Smith<br>• Teoría del valor-trabajo y asignación de recursos.</div>
+                    <div class="node-desc">• Adam Smith<br>• Asignación de recursos y valor-trabajo estructural.</div>
                 </div>
             </div>
         </div>
 
-        <!-- ÉPOCA 2 (COLAPSADA) -->
-        <div class="epoca-collapse-btn" onclick="toggleEpoca('ep2')">📖 Época 2: Periodo Neoclásico Marginalista (Fines del Siglo XIX - 1950) <span>▼</span></div>
+        <!-- ÉPOCA 2 (CORREGIDA) -->
+        <div class="epoca-collapse-btn" onclick="toggleEpoca('ep2')">📖 Época 2: Periodo Neoclásico Marginalista (Fines del Siglo XIX - 1950) <span class="indicator">▼</span></div>
         <div id="ep2" class="timeline-slider-box">
             <div class="timeline-mini-track">
                 <div class="timeline-node-card disabled-node">
                     <div class="node-year">1871</div>
                     <div class="node-title">Revolución Marginalista</div>
-                    <div class="node-desc">• Jevons, Menger, Walras<br>• Utilidad marginal decreciente y optimización del consumidor.</div>
+                    <div class="node-desc">• Menger, Jevons, Walras<br>• Optimización matemática bajo escasez y utilidad marginal.</div>
                 </div>
             </div>
         </div>
 
-        <!-- ÉPOCA 3 (ABIERTA Y ACTIVA) -->
-        <div class="epoca-collapse-btn e3" onclick="toggleEpoca('ep3')">📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span>▲</span></div>
+        <!-- ÉPOCA 3 (CORREGIDA CON AVANCE OPERATIVO) -->
+        <div class="epoca-collapse-btn e3" onclick="toggleEpoca('ep3')">📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span class="indicator">▲</span></div>
         <div id="ep3" class="timeline-slider-box active">
             <div class="arrow-nav arrow-left" onclick="moveSlider(-1)">❮</div>
             <div class="arrow-nav arrow-right" onclick="moveSlider(1)">❯</div>
-
-            <div class="timeline-mini-track" id="masterTrack">
-                <a href="sesion21.html?pilar=simulador&sim=M" class="timeline-node-card active-node">
-                    <div class="node-year">1952</div>
-                    <div class="node-title">El Portafolio Moderno</div>
-                    <div class="node-desc">• Markowitz (Portfolio Selection)<br>• Riesgo medido con varianza/covarianza<br>• Frontera eficiente de inversión</div>
-                </a>
-
-                <a href="sesion22.html?pilar=teoria" class="timeline-node-card active-node">
-                    <div class="node-year">1956</div>
-                    <div class="node-title">Valor del Dinero en el Tiempo</div>
-                    <div class="node-desc">• Gordon (Modelo de Dividendos Descontados - DDM)<br>• Crecimiento constante a perpetuidad</div>
-                </a>
-
-                <div class="timeline-node-card disabled-node">
-                    <div class="node-year">1958</div>
-                    <div class="node-title">Irrelevancia de Estructura</div>
-                    <div class="node-desc">• Modigliani y Miller<br>• Financiamiento irrelevante en mercados perfectos</div>
-                </div>
-
-                <a href="sesion21.html?pilar=simulador&sim=S" class="timeline-node-card active-node">
-                    <div class="node-year">1964-1966</div>
-                    <div class="node-title">El Nacimiento del CAPM</div>
-                    <div class="node-desc">• Sharpe, Lintner y Mossin<br>• Modelo CAPM y Riesgo Beta<br>• Línea del Mercado de Valores (SML)</div>
-                </a>
-
-                <a href="sesion21.html?pilar=clase" class="timeline-node-card active-node">
-                    <div class="node-year">1970</div>
-                    <div class="node-title">Eficiencia Informativa</div>
-                    <div class="node-desc">• Fama (Hipótesis de Mercados Eficientes)<br>• Precios absorben información instantáneamente</div>
-                </a>
-
-                <div class="timeline-node-card disabled-node">
-                    <div class="node-year">1973</div>
-                    <div class="node-title">Revolución de Derivados</div>
-                    <div class="node-desc">• Black, Scholes, Merton<br>• Valuación exacta de opciones matemáticas</div>
-                </div>
 
