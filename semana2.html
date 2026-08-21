@@ -3,77 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prueba Época 3</title>
+    <title>Semana 2 - Contenido y Actividades</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            background-color: #f1f5f9; padding: 40px 20px; color: #334155;
+            background-color: #f1f5f9; 
+            padding: 40px 20px;
+            color: #334155;
         }
         .container {
-            max-width: 1200px; margin: 0 auto; background-color: #ffffff;
-            border-radius: 24px; padding: 40px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
         }
-        .header-fixed {
-            background-color: #f0f4ff; color: #0033a0; padding: 18px 20px;
-            border-radius: 12px 12px 0 0; border: 1px solid #d1e0ff; border-left: 6px solid #0033a0;
-            font-weight: 700; font-size: 13px; text-transform: uppercase;
+        header {
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e2e8f0;
         }
+        .btn-regresar {
+            display: inline-block;
+            text-decoration: none;
+            color: #64748b;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+        h1 { font-size: 28px; color: #0f172a; }
+        
+        /* BOTÓN COLAPSABLE ESTABLE */
+        .epoca-collapse-btn {
+            background-color: #f0f4ff;
+            color: #0033a0;
+            padding: 18px 20px;
+            border-radius: 12px;
+            border: 1px solid #d1e0ff;
+            border-left: 6px solid #0033a0;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            margin-top: 14px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        
         .timeline-slider-box {
-            position: relative; background-color: #f8fafc; border-radius: 0 0 12px 12px;
-            border: 1px solid #d1e0ff; margin-bottom: 20px; padding: 24px 55px; border-top: none;
+            position: relative;
+            background-color: #f8fafc;
+            border-radius: 0 0 12px 12px;
+            border: 1px solid #d1e0ff;
+            margin-bottom: 20px;
+            padding: 24px 55px;
+            border-top: none;
         }
+
+        /* TRACK DE DESLIZAMIENTO COMPATIBLE */
         .timeline-mini-track {
-            display: flex; gap: 16px; overflow-x: auto; scroll-behavior: smooth;
-            padding: 10px 0; width: 100%; scrollbar-width: none;
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 10px 0;
+            width: 100%;
+            scrollbar-width: none;
         }
         .timeline-mini-track::-webkit-scrollbar { display: none; }
+
+        /* NAVEGACIÓN DE BOTONES */
         .arrow-nav {
-            position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px;
-            background-color: #ffffff; border: 1px solid #cbd5e1; border-radius: 50%; color: #0033a0;
-            font-size: 16px; font-weight: bold; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; z-index: 10; user-select: none; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 50%;
+            color: #0033a0;
+            font-size: 16px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            user-select: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
+        .arrow-nav:hover { background-color: #0033a0; color: white; border-color: #0033a0; }
         .arrow-left { left: 8px; }
         .arrow-right { right: 8px; }
+
+        /* TARJETAS ESTABLES */
         .timeline-node-card {
-            flex: 0 0 260px; width: 260px; min-width: 260px; background: #ffffff;
-            border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; text-align: left;
+            flex: 0 0 260px;
+            width: 260px;
+            min-width: 260px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
+        .timeline-node-card:hover {
+            transform: translateY(-2px);
+            border-color: #0033a0;
+            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.08);
+        }
+        .timeline-node-card.disabled-node { opacity: 0.45; cursor: not-allowed; }
+
         .node-year { font-size: 16px; font-weight: 800; color: #0033a0; margin-bottom: 6px; }
-        .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
+        .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.3; }
         .node-desc { font-size: 11px; color: #64748b; line-height: 1.4; }
+
+        /* SECCIONES COMPLEMENTARIAS */
+        .seccion-titulo { font-size: 13px; font-weight: 700; text-transform: uppercase; color: #94a3b8; margin: 40px 0 15px 0; }
+        
+        .btn-sesion {
+            display: block;
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-left: 6px solid #1e40af; 
+            padding: 22px 20px;
+            border-radius: 12px;
+            color: #334155;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+        .btn-sesion:hover { transform: translateX(4px); background-color: #f8fafc; }
+        .btn-sesion.ae { border-left-color: #10b981; }
+
+        .workspace-sesion {
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .pilar-wrapper { display: flex; gap: 12px; margin-bottom: 24px; }
+        .btn-pilar {
+            flex: 1; padding: 14px 12px; border-radius: 10px; color: white; text-align: center;
+            font-weight: 800; font-size: 13px; cursor: pointer; user-select: none;
+        }
+        .pilar-teoria { background-color: #1e40af; }
+        .pilar-clase { background-color: #7c3aed; }
+        .pilar-simulador { background-color: #10b981; }
+        .pilar-tarea { background-color: #f97316; }
+
+        .sub-bloque { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; }
+        li { margin-left: 20px; margin-top: 6px; font-size: 13.5px; }
+
+        .toggle-container { display: flex; gap: 8px; margin-bottom: 20px; background: #e2e8f0; padding: 4px; border-radius: 8px; }
+        .toggle-btn { flex: 1; padding: 10px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; background: transparent; color: #64748b; }
+        .toggle-btn.active { background: white; color: #0f172a; }
+        .grid-inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 20px; }
+        label { display: block; font-size: 11px; font-weight: 700; color: #64748b; margin-bottom: 4px; }
+        input { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 600; }
+        .btn-calc { background: #0f172a; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; width: 100%; margin-bottom: 16px; }
+        .panel-resultado { padding: 16px; border-radius: 8px; background: white; border: 1px solid #e2e8f0; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 style="font-size:24px; margin-bottom:20px; color:red;">🔴 PRUEBA DE DESPLIEGUE ACTIVO 🔴</h1>
+        <header>
+            <a href="index.html" class="btn-regresar">⬅ Volver al Inicio</a>
+            <h1>Semana 2: Contenido y Actividades</h1>
+        </header>
 
-        <div class="header-fixed">
-            📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976)
+        <!-- CRONOLOGÍA ÉPOCA 3 -->
+        <div class="epoca-collapse-btn" onclick="var el=document.getElementById('ep3'); el.style.display=(el.style.display==='none')?'block':'none';">
+            📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span>▼</span>
         </div>
-        <div class="timeline-slider-box">
-            <button class="arrow-nav arrow-left" onclick="document.getElementById('tk3').scrollLeft -= 276;">❮</button>
-            <button class="arrow-nav arrow-right" onclick="document.getElementById('tk3').scrollLeft += 276;">❯</button>
-            
-            <div class="timeline-mini-track" id="tk3">
+        <div id="ep3" class="timeline-slider-box" style="display: block;">
+            <div class="arrow-nav arrow-left" onclick="event.stopPropagation(); document.getElementById('track3').scrollLeft -= 276;">❮</div>
+            <div class="arrow-nav arrow-right" onclick="event.stopPropagation(); document.getElementById('track3').scrollLeft += 276;">❯</div>
+
+            <div class="timeline-mini-track" id="track3">
                 <div class="timeline-node-card">
                     <div class="node-year">1952</div>
                     <div class="node-title">El Portafolio Moderno</div>
-                    <div class="node-desc">• Markowitz<br>• Riesgo medido con varianza<br>• Frontera eficiente</div>
+                    <div class="node-desc">• Markowitz (Portfolio Selection)<br>• Riesgo medido con varianza<br>• Frontera eficiente de inversión</div>
                 </div>
                 <div class="timeline-node-card">
                     <div class="node-year">1956</div>
                     <div class="node-title">Valor del Dinero en el Tiempo</div>
-                    <div class="node-desc">• Gordon<br>• Crecimiento constante</div>
+                    <div class="node-desc">• Gordon (Modelo de Dividendos Descontados)<br>• Crecimiento constante a perpetuidad</div>
+                </div>
+                <div class="timeline-node-card disabled-node">
+                    <div class="node-year">1958</div>
+                    <div class="node-title">Irrelevancia de Estructura</div>
+                    <div class="node-desc">• Modigliani y Miller<br>• Estructura de financiamiento neutral en mercados</div>
                 </div>
                 <div class="timeline-node-card">
-                    <div class="node-year">1964</div>
+                    <div class="node-year">1964-1966</div>
                     <div class="node-title">El Nacimiento del CAPM</div>
-                    <div class="node-desc">• Sharpe, Lintner<br>• Riesgo Beta analítico</div>
+                    <div class="node-desc">• Sharpe, Lintner y Mossin<br>• Riesgo Beta y Modelo SML analítico</div>
+                </div>
+                <div class="timeline-node-card">
+                    <div class="node-year">1970</div>
+                    <div class="node-title">Eficiencia Informativa</div>
+                    <div class="node-desc">• Fama (Hipótesis de Mercados Eficientes globales)</div>
                 </div>
             </div>
         </div>
-    </div>
-</body>
-</html>
+
+        <!-- MÓDULOS DE TRABAJO INFERIORES -->
+        <h2 class="seccion-titulo">Módulos de Trabajo Semanal</h2>
+        
+        <div class="btn-sesion" onclick="var el=document.getElementById('workspace21'); el.style.display=(el.style.display==='none')?'block':'none';">
+            • Sesión 2.1- Medidas del riesgo y eficiencia de mercado
+        </div>
+        
