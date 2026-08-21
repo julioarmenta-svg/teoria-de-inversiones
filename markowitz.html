@@ -207,14 +207,12 @@
     </div>
 
     <script>
-        const slider = document.getElementById('accionesSlider');
-        const valorAcciones = document.getElementById('valorAcciones');
-        const barraNoSist = document.getElementById('barraNoSist');
-        const txtNoSist = document.getElementById('txtNoSist');
-        const valNoSist = document.getElementById('valNoSist');
-        const valTotal = document.getElementById('valTotal');
-        
-        const curvaRiesgo = document.getElementById('curvaRiesgo');
-        const puntoPortafolio = document.getElementById('puntoPortafolio');
-
-        const sigmaSistematico = 12.0; 
+        // Envolver todo en window.onload asegura que los scripts inicien hasta que la página cargue completa
+        window.onload = function() {
+            const slider = document.getElementById('accionesSlider');
+            const valorAcciones = document.getElementById('valorAcciones');
+            const barraNoSist = document.getElementById('barraNoSist');
+            const txtNoSist = document.getElementById('txtNoSist');
+            const valNoSist = document.getElementById('valNoSist');
+            const valTotal = document.getElementById('valTotal');
+            
