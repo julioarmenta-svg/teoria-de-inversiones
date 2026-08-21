@@ -4,7 +4,6 @@
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <title>Semana 2 - Teoría de Inversiones</title>
- <script src="https://jsdelivr.net"></script>
  <style>
  * { box-sizing: border-box; margin: 0; padding: 0; }
  body { 
@@ -56,7 +55,7 @@
  background-color: #f0f9ff; 
  border-radius: 0 0 12px 12px;
  border: 1px solid #e0f2fe;
- margin-bottom: 30px;
+ margin-bottom: 40px;
  padding: 20px 50px; 
  }
  .timeline-mini-track {
@@ -111,7 +110,6 @@
  padding: 16px;
  text-align: left;
  white-space: normal; 
- cursor: pointer;
  transition: all 0.2s ease;
  }
  .timeline-node-card:hover {
@@ -119,69 +117,9 @@
  border-color: #0284c7;
  box-shadow: 0 8px 16px -4px rgba(2, 132, 199, 0.15);
  }
- .timeline-node-card.active-node {
- border: 2px solid #1e40af;
- background-color: #eff6ff;
- box-shadow: 0 4px 12px rgba(30, 64, 175, 0.15);
- }
  .node-year { font-size: 16px; font-weight: 800; color: #0284c7; margin-bottom: 6px; }
  .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.3; }
  .node-desc { font-size: 11px; color: #64748b; line-height: 1.4; }
-
- .workspace-title {
- font-size: 16px;
- font-weight: 800;
- text-transform: uppercase;
- color: #1e40af;
- margin-bottom: 16px;
- display: flex;
- align-items: center;
- gap: 8px;
- }
- .author-workspace {
- display: none; 
- background: #ffffff;
- border: 1px solid #cbd5e1;
- border-radius: 16px;
- padding: 24px;
- margin-bottom: 40px;
- box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
- animation: fadeIn 0.4s ease;
- }
- @keyframes fadeIn {
- from { opacity: 0; transform: translateY(10px); }
- to { opacity: 1; transform: translateY(0); }
- }
- .workspace-grid {
- display: grid;
- grid-template-columns: 1fr 1fr;
- gap: 24px;
- }
- @media (max-width: 900px) {
- .workspace-grid { grid-template-columns: 1fr; }
- }
- .control-panel {
- background-color: #f8fafc;
- padding: 20px;
- border-radius: 12px;
- border: 1px solid #e2e8f0;
- }
- .chart-container {
- position: relative;
- height: 280px;
- width: 100%;
- }
- .slider-label {
- display: block;
- font-size: 14px;
- font-weight: 700;
- margin-bottom: 8px;
- color: #334155;
- }
- .input-slider {
- width: 100%;
- margin-bottom: 16px;
- }
 
  .menu-modulos-grid {
  display: grid;
@@ -236,7 +174,7 @@
  <h1>Semana 2: Contenido y Actividades</h1>
  </header>
 
- <div class="etapa3-header">📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) (Haz clic en Markowitz o Sharpe para experimentar)</div>
+ <div class="etapa3-header">📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976)</div>
  <div class="timeline-slider-box">
  
  <div class="arrow-nav arrow-left" onclick="moveSlider(-1)">❮</div>
@@ -244,71 +182,69 @@
  
  <div class="timeline-mini-track" id="masterTrack">
  
- <div onclick="selectAuthor('markowitz', this)" class="timeline-node-card" id="node-markowitz">
+ <!-- Apunta a la subpágina independiente de Markowitz -->
+ <a href="markowitz.html" class="timeline-node-card">
  <div class="node-year">1952</div>
  <div class="node-title">El Portafolio Moderno</div>
- <div class="node-desc">• Markowitz (Portfolio Selection)<br>• Riesgo medido con varianza/covarianza<br>• Mitigación por Diversificación</div>
- </div>
+ <div class="node-desc">• Markowitz (Portfolio Selection)<br>• Riesgo medido con varianza/covarianza<br>• Frontera de posibilidades de inversión</div>
+ </a>
 
- <div onclick="alert('Módulo de Gordon Próximamente')" class="timeline-node-card">
+ <a href="#" onclick="alert('Módulo en construcción')" class="timeline-node-card">
  <div class="node-year">1956</div>
  <div class="node-title">Valor del Dinero en el Tiempo</div>
- <div class="node-desc">• Gordon (Modelo DDM)<br>• Crecimiento constante a perpetuidad</div>
- </div>
+ <div class="node-desc">• Gordon (Modelo de Dividendos Descontados - DDM)<br>• Crecimiento constante a perpetuidad</div>
+ </a>
 
- <div onclick="alert('Módulo de Modigliani-Miller Próximamente')" class="timeline-node-card">
+ <a href="#" onclick="alert('Módulo en construcción')" class="timeline-node-card">
  <div class="node-year">1958</div>
  <div class="node-title">Irrelevancia de Estructura</div>
- <div class="node-desc">• Modigliani y Miller<br>• Estructura financiera óptima en teoría</div>
- </div>
+ <div class="node-desc">• Modigliani y Miller<br>• Financiamiento irrelevante en mercados perfectos</div>
+ </a>
 
- <div onclick="selectAuthor('sharpe', this)" class="timeline-node-card" id="node-sharpe">
+ <!-- Apunta a la subpágina independiente de Sharpe/CAPM -->
+ <a href="capm.html" class="timeline-node-card">
  <div class="node-year">1964-1966</div>
  <div class="node-title">El Nacimiento del CAPM</div>
- <div class="node-desc">• Sharpe, Lintner y Mossin<br>• Modelo CAPM y Riesgo Beta<br>• Línea del Mercado de Valores (SML)</div>
- </div>
+ <div class="node-desc">• Sharpe, Lintner y Mossin<br>• Modelo CAPM y Riesgo Beta<br>• Portafolio del mercado</div>
+ </a>
 
- <div onclick="selectAuthor('fama', this)" class="timeline-node-card" id="node-fama">
+ <a href="#" onclick="alert('Módulo en construcción')" class="timeline-node-card">
  <div class="node-year">1970</div>
  <div class="node-title">Eficiencia Informativa</div>
  <div class="node-desc">• Fama (Hipótesis de Mercados Eficientes)<br>• Precios absorben la información instantáneamente</div>
- </div>
+ </a>
 
- <div onclick="alert('Módulo de Opciones Próximamente')" class="timeline-node-card">
+ <a href="#" onclick="alert('Módulo en construcción')" class="timeline-node-card">
  <div class="node-year">1973</div>
  <div class="node-title">Revolución de Derivados</div>
- <div class="node-desc">• Black, Scholes y Merton<br>• Valuación exacta de derivados</div>
- </div>
+ <div class="node-desc">• Black, Scholes y Merton<br>• Fórmula matemática exacta para opciones</div>
+ </a>
 
- <div onclick="alert('Módulo del Modelo APT Próximamente')" class="timeline-node-card">
+ <a href="#" onclick="alert('Módulo en construcción')" class="timeline-node-card">
  <div class="node-year">1976</div>
  <div class="node-title">Alternativa Multifactorial</div>
- <div class="node-desc">• Ross (Teoría APT)<br>• Valuación por Arbitraje</div>
+ <div class="node-desc">• Ross (Teoría de Valuación por Arbitraje - APT)<br>• Modelo de Valuación Multifactorial</div>
+ </a>
  </div>
- </div>
- </div>
- 
- <div id="workspace-markowitz" class="author-workspace">
-     <div class="workspace-title">💡 Simulador de Harry Markowitz (1952) - El Poder de Diversificar</div>
-     <div class="workspace-grid">
-         <div class="control-panel">
-             <p style="font-size:13px; margin-bottom:15px; line-height:1.4;">Markowitz demostró matemáticamente que al combinar activos, el riesgo total se reduce drásticamente. Él se enfocó en diluir el riesgo mediante la estadística, sentando las bases del <strong>Riesgo Diversificable</strong>.</p>
-             <label class="slider-label">Número de activos en cartera: <span id="val-m-n" style="color:#0284c7; font-weight:800;">1</span></label>
-             <input type="range" id="slider-m-n" min="1" max="40" value="1" class="input-slider" oninput="updateMarkowitz()">
-             <div style="background:#f1f5f9; padding:12px; border-radius:8px; font-size:12px; margin-top:15px; border-left: 4px solid #0284c7;">
-                 <strong>Lección de la gráfica:</strong> Nota cómo al meter más acciones el riesgo baja rápido al principio, pero se topa con una barrera (línea naranja). Esa barrera será explicada por Sharpe más adelante.
-             </div>
-         </div>
-         <div class="chart-container">
-             <canvas id="chart-markowitz"></canvas>
-         </div>
-     </div>
  </div>
 
- <div id="workspace-sharpe" class="author-workspace">
-     <div class="workspace-title">📊 Simulador de William Sharpe (1964) - Riesgo Sistemático y Línea SML</div>
-     <div class="workspace-grid">
-         <div class="control-panel">
-             <p style="font-size:13px; margin-bottom:15px; line-height:1.4;">Sharpe avanzó sobre el modelo de Markowitz. Separó el riesgo en dos y determinó que el mercado no paga por el riesgo diversificable. Solo te premia por asumir el <strong>Riesgo Sistemático (no medible con diversificación)</strong> usando el coeficiente <strong>Beta (&beta;)</strong>.</p>
-             <label class="slider-label">Coeficiente Beta (&beta;) del activo: <span id="val-s-beta" style="color:#eab308; font-weight:800;">1.0</span></label>
-             <input type="range" id="slider-s-beta" min="0" max="25" value="10" class="input-slider" oninput="updateSharpe()">
+ <div class="menu-modulos-grid">
+ <a href="presentaciones-semana2.html" class="btn-modulo-principal">
+  <div class="modulo-titulo">📁 Presentaciones de Clase</div>
+  <p class="modulo-subtxt">Accede al repositorio completo de lecturas y diapositivas teóricas de la semana.</p>
+ </a>
+ <a href="ejercicios-semana2.html" class="btn-modulo-principal practico">
+  <div class="modulo-titulo">✏️ Ejercicios en Clase y Tareas</div>
+  <p class="modulo-subtxt">Revisa las actividades prácticas, retos de Excel y entregas de evaluación de este módulo.</p>
+ </a>
+ </div>
+ </div>
+
+ <script>
+ function moveSlider(direction) {
+ const track = document.getElementById('masterTrack');
+ track.scrollLeft += (direction * 276);
+ }
+ </script>
+</body>
+</html>
