@@ -117,7 +117,8 @@
 
                 <div class="control-wrapper">
                     <label for="accionesSlider">Modificar tamaño del portafolio (Número de Activos N):</label>
-                    <input type="range" id="accionesSlider" min="1" max="40" value="2" oninput="calcularMecanica(this.value)">
+                    <!-- LLAMADA EMBEBIDA MECÁNICA BLINDADA -->
+                    <input type="range" id="accionesSlider" min="1" max="40" value="2" oninput="calcularMarkowitzTec(this.value)">
                     <div>Activos en Portafolio (N): <span id="valorAcciones" class="num-acciones">2</span></div>
                 </div>
 
@@ -171,7 +172,7 @@
     </div>
 
     <script>
-        function calcularMecanica(val) {
+        function calcularMarkowitzTec(val) {
             const n = parseInt(val);
             document.getElementById('valorAcciones').textContent = n;
             
@@ -199,4 +200,3 @@
         window.addEventListener('DOMContentLoaded', function() {
             let pathData = "";
             for (let i = 1; i <= 40; i++) {
-                let xSvg = 60 + ((i - 1) * (370 / 39));
