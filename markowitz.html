@@ -6,122 +6,41 @@
     <title>Laboratorio Markowitz - Tec de Monterrey</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; 
-            background-color: #f1f5f9; 
-            padding: 40px 20px;
-            color: #334155;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e2e8f0;
-        }
-        .btn-regresar {
-            display: inline-block;
-            text-decoration: none;
-            background-color: #0f172a;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 24px;
-        }
-        .workspace {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-top: 20px;
-        }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background-color: #f1f5f9; padding: 40px 20px; color: #334155; }
+        .container { max-width: 1200px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; padding: 40px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+        .btn-regresar { display: inline-block; text-decoration: none; background-color: #0f172a; color: white; padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 14px; margin-bottom: 24px; }
+        .workspace { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 20px; }
         h1 { font-size: 24px; color: #0f172a; margin-bottom: 10px; font-weight: 800; }
         .intro { font-size: 14px; color: #64748b; margin-bottom: 20px; line-height: 1.5; }
-        .formula-card {
-            background-color: #f1f5f9;
-            border-radius: 12px;
-            padding: 14px;
-            text-align: center;
-            font-family: monospace;
-            font-size: 13.5px;
-            font-weight: bold;
-            color: #1e293b;
-            margin-bottom: 24px;
-            border-left: 5px solid #1e40af;
-        }
-        .control-wrapper {
-            background-color: #f8fafc;
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+        .formula-card { background-color: #f1f5f9; border-radius: 12px; padding: 14px; text-align: center; font-family: monospace; font-size: 13.5px; font-weight: bold; color: #1e293b; margin-bottom: 24px; border-left: 5px solid #1e40af; }
+        .control-wrapper { background-color: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center; margin-bottom: 20px; }
         label { display: block; font-weight: 700; margin-bottom: 10px; color: #1e293b; font-size: 14px; }
         input[type=range] { width: 100%; max-width: 400px; margin-bottom: 8px; cursor: pointer; }
         .num-acciones { font-size: 24px; font-weight: 800; color: #1e40af; }
-        .panel-metricas {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
+        .panel-metricas { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
         .metrica-box { text-align: center; background: #f8fafc; border: 1px solid #e2e8f0; padding: 16px; border-radius: 12px; }
         .metrica-titulo { font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: bold; }
         .metrica-valor { font-size: 24px; font-weight: 800; color: #0f172a; margin-top: 4px; }
-        .card-visualizador {
-            background-color: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 20px;
-        }
-        .barra-grafico-contenedor {
-            height: 38px;
-            width: 100%;
-            background-color: #cbd5e1;
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            margin-top: 14px;
-        }
-        .medidor-sist { background-color: #1e40af; height: 100%; width: 30%; }
-        .medidor-no-sist { background-color: #10b981; height: 100%; transition: width 0.1s ease; }
-        .panel-grafico {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+        .card-visualizador { background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; }
+        .barra-grafico-contenedor { height: 38px; width: 100%; background-color: #cbd5e1; border-radius: 8px; overflow: hidden; display: flex; margin-top: 14px; }
+        .panel-grafico { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         svg { background-color: #fafafa; border-radius: 12px; border: 1px solid #e2e8f0; }
         @media (max-width: 768px) { .workspace { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-
     <div class="container">
         <a href="semana2.html" class="btn-regresar">← Volver a Semana 2</a>
-        
         <div class="workspace">
-            <!-- COLUMNA IZQUIERDA -->
             <div>
                 <h1>Simulador Estadístico de Riesgo (Markowitz)</h1>
                 <p class="intro">Matemáticamente, el riesgo de un portafolio se mide a través de la Desviación Estándar (σ). Al reducir la covarianza mediante la diversificación, el riesgo no sistemático decrece exponencialmente.</p>
                 <div class="formula-card">Riesgo del Portafolio (σₚ) = √[ (Riesgo Sistemático)² + (Riesgo No Sistemático / N) ]</div>
-
                 <div class="control-wrapper">
-                    <label for="accionesSlider">Modificar tamaño del portafolio (Número de Activos N):</label>
-                    <!-- LLAMADA EMBEBIDA MECÁNICA BLINDADA -->
+                    <label>Modificar tamaño del portafolio (Número de Activos N):</label>
                     <input type="range" id="accionesSlider" min="1" max="40" value="2" oninput="calcularMarkowitzTec(this.value)">
                     <div>Activos en Portafolio (N): <span id="valorAcciones" class="num-acciones">2</span></div>
                 </div>
-
                 <div class="panel-metricas">
                     <div class="metrica-box">
                         <div class="metrica-titulo">Riesgo Diversificable Restante (σ)</div>
@@ -132,12 +51,11 @@
                         <div id="valTotal" class="metrica-valor" style="color: #0f172a;">31.80%</div>
                     </div>
                 </div>
-
                 <div class="card-visualizador">
                     <h3 style="font-size: 12px; text-transform: uppercase; color: #64748b; font-weight: bold;">Descomposición de la Volatilidad Total del Portafolio:</h3>
                     <div class="barra-grafico-contenedor">
-                        <div class="medidor-sist"></div>
-                        <div id="barraNoSist" style="background-color: #10b981; height: 100%; width: 49.5%;"></div>
+                        <div style="background-color: #1e40af; height: 100%; width: 30%;"></div>
+                        <div id="barraNoSist" style="background-color: #10b981; height: 100%; width: 49.5%; transition: width 0.1s ease;"></div>
                     </div>
                     <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 11px; font-weight: bold;">
                         <span style="color: #1e40af;">■ Riesgo de Mercado Base (σₛ = 12.0%)</span>
@@ -145,17 +63,13 @@
                     </div>
                 </div>
             </div>
-
-            <!-- COLUMNA DERECHA -->
             <div class="panel-grafico">
                 <div style="width: 100%;">
                     <h1>Frontera Estadística de Markowitz (1952)</h1>
                     <p class="intro">Mueve la barra para observar el efecto cuantitativo real: a medida que el número de acciones (N) tiende al infinito, el riesgo específico se pulveriza de forma asintótica, convergiendo perfectamente hacia la volatilidad sistemática del mercado.</p>
                     <div class="formula-card">σₚ = √[ σₛ² + (σns² / N) ] ➔ Covarianza Promedio Proporcional</div>
                 </div>
-
-                <h4 style="font-size: 12px; text-transform: uppercase; color: #1e293b; margin-bottom: 12px; font-weight: bold; width: 100%; text-align: center;">Curva de Reducción del Riesgo Total</h4>
-                
+                <h4 style="font-size: 12px; text-transform: uppercase; color: #1e293b; margin-bottom: 12px; font-weight: bold;">Curva de Reducción del Riesgo Total</h4>
                 <svg width="460" height="230">
                     <line x1="60" y1="190" x2="430" y2="190" stroke="#64748b" stroke-width="2"/>
                     <line x1="60" y1="20" x2="60" y2="190" stroke="#64748b" stroke-width="2"/>
@@ -166,37 +80,39 @@
                     <path id="curvaRiesgo" d="" fill="none" stroke="#cbd5e1" stroke-width="2.5"/>
                     <circle id="puntoPortafolio" cx="60" cy="20" r="7" fill="#10b981" stroke="#ffffff" stroke-width="2.5"/>
                 </svg>
-                <div style="font-size: 11px; color: #94a3b8; margin-top: 10px; text-align: center; font-weight: 500;">El punto verde muestra tu posición matemática exacta.</div>
+                <div style="font-size: 11px; color: #94a3b8; margin-top: 10px; text-align: center;">El punto verde muestra tu posición matemática exacta.</div>
             </div>
         </div>
     </div>
-
     <script>
         function calcularMarkowitzTec(val) {
             const n = parseInt(val);
             document.getElementById('valorAcciones').textContent = n;
-            
-            const nsInicial = 28.0;
-            const sist = 12.0;
+            const nsInicial = 28.0; const sist = 12.0;
             let nsActual = nsInicial / Math.sqrt(n);
-            if (n === 1) nsActual = nsInicial;
-            else if (n >= 35) nsActual = 0;
-            
+            if (n === 1) nsActual = nsInicial; else if (n >= 35) nsActual = 0;
             let total = sist + nsActual;
-            
             document.getElementById('valNoSist').textContent = nsActual.toFixed(2) + "%";
             document.getElementById('valTotal').textContent = total.toFixed(2) + "%";
             document.getElementById('txtNoSist').textContent = "■ Riesgo Diversificable (σns = " + nsActual.toFixed(1) + "%)";
-            
             let pctVerde = (nsActual / nsInicial) * 70;
             document.getElementById('barraNoSist').style.width = pctVerde + '%';
-            
             let puntoX = 60 + ((n - 1) * (370 / 39));
             let puntoY = 190 - (total * (170 / 40));
             document.getElementById('puntoPortafolio').setAttribute("cx", puntoX);
             document.getElementById('puntoPortafolio').setAttribute("cy", puntoY);
         }
-
         window.addEventListener('DOMContentLoaded', function() {
             let pathData = "";
             for (let i = 1; i <= 40; i++) {
+                let xSvg = 60 + ((i - 1) * (370 / 39));
+                let simTotal = 12.0 + (28.0 / Math.sqrt(i));
+                let ySvg = 190 - (simTotal * (170 / 40));
+                if (i === 1) pathData += "M " + xSvg + " " + ySvg; else pathData += " L " + xSvg + " " + ySvg;
+            }
+            document.getElementById('curvaRiesgo').setAttribute("d", pathData);
+            calcularMarkowitzTec(2);
+        });
+    </script>
+</body>
+</html>
