@@ -62,35 +62,70 @@
             border-color: #d1e0ff;
         } 
         
-        /* CONTENEDOR ESTABLE ESTILO SEMANA 1 */
-        .epoca-content-box {
+        /* CAJA CONTENEDORA DEL SLIDER UNIVERSAL */
+        .timeline-slider-box {
+            position: relative;
             background-color: #f8fafc;
             border-radius: 0 0 12px 12px;
             border: 1px solid #e2e8f0;
             margin-bottom: 20px;
-            padding: 24px;
+            padding: 24px 55px;
             border-top: none;
+            overflow: hidden;
         }
 
-        /* CUADRÍCULA RESPONSIVA QUE MUESTRA TODO SIN NECESIDAD DE FLECHAS */
-        .timeline-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        .timeline-mini-track {
+            display: flex !important;
             gap: 16px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            white-space: nowrap;
+            padding: 10px 0;
             width: 100%;
+            scrollbar-width: none;
         }
+        .timeline-mini-track::-webkit-scrollbar { display: none; }
 
+        /* DISEÑO DE LAS FLECHAS */
+        .arrow-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 50%;
+            color: #0033a0;
+            font-size: 16px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            user-select: none;
+        }
+        .arrow-nav:hover { background-color: #0033a0; color: white; border-color: #0033a0; }
+        .arrow-left { left: 8px; }
+        .arrow-right { right: 8px; }
+
+        /* FORMATO DE TARJETA ESTÁNDAR */
         .timeline-node-card {
+            flex: 0 0 260px !important;
+            width: 260px !important;
+            min-width: 260px !important;
+            max-width: 260px !important;
+            min-height: 145px !important;
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
             padding: 16px;
             text-align: left;
+            white-space: normal;
+            vertical-align: top;
             cursor: pointer;
             transition: all 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
         }
         .timeline-node-card:hover {
             transform: translateY(-2px);
@@ -159,53 +194,39 @@
             <h1>Semana 2: Contenido y Actividades</h1>
         </header>
 
-        <!-- ÉPOCA 1 -->
+        <!-- ÉPOCA 1 (CON FORMATO SLIDER IDÉNTICO) -->
         <div class="epoca-collapse-btn" onclick="var el=document.getElementById('ep1'); el.style.display=(el.style.display==='none')?'block':'none';">
             📖 Época 1: Periodo Pre-Clásico y Clásico (Fines del Siglo XVIII - XIX) <span>▼</span>
         </div>
-        <div id="ep1" class="epoca-content-box" style="display: none;">
-            <div class="timeline-grid">
+        <div id="ep1" class="timeline-slider-box" style="display: none;">
+            <div class="arrow-nav arrow-left" onclick="event.stopPropagation(); document.getElementById('track1').scrollLeft -= 280;">❮</div>
+            <div class="arrow-nav arrow-right" onclick="event.stopPropagation(); document.getElementById('track1').scrollLeft += 280;">❯</div>
+            <div class="timeline-mini-track" id="track1">
                 <div class="timeline-node-card disabled-node">
                     <div class="node-year">1776</div>
                     <div class="node-title">La Riqueza de las Naciones</div>
-                    <div class="node-desc">• Adam Smith<br>• Asignación estructural de recursos y valor-trabajo.</div>
+                    <div class="node-desc">• Adam Smith<br>• Asignación estructural de recursos y valor-trabajo económico temprano.</div>
                 </div>
             </div>
         </div>
 
-        <!-- ÉPOCA 2 -->
+        <!-- ÉPOCA 2 (CON FORMATO SLIDER IDÉNTICO) -->
         <div class="epoca-collapse-btn" onclick="var el=document.getElementById('ep2'); el.style.display=(el.style.display==='none')?'block':'none';">
             📖 Época 2: Periodo Neoclásico Marginalista (Fines del Siglo XIX - 1950) <span>▼</span>
         </div>
-        <div id="ep2" class="epoca-content-box" style="display: none;">
-            <div class="timeline-grid">
+        <div id="ep2" class="timeline-slider-box" style="display: none;">
+            <div class="arrow-nav arrow-left" onclick="event.stopPropagation(); document.getElementById('track2').scrollLeft -= 280;">❮</div>
+            <div class="arrow-nav arrow-right" onclick="event.stopPropagation(); document.getElementById('track2').scrollLeft += 280;">❯</div>
+            <div class="timeline-mini-track" id="track2">
                 <div class="timeline-node-card disabled-node">
                     <div class="node-year">1871</div>
                     <div class="node-title">Revolución Marginalista</div>
-                    <div class="node-desc">• Menger, Jevons, Walras<br>• Optimización matemática bajo escasez.</div>
+                    <div class="node-desc">• Menger, Jevons, Walras<br>• Optimización matemática bajo condiciones de escasez y análisis de utilidad.</div>
                 </div>
             </div>
         </div>
 
-        <!-- ÉPOCA 3 (DISEÑO GRID: SE ADAPTA SOLO EN PC Y CELULAR) -->
+        <!-- ÉPOCA 3 (RESTAURADA POR COMPLETO CON AVANCE ABSOLUTO CORREGIDO) -->
         <div class="epoca-collapse-btn e3" onclick="var el=document.getElementById('ep3'); el.style.display=(el.style.display==='none')?'block':'none';">
             📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span>▲</span>
         </div>
-        <div id="ep3" class="epoca-content-box" style="display: block;">
-            <div class="timeline-grid">
-                <div class="timeline-node-card" onclick="document.getElementById('workspace21').style.display='block'; document.querySelectorAll('.sub-bloque').forEach(b=>b.style.display='none'); document.getElementById('sb-simulador').style.display='block';">
-                    <div class="node-year">1952</div>
-                    <div class="node-title">El Portafolio Moderno</div>
-                    <div class="node-desc">• Markowitz (Portfolio Selection)<br>• Riesgo medido con varianza<br>• Frontera eficiente de inversión</div>
-                </div>
-                <div class="timeline-node-card" onclick="document.getElementById('workspace21').style.display='block'; document.querySelectorAll('.sub-bloque').forEach(b=>b.style.display='none'); document.getElementById('sb-simulador').style.display='block';">
-                    <div class="node-year">1956</div>
-                    <div class="node-title">Valor del Dinero en el Tiempo</div>
-                    <div class="node-desc">• Gordon (Modelo de Dividendos Descontados)<br>• Crecimiento constante a perpetuidad</div>
-                </div>
-                <div class="timeline-node-card disabled-node">
-                    <div class="node-year">1958</div>
-                    <div class="node-title">Irrelevancia de Estructura</div>
-                    <div class="node-desc">• Modigliani y Miller<br>• Estructura de financiamiento neutral</div>
-                </div>
-                <div class="timeline-node-card" onclick="document.getElementById('workspace21').style.display='block'; document.querySelectorAll('.sub-bloque').forEach(b=>b.style.display='none'); document.getElementById('sb-simulador').style.display='block';">
