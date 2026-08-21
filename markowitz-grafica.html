@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontera Estadística de Markowitz - Tec</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: #f1f5f9; padding: 40px 20px; color: #334155; }
+        .container { max-width: 600px; margin: 0 auto; background: white; border-radius: 24px; padding: 40px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+        h1 { font-size: 24px; color: #0f172a; margin-bottom: 10px; font-weight: 800; }
+        .intro { font-size: 14px; color: #64748b; margin-bottom: 20px; line-height: 1.5; }
+        .formula-card { background: #f1f5f9; border-radius: 12px; padding: 14px; text-align: center; font-family: monospace; font-size: 13px; font-weight: bold; color: #1e293b; margin-bottom: 24px; border-left: 5px solid #1e40af; }
+        .control-wrapper { background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center; margin-bottom: 20px; }
+        label { display: block; font-weight: 700; margin-bottom: 10px; color: #1e293b; }
+        input[type=range] { width: 100%; max-width: 400px; cursor: pointer; }
+        .num-acciones { font-size: 24px; font-weight: 800; color: #1e40af; }
+        .panel-grafico { background: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        svg { background-color: #fafafa; border-radius: 12px; border: 1px solid #e2e8f0; }
+    </style>
+    <script>
+        function calcularGrafica(val) {
+            const n = parseInt(val);
+            document.getElementById('txtN').textContent = n;
+
+            const sist = 12.0;
+            const noSist = 28.0 / Math.sqrt(n);
+            const total = sist + noSist;
+
+            // Mover el punto verde de coordenadas en el SVG
+            let puntoX = 60 + ((n - 1) * (370 / 39));
+            let puntoY = 190 - (total * (170 / 40));
+            document.getElementById('punto').setAttribute("cx", puntoX);
+            document.getElementById('punto').setAttribute("cy", puntoY);
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            let pathData = "";
+            for (let i = 1; i <= 40; i++) {
+                let xSvg = 60 + ((i - 1) * (370 / 39));
+                let simTotal = 12.0 + (28.0 / Math.sqrt(i));
+                let ySvg = 190 - (simTotal * (170 / 40));
+                if (i === 1) pathData += "M " + xSvg + " " + ySvg;
+                else pathData += " L " + xSvg + " " + ySvg;
+            }
+            document.getElementById('curva').setAttribute("d", pathData);
+            calcularGrafica(2);
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Frontera Estadística de Markowitz (1952)</h1>
+        <p class="intro">Mueve la barra para observar el efecto cuantitativo real: a medida que el número de acciones (N) tiende al infinito, el riesgo específico se pulveriza de forma asintótica, convergiendo perfectamente hacia la volatilidad sistemática del mercado.</p>
+        
+        <div class="formula-card">σₚ = √[ σₛ² + (σns² / N) ] ➔ Covarianza Promedio Proporcional</div>
+
+        <div class="control-wrapper">
+            <label>Modificar tamaño del portafolio (Número de Activos N):</label>
+            <input type="range" min="1" max="40" value="2" oninput="calcularGrafica(this.value)">
+            <div>Activos en Portafolio (N): <span id="txtN" class="num-acciones">2</span></div>
+        </div>
+
+        <div class="panel-grafico">
+            <h4 style="font-size: 12px; text-transform: uppercase; color: #1e293b; margin-bottom: 12px; font-weight: bold;">Curva de Reducción del Riesgo Total</h4>
+            <svg width="460" height="230">
+                <line x1="60" y1="190" x2="430" y2="190" stroke="#64748b" stroke-width="2"/>
+                <line x1="60" y1="20" x2="60" y2="190" stroke="#64748b" stroke-width="2"/>
+                <line x1="60" y1="139" x2="430" y2="139" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="4,4"/>
+                <text x="260" y="131" fill="#1e40af" font-size="11" font-weight="bold">Límite Sistemático (12%)</text>
+                <text x="375" y="208" fill="#64748b" font-size="11" font-weight="bold">N activos</text>
+                <text x="16" y="32" fill="#64748b" font-size="11" font-weight="bold" transform="rotate(-90,16,32)">Riesgo σₚ</text>
+                <path id="curva" d="" fill="none" stroke="#cbd5e1" stroke-width="2.5"/>
+                <circle id="punto" cx="60" cy="20" r="7" fill="#10b981" stroke="#ffffff" stroke-width="2.5"/>
+            </svg>
+            <div style="font-size: 11px; color: #94a3b8; margin-top: 10px; text-align: center;">El punto verde muestra tu posición matemática exacta.</div>
+        </div>
+    </div>
+</body>
+</html>
