@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Semana 2 - Contenido y Actividades</title>
+    <!-- ESTA LIBRERÍA EVITA BLOQUEOS DE JAVASCRIPT Y CACHÉ NATIVAMENTE -->
+    <script defer src="https://jsdelivr.net"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
@@ -180,7 +182,7 @@
         .panel-resultado { padding: 16px; border-radius: 8px; background: white; border: 1px solid #e2e8f0; }
     </style>
 </head>
-<body>
+<body x-data="{ ep1: false, ep2: false, ep3: true, sesion21: true, pilar: 'teoria', sim: 'M', mwW: 50, mwSA: 20, mwSB: 15, mwR: -0.2, sRf: 4.5, sRm: 10.5, sB: 1.3, outM: '', outS: '' }">
     <div class="container">
         <header>
             <a href="index.html" class="btn-regresar">⬅ Volver al Inicio</a>
@@ -188,46 +190,48 @@
         </header>
 
         <!-- ÉPOCA 1 -->
-        <div class="epoca-collapse-btn" onclick="toggleEpoca('ep1')">📖 Época 1: Periodo Pre-Clásico y Clásico (Fines del Siglo XVIII - XIX) <span id="ind-ep1">▼</span></div>
-        <div id="ep1" class="timeline-slider-box" style="display: none;">
+        <div class="epoca-collapse-btn" @click="ep1 = !ep1">
+            <span>📖 Época 1: Periodo Pre-Clásico y Clásico (Fines del Siglo XVIII - XIX)</span>
+            <span x-text="ep1 ? '▲' : '▼'">▼</span>
+        </div>
+        <div class="timeline-slider-box" x-show="ep1" x-cloak style="display: none;">
             <div class="timeline-mini-track">
                 <div class="timeline-node-card disabled-node">
                     <div class="node-year">1776</div>
                     <div class="node-title">La Riqueza de las Naciones</div>
-                    <div class="node-desc">• Adam Smith<br>• Asignación estructural de recursos y valor-trabajo.</div>
+                    <div class="node-desc">• Adam Smith<br>• Asignación estructural de recursos.</div>
                 </div>
             </div>
         </div>
 
         <!-- ÉPOCA 2 -->
-        <div class="epoca-collapse-btn" onclick="toggleEpoca('ep2')">📖 Época 2: Periodo Neoclásico Marginalista (Fines del Siglo XIX - 1950) <span id="ind-ep2">▼</span></div>
-        <div id="ep2" class="timeline-slider-box" style="display: none;">
+        <div class="epoca-collapse-btn" @click="ep2 = !ep2">
+            <span>📖 Época 2: Periodo Neoclásico Marginalista (Fines del Siglo XIX - 1950)</span>
+            <span x-text="ep2 ? '▲' : '▼'">▼</span>
+        </div>
+        <div class="timeline-slider-box" x-show="ep2" x-cloak style="display: none;">
             <div class="timeline-mini-track">
                 <div class="timeline-node-card disabled-node">
                     <div class="node-year">1871</div>
                     <div class="node-title">Revolución Marginalista</div>
-                    <div class="node-desc">• Menger, Jevons, Walras<br>• Optimización matemática bajo condiciones de escasez.</div>
+                    <div class="node-desc">• Menger, Jevons, Walras<br>• Optimización matemática bajo escasez.</div>
                 </div>
             </div>
         </div>
 
-        <!-- ÉPOCA 3 (ABIERTA POR DEFECTO) -->
-        <div class="epoca-collapse-btn e3" onclick="toggleEpoca('ep3')">📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span id="ind-ep3">▲</span></div>
-        <div id="ep3" class="timeline-slider-box" style="display: block;">
-            <div class="arrow-nav arrow-left" onclick="moveSlider(-1)">❮</div>
-            <div class="arrow-nav arrow-right" onclick="moveSlider(1)">❯</div>
+        <!-- ÉPOCA 3 -->
+        <div class="epoca-collapse-btn e3" @click="ep3 = !ep3">
+            <span>📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976)</span>
+            <span x-text="ep3 ? '▲' : '▼'">▲</span>
+        </div>
+        <div class="timeline-slider-box" x-show="ep3">
+            <div class="arrow-nav arrow-left" @click="$refs.track.scrollLeft -= 280">❮</div>
+            <div class="arrow-nav arrow-right" @click="$refs.track.scrollLeft += 280">❯</div>
 
-            <div class="timeline-mini-track" id="masterTrack">
-                <div class="timeline-node-card" onclick="atajoHito('M')">
+            <div class="timeline-mini-track" x-ref="track">
+                <div class="timeline-node-card" @click="sesion21 = true; pilar = 'simulador'; sim = 'M'">
                     <div class="node-year">1952</div>
                     <div class="node-title">El Portafolio Moderno</div>
                     <div class="node-desc">• Markowitz (Portfolio Selection)<br>• Riesgo medido con varianza<br>• Frontera eficiente de inversión</div>
                 </div>
-                <div class="timeline-node-card" onclick="atajoHito('S')">
-                    <div class="node-year">1956</div>
-                    <div class="node-title">Valor del Dinero en el Tiempo</div>
-                    <div class="node-desc">• Gordon (Modelo de Dividendos Descontados)<br>• Crecimiento constante a perpetuidad</div>
-                </div>
-                <div class="timeline-node-card disabled-node">
-                    <div class="node-year">1958</div>
-                    <div class="node-title">Irrelevancia de Estructura</div>
+                <div class="timeline-node-card" @click="sesion21 = true; pilar = 'simulador'; sim = 'S'">
