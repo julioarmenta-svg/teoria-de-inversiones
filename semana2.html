@@ -70,9 +70,10 @@
             margin-bottom: 20px;
             padding: 24px 55px;
             border-top: none;
+            height: auto !important; /* Permite crecimiento vertical libre */
+            min-height: 180px;
         }
 
-        /* CONTENEDOR TRADICIONAL INMUNE A ERRORES DE TEXTO */
         .timeline-mini-track {
             display: block !important;
             white-space: nowrap !important;
@@ -107,14 +108,15 @@
         .arrow-left { left: 8px; }
         .arrow-right { right: 8px; }
 
-        /* BLINDAJE DE TARJETAS PARA MOSTRAR TODO EL CONTENIDO */
+        /* ARQUITECTURA DE TARJETA CORREGIDA PARA PREVENIR EL RECORTE */
         .timeline-node-card {
             display: inline-block !important;
-            white-space: normal !important;
             vertical-align: top !important;
             width: 260px !important;
             min-width: 260px !important;
             max-width: 260px !important;
+            height: auto !important; /* Altura adaptable al texto */
+            min-height: 140px !important;
             background: #ffffff !important;
             border: 1px solid #e2e8f0 !important;
             border-radius: 12px !important;
@@ -131,9 +133,10 @@
         }
         .timeline-node-card.disabled-node { opacity: 0.45; cursor: not-allowed; }
 
-        .node-year { font-size: 16px; font-weight: 800; color: #0033a0; margin-bottom: 6px; display: block !important; }
-        .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; display: block !important; }
-        .node-desc { font-size: 11px; color: #64748b; line-height: 1.4; display: block !important; }
+        /* INYECCIÓN DE RESPONSIVIDAD PARA EL TEXTO INTERNO */
+        .node-year { font-size: 16px; font-weight: 800; color: #0033a0; margin-bottom: 6px; display: block !important; white-space: normal !important; }
+        .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; display: block !important; white-space: normal !important; }
+        .node-desc { font-size: 11px; color: #64748b; line-height: 1.4; display: block !important; white-space: normal !important; }
 
         .seccion-titulo { font-size: 13px; font-weight: 700; text-transform: uppercase; color: #94a3b8; margin: 40px 0 15px 0; }
         
@@ -219,12 +222,8 @@
             </div>
         </div>
 
-        <!-- ÉPOCA 3 (RESTAURADA CON TODAS LAS FECHAS Y TEXTO INMUNE) -->
+        <!-- ÉPOCA 3 -->
         <div class="epoca-collapse-btn e3" onclick="var el=document.getElementById('ep3'); el.style.display=(el.style.display==='none')?'block':'none';">
             📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span>▼</span>
         </div>
         <div id="ep3" class="timeline-slider-box" style="display: none;">
-            <div class="arrow-nav arrow-left" onclick="event.stopPropagation(); document.getElementById('track3').scrollLeft -= 274;">❮</div>
-            <div class="arrow-nav arrow-right" onclick="event.stopPropagation(); document.getElementById('track3').scrollLeft += 274;">❯</div>
-
-            <div class="timeline-mini-track" id="track3">
