@@ -7,35 +7,39 @@
  <style>
  * { box-sizing: border-box; margin: 0; padding: 0; }
  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f1f5f9; padding: 40px 20px; color: #334155; }
- .container { max-width: 1200px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; padding: 40px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); border: 1px solid #e2e8f0; }
+ .container { max-width: 1200px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; padding: 40px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
  header { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid #e2e8f0; }
  .btn-regresar { display: inline-block; text-decoration: none; color: #64748b; font-size: 13px; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; }
- .btn-regresar:hover { color: #1e40af; }
  h1 { font-size: 28px; color: #0f172a; }
  .etapa3-header { background-color: #1e40af; color: white; padding: 14px 18px; border-radius: 12px 12px 0 0; font-weight: 800; font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 10px; }
  .timeline-slider-box { position: relative; background-color: #f8fafc; border-radius: 0 0 12px 12px; border: 1px solid #e2e8f0; margin-bottom: 40px; padding: 20px 50px; }
  .timeline-mini-track { display: flex !important; gap: 16px; overflow-x: auto; scroll-behavior: smooth; white-space: nowrap; padding: 10px 0; scrollbar-width: none; }
- .timeline-mini-track::-webkit-scrollbar { display: none; }
- .arrow-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background-color: #ffffff; border: 2px solid #d1e0ff; border-radius: 50%; color: #1e40af; font-size: 18px; font-weight: bold; display: flex; align-items: center; justify-content: center; cursor: pointer; user-select: none; box-shadow: 0 4px 10px rgba(0,0,0,0.08); z-index: 10; transition: all 0.2s ease; }
- .arrow-nav:hover { background-color: #1e40af; color: #ffffff; border-color: #1e40af; }
- .arrow-left { left: 8px; }
- .arrow-right { right: 8px; }
- .timeline-node-card { display: block; text-decoration: none; flex: 0 0 260px; width: 260px; background: #ffffff; border: 1px solid #d1e0ff; border-radius: 12px; padding: 16px; text-align: left; white-space: normal; transition: all 0.2s ease; }
- .timeline-node-card:hover { transform: translateY(-4px); border-color: #1e40af; box-shadow: 0 8px 16px -4px rgba(30, 64, 175, 0.15); }
+ .arrow-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background-color: #ffffff; border: 2px solid #d1e0ff; border-radius: 50%; color: #1e40af; font-size: 18px; font-weight: bold; display: flex; align-items: center; justify-content: center; cursor: pointer; user-select: none; box-shadow: 0 4px 10px rgba(0,0,0,0.08); z-index: 10; }
+ .arrow-left { left: 8px; } .arrow-right { right: 8px; }
+ .timeline-node-card { display: block; text-decoration: none; flex: 0 0 260px; width: 260px; background: #ffffff; border: 1px solid #d1e0ff; border-radius: 12px; padding: 16px; text-align: left; white-space: normal; }
  .node-year { font-size: 16px; font-weight: 800; color: #1e40af; margin-bottom: 6px; }
  .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.3; }
  .node-desc { font-size: 11px; color: #64748b; line-height: 1.4; }
  .seccion-titulo { font-size: 13px; font-weight: 700; text-transform: uppercase; color: #94a3b8; margin: 40px 0 15px 0; }
  .lista-sesiones { display: flex; flex-direction: column; gap: 16px; }
- .btn-sesion { display: flex; justify-content: space-between; align-items: center; width: 100%; background-color: #f8fafc; border: 1px solid #e2e8f0; border-left: 6px solid #1e40af; padding: 22px 20px; border-radius: 12px; color: #334155; font-weight: 600; font-size: 16px; cursor: pointer; transition: all 0.2s ease; user-select: none; }
- .btn-sesion:hover { background-color: #f1f5f9; transform: translateX(4px); }
+ .btn-sesion { display: flex; justify-content: space-between; align-items: center; width: 100%; background-color: #f8fafc; border: 1px solid #e2e8f0; border-left: 6px solid #1e40af; padding: 22px 20px; border-radius: 12px; color: #334155; font-weight: 600; font-size: 16px; cursor: pointer; user-select: none; }
+ .btn-sesion.ae { border-left-color: #10b981; }
  .bloque-desplegable { display: none; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 16px; padding: 24px; margin-top: -6px; margin-bottom: 12px; }
- .item-subcontenido { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+ .item-subcontenido { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 16px; }
  .item-subcontenido:last-child { margin-bottom: 0; }
- .item-subcontenido h3 { font-size: 15px; color: #0f172a; margin-bottom: 6px; }
- .item-subcontenido p { font-size: 13px; color: #64748b; line-height: 1.4; }
+ .item-subcontenido h3 { font-size: 16px; color: #0f172a; margin-bottom: 10px; font-weight: 700; }
+ .item-subcontenido p { font-size: 13px; color: #475569; line-height: 1.5; margin-bottom: 10px; }
+ .formula-box { background-color: #f1f5f9; border-left: 4px solid #64748b; padding: 12px; font-family: monospace; font-size: 14px; color: #0f172a; margin: 10px 0; border-radius: 4px; }
  ul { margin-left: 20px; margin-top: 6px; font-size: 13px; color: #475569; }
- li { margin-bottom: 4px; }
+ li { margin-bottom: 6px; line-height: 1.4; }
+ .toggle-container { display: flex; gap: 8px; margin-bottom: 20px; background: #e2e8f0; padding: 4px; border-radius: 8px; }
+ .toggle-btn { flex: 1; padding: 10px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; background: transparent; color: #64748b; }
+ .toggle-btn.active { background: white; color: #0f172a; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+ .grid-inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 20px; }
+ label { display: block; font-size: 11px; font-weight: 700; color: #64748b; margin-bottom: 4px; text-transform: uppercase; }
+ input { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 600; color: #0f172a; }
+ .btn-calc { background: #10b981; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; width: 100%; margin-bottom: 16px; }
+ .panel-resultado { padding: 16px; border-radius: 8px; background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; font-size: 14px; }
  </style>
 </head>
 <body>
@@ -50,13 +54,13 @@
  <div class="arrow-nav arrow-left" onclick="moveSlider(-1)">❮</div>
  <div class="arrow-nav arrow-right" onclick="moveSlider(1)">❯</div>
  <div class="timeline-mini-track" id="masterTrack">
- <a href="markowitz.html" class="timeline-node-card"><div class="node-year">1952</div><div class="node-title">El Portafolio Moderno</div><div class="node-desc">• Markowitz<br>• Riesgo medido con varianza</div></a>
- <a href="gordon.html" class="timeline-node-card"><div class="node-year">1956</div><div class="node-title">Valor del Dinero</div><div class="node-desc">• Gordon (DDM)<br>• Crecimiento constante</div></a>
- <a href="modigliani-miller.html" class="timeline-node-card"><div class="node-year">1958</div><div class="node-title">Irrelevancia Estructura</div><div class="node-desc">• Modigliani y Miller<br>• Mercados perfectos</div></a>
- <a href="capm.html" class="timeline-node-card"><div class="node-year">1964-1966</div><div class="node-title">Nacimiento CAPM</div><div class="node-desc">• Sharpe, Lintner, Mossin<br>• Riesgo Beta de activos</div></a>
- <a href="eficiencia-mercados.html" class="timeline-node-card"><div class="node-year">1970</div><div class="node-title">Eficiencia Informativa</div><div class="node-desc">• Fama (EMH)<br>• Absorción de información</div></a>
- <a href="derivados.html" class="timeline-node-card"><div class="node-year">1973</div><div class="node-title">Revolución Derivados</div><div class="node-desc">• Black, Scholes, Merton<br>• Fórmulas de opciones</div></a>
- <a href="apt.html" class="timeline-node-card"><div class="node-year">1976</div><div class="node-title">Alternativa Multifactor</div><div class="node-desc">• Ross (Teoría APT)<br>• Valuación multifactorial</div></a>
+ <a href="markowitz.html" class="timeline-node-card"><div class="node-year">1952</div><div class="node-title">El Portafolio Moderno</div><div class="node-desc">• Markowitz (Portfolio Selection)<br>• Varianza y covarianza de activos<br>• Maximización de retorno esperado</div></a>
+ <a href="gordon.html" class="timeline-node-card"><div class="node-year">1956</div><div class="node-title">Valor del Dinero</div><div class="node-desc">• Gordon (Modelo de Dividendos)<br>• Crecimiento constante perpetuo<br>• Valuación teórica de acciones</div></a>
+ <a href="modigliani-miller.html" class="timeline-node-card"><div class="node-year">1958</div><div class="node-title">Irrelevancia Estructura</div><div class="node-desc">• Modigliani y Miller<br>• Estructura de capital óptima<br>• Supuesto de mercados perfectos</div></a>
+ <a href="capm.html" class="timeline-node-card"><div class="node-year">1964-1966</div><div class="node-title">Nacimiento CAPM</div><div class="node-desc">• Sharpe, Lintner y Mossin<br>• Riesgo Beta no diversificable<br>• Tasa de retorno requerida</div></a>
+ <a href="eficiencia-mercados.html" class="timeline-node-card"><div class="node-year">1970</div><div class="node-title">Eficiencia Informativa</div><div class="node-desc">• Fama (Hipótesis del Mercado)<br>• Reflejo inmediato de datos<br>• Tres niveles de eficiencia</div></a>
+ <a href="derivados.html" class="timeline-node-card"><div class="node-year">1973</div><div class="node-title">Revolución Derivados</div><div class="node-desc">• Black, Scholes y Merton<br>• Valuación exacta de opciones<br>• Coberturas dinámicas de riesgo</div></a>
+ <a href="apt.html" class="timeline-node-card"><div class="node-year">1976</div><div class="node-title">Alternativa Multifactor</div><div class="node-desc">• Ross (Arbitrage Pricing)<br>• Múltiples factores de riesgo<br>• Ausencia de arbitraje puro</div></a>
  </div>
  </div>
 
@@ -68,16 +72,25 @@
   </div>
   <div id="bloque-material" class="bloque-desplegable">
       <div class="item-subcontenido">
-          <h3>🔹 Sesión 2.1: Medidas de Riesgo y Eficiencia</h3>
+          <h3>🔹 Sesión 2.1: Medidas de Riesgo y Eficiencia Informativa</h3>
+          <p>Esta sesión cubre la separación científica del riesgo y la velocidad con la que los precios absorben las noticias del entorno económico:</p>
           <ul>
-              <li><b>Riesgo Sistemático (Beta):</b> Mercado no diversificable.</li>
-              <li><b>Riesgo No Sistemático:</b> Eliminable mediante diversificación.</li>
-              <li><b>Mercados Eficientes (Fama):</b> Débil, semi-fuerte y fuerte.</li>
+              <li><b>Riesgo Sistemático (Beta - β):</b> Es el riesgo inherente a todo el mercado que no se puede eliminar mediante la diversificación (ej. huelgas generales, inflación). Se mide mediante el coeficiente Beta.</li>
+              <li><b>Riesgo No Sistemático:</b> Es el riesgo específico de la empresa o sector. Se puede reducir o eliminar por completo construyendo un portafolio diversificado.</li>
+              <li><b>Hipótesis de Mercados Eficientes (Fama):</b> Plantea que los precios actuales de los activos ya reflejan toda la información disponible. Se divide en tres formas esenciales: Débil, Semi-fuerte y Fuerte.</li>
           </ul>
       </div>
       <div class="item-subcontenido">
-          <h3>🔹 Sesión 2.2: Modelos de Valuación de Activos</h3>
-          <p>Metodologías fundamentales para calcular el valor teórico de instrumentos financieros.</p>
+          <h3>🔹 Sesión 2.2: Modelos Fundamentales de Valuación de Activos</h3>
+          <p>Análisis de las dos metodologías matemáticas estándar para calcular el rendimiento mínimo exigido y el valor justo de mercado:</p>
+          <ul>
+              <li><b>Modelo CAPM:</b> Evalúa la tasa de rendimiento esperada en función de su riesgo sistemático.
+                  <div class="formula-box">Retorno Esperado (Ke) = Rf + β * (Rm - Rf)</div>
+              </li>
+              <li><b>Modelo de Gordon (DDM):</b> Valúa una acción calculando el valor presente de sus dividendos futuros proyectados a perpetuidad bajo un crecimiento constante.
+                  <div class="formula-box">Precio Teórico (P0) = D1 / (Ke - g)</div>
+              </li>
+          </ul>
       </div>
   </div>
 
@@ -86,30 +99,8 @@
   </div>
   <div id="bloque-ejercicios" class="bloque-desplegable">
       <div class="item-subcontenido">
-          <h3>🔸 Ejercicio Práctico en Clase</h3>
-          <p>Construcción de la Línea del Mercado de Valores (SML) con las acciones del IPC de la Bolsa Mexicana de Valores.</p>
-      </div>
-      <div class="item-subcontenido">
-          <h3>🔸 Valuación por el Modelo de Gordon</h3>
-          <p>Determinación del precio teórico de acciones con crecimiento constante a perpetuidad.</p>
-      </div>
-      <div class="item-subcontenido">
-          <h3>🔸 Tarea Semanal Académica</h3>
-          <p>Resolución de problemas de valuación multi-modelo (Sharpe, CAPM y Gordon) en PDF.</p>
-      </div>
-  </div>
-
- </div>
- </div>
-
- <script>
- function moveSlider(d) { document.getElementById('masterTrack').scrollLeft += (d * 276); }
- function toggleBloque(id) {
- const b = document.getElementById(id);
- const act = b.style.display;
- document.querySelectorAll('.bloque-desplegable').forEach(x => x.style.display = 'none');
- b.style.display = (act === 'block') ? 'none' : 'block';
- }
- </script>
-</body>
-</html>
+          <h3>🔸 Caso Práctico: Construcción de la Línea del Mercado de Valores (SML)</h3>
+          <p><b>Objetivo:</b> Graficar la SML y ubicar la tasa de retorno de los activos del IPC de la Bolsa Mexicana de Valores para identificar acciones subvaluadas y sobrevaluadas.</p>
+          <ul>
+              <li><b>Tasa Libre de Riesgo (Rf):</b> Cetes a 28 días.</li>
+              <li><b>Rendimiento del Mercado (Rm):</b> Rendimiento anual histórico del IPC.</li>
