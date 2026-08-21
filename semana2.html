@@ -3,176 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Semana 2 - Contenido y Actividades</title>
+    <title>Prueba Época 3</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            background-color: #f1f5f9; 
-            padding: 40px 20px;
-            color: #334155;
+            background-color: #f1f5f9; padding: 40px 20px; color: #334155;
         }
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
+            max-width: 1200px; margin: 0 auto; background-color: #ffffff;
+            border-radius: 24px; padding: 40px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;
         }
-        header {
-            margin-bottom: 32px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e2e8f0;
+        .header-fixed {
+            background-color: #f0f4ff; color: #0033a0; padding: 18px 20px;
+            border-radius: 12px 12px 0 0; border: 1px solid #d1e0ff; border-left: 6px solid #0033a0;
+            font-weight: 700; font-size: 13px; text-transform: uppercase;
         }
-        .btn-regresar {
-            display: inline-block;
-            text-decoration: none;
-            color: #64748b;
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            text-transform: uppercase;
-        }
-        h1 { font-size: 28px; color: #0f172a; }
-        
-        .epoca-header-fixed {
-            background-color: #f0f4ff;
-            color: #0033a0;
-            padding: 18px 20px;
-            border-radius: 12px 12px 0 0;
-            border: 1px solid #d1e0ff;
-            border-left: 6px solid #0033a0;
-            font-weight: 700;
-            font-size: 13px;
-            text-transform: uppercase;
-        }
-        
         .timeline-slider-box {
-            position: relative;
-            background-color: #f8fafc;
-            border-radius: 0 0 12px 12px;
-            border: 1px solid #d1e0ff;
-            margin-bottom: 20px;
-            padding: 24px 55px;
-            border-top: none;
+            position: relative; background-color: #f8fafc; border-radius: 0 0 12px 12px;
+            border: 1px solid #d1e0ff; margin-bottom: 20px; padding: 24px 55px; border-top: none;
         }
-
         .timeline-mini-track {
-            display: flex;
-            gap: 16px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 10px 0;
-            width: 100%;
-            scrollbar-width: none;
+            display: flex; gap: 16px; overflow-x: auto; scroll-behavior: smooth;
+            padding: 10px 0; width: 100%; scrollbar-width: none;
         }
         .timeline-mini-track::-webkit-scrollbar { display: none; }
-
         .arrow-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            background-color: #ffffff;
-            border: 1px solid #cbd5e1;
-            border-radius: 50%;
-            color: #0033a0;
-            font-size: 16px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            user-select: none;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px;
+            background-color: #ffffff; border: 1px solid #cbd5e1; border-radius: 50%; color: #0033a0;
+            font-size: 16px; font-weight: bold; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 10; user-select: none; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
-        .arrow-nav:hover { background-color: #0033a0; color: white; border-color: #0033a0; }
         .arrow-left { left: 8px; }
         .arrow-right { right: 8px; }
-
         .timeline-node-card {
-            flex: 0 0 260px;
-            width: 260px;
-            min-width: 260px;
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 16px;
-            text-align: left;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            flex: 0 0 260px; width: 260px; min-width: 260px; background: #ffffff;
+            border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; text-align: left;
         }
-
         .node-year { font-size: 16px; font-weight: 800; color: #0033a0; margin-bottom: 6px; }
-        .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.3; }
+        .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
         .node-desc { font-size: 11px; color: #64748b; line-height: 1.4; }
-
-        .seccion-titulo { font-size: 13px; font-weight: 700; text-transform: uppercase; color: #94a3b8; margin: 40px 0 15px 0; }
-        
-        .btn-sesion {
-            display: block;
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-left: 6px solid #1e40af; 
-            padding: 22px 20px;
-            border-radius: 12px;
-            color: #334155;
-            font-weight: 600;
-            font-size: 16px;
-            margin-bottom: 12px;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <a href="index.html" class="btn-regresar">⬅ Volver al Inicio</a>
-            <h1>Semana 2: Contenido y Actividades</h1>
-        </header>
+        <h1 style="font-size:24px; margin-bottom:20px; color:red;">🔴 PRUEBA DE DESPLIEGUE ACTIVO 🔴</h1>
 
-        <!-- CONTENEDOR FIJO DE ÉPOCA 3 -->
-        <div class="epoca-header-fixed">
+        <div class="header-fixed">
             📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976)
         </div>
         <div class="timeline-slider-box">
-            <div class="arrow-nav arrow-left" onclick="document.getElementById('track3').scrollLeft -= 276;">❮</div>
-            <div class="arrow-nav arrow-right" onclick="document.getElementById('track3').scrollLeft += 276;">❯</div>
+            <button class="arrow-nav arrow-left" onclick="document.getElementById('tk3').scrollLeft -= 276;">❮</button>
+            <button class="arrow-nav arrow-right" onclick="document.getElementById('tk3').scrollLeft += 276;">❯</button>
             
-            <div class="timeline-mini-track" id="track3">
+            <div class="timeline-mini-track" id="tk3">
                 <div class="timeline-node-card">
                     <div class="node-year">1952</div>
                     <div class="node-title">El Portafolio Moderno</div>
-                    <div class="node-desc">• Markowitz (Portfolio Selection)<br>• Riesgo medido con varianza<br>• Frontera eficiente de inversión</div>
+                    <div class="node-desc">• Markowitz<br>• Riesgo medido con varianza<br>• Frontera eficiente</div>
                 </div>
                 <div class="timeline-node-card">
                     <div class="node-year">1956</div>
                     <div class="node-title">Valor del Dinero en el Tiempo</div>
-                    <div class="node-desc">• Gordon (Modelo de Dividendos Descontados)<br>• Crecimiento constante a perpetuidad</div>
+                    <div class="node-desc">• Gordon<br>• Crecimiento constante</div>
                 </div>
                 <div class="timeline-node-card">
-                    <div class="node-year">1958</div>
-                    <div class="node-title">Irrelevancia de Estructura</div>
-                    <div class="node-desc">• Modigliani y Miller<br>• Estructura de financiamiento neutral en mercados</div>
-                </div>
-                <div class="timeline-node-card">
-                    <div class="node-year">1964-1966</div>
+                    <div class="node-year">1964</div>
                     <div class="node-title">El Nacimiento del CAPM</div>
-                    <div class="node-desc">• Sharpe, Lintner y Mossin<br>• Riesgo Beta y Modelo SML analítico</div>
-                </div>
-                <div class="timeline-node-card">
-                    <div class="node-year">1970</div>
-                    <div class="node-title">Eficiencia Informativa</div>
-                    <div class="node-desc">• Fama (Hipótesis de Mercados Eficientes globales)</div>
+                    <div class="node-desc">• Sharpe, Lintner<br>• Riesgo Beta analítico</div>
                 </div>
             </div>
         </div>
-
-        <h2 class="seccion-titulo">Módulos de Trabajo Semanal</h2>
-        <div class="btn-sesion">• Sesión 2.1- Medidas del riesgo y eficiencia de mercado</div>
     </div>
 </body>
 </html>
