@@ -35,38 +35,48 @@
             margin-bottom: 16px;
             text-transform: uppercase;
         }
-        .btn-regresar:hover { color: #1e40af; }
+        .btn-regresar:hover { color: #0033a0; }
         h1 { font-size: 28px; color: #0f172a; }
         
-        /* CONTENEDORES DE LAS ÉPOCAS HISTÓRICAS */
+        /* CONTENEDORES DE LAS ÉPOCAS HISTÓRICAS (ESTILO HOMOGÉNEO SEMANA 1) */
         .epoca-collapse-btn {
-            background-color: #475569;
-            color: white;
-            padding: 14px 18px;
+            background-color: #f8fafc;
+            color: #475569;
+            padding: 16px 20px;
             border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            border-left: 6px solid #475569;
             font-weight: 700;
             font-size: 13px;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.03em;
             text-transform: uppercase;
-            margin-top: 12px;
+            margin-top: 14px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
             user-select: none;
+            transition: all 0.2s ease;
         }
-        .epoca-collapse-btn.e3 { background-color: #f97316; }
+        .epoca-collapse-btn:hover {
+            background-color: #f1f5f9;
+        }
+        .epoca-collapse-btn.e3 { 
+            border-left-color: #0033a0; /* Azul Tec de tu Semana 1 */
+            color: #0033a0;
+            background-color: #f0f4ff;
+            border-color: #d1e0ff;
+        } 
         
         .timeline-slider-box {
-            display: none; /* Controlado dinámicamente por JS */
             position: relative;
-            background-color: #fff7ed;
+            background-color: #f8fafc;
             border-radius: 0 0 12px 12px;
-            border: 1px solid #ffedd5;
+            border: 1px solid #e2e8f0;
             margin-bottom: 20px;
-            padding: 20px 50px;
+            padding: 24px 55px;
+            border-top: none;
         }
-        .timeline-slider-box.active { display: block; }
 
         .timeline-mini-track {
             display: flex;
@@ -79,6 +89,7 @@
         }
         .timeline-mini-track::-webkit-scrollbar { display: none; }
 
+        /* CONTROL DE FLECHAS AJUSTADO */
         .arrow-nav {
             position: absolute;
             top: 50%;
@@ -86,60 +97,63 @@
             width: 40px;
             height: 40px;
             background-color: #ffffff;
-            border: 2px solid #fed7aa;
+            border: 1px solid #cbd5e1;
             border-radius: 50%;
-            color: #ea580c;
-            font-size: 18px;
+            color: #0033a0;
+            font-size: 16px;
             font-weight: bold;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             user-select: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
             z-index: 10;
+            transition: all 0.2s ease;
         }
-        .arrow-nav:hover { background-color: #ea580c; color: #ffffff; border-color: #ea580c; }
+        .arrow-nav:hover { background-color: #0033a0; color: #ffffff; border-color: #0033a0; }
         .arrow-left { left: 8px; }
         .arrow-right { right: 8px; }
 
+        /* TARJETAS INTERNAS DE HITOS */
         .timeline-node-card {
-            display: block;
+            display: inline-block;
             text-decoration: none;
             flex: 0 0 260px;
             width: 260px;
             background: #ffffff;
-            border: 1px solid #fed7aa;
+            border: 1px solid #e2e8f0;
             border-radius: 12px;
             padding: 16px;
             text-align: left;
             white-space: normal;
             transition: all 0.2s ease;
             cursor: pointer;
+            vertical-align: top;
         }
         .timeline-node-card:hover {
             transform: translateY(-4px);
-            border-color: #f97316;
-            box-shadow: 0 8px 16px -4px rgba(249, 115, 22, 0.15);
+            border-color: #0033a0;
+            box-shadow: 0 8px 16px -4px rgba(0, 51, 160, 0.1);
         }
-        .timeline-node-card.disabled-node { opacity: 0.5; cursor: not-allowed; }
+        .timeline-node-card.disabled-node { opacity: 0.45; cursor: not-allowed; }
 
-        .node-year { font-size: 16px; font-weight: 800; color: #ea580c; margin-bottom: 6px; }
-        .timeline-node-card.disabled-node .node-year { color: #94a3b8; }
+        .node-year { font-size: 16px; font-weight: 800; color: #0033a0; margin-bottom: 6px; }
+        .timeline-node-card.disabled-node .node-year { color: #64748b; }
         .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.3; }
         .node-desc { font-size: 11px; color: #64748b; line-height: 1.4; }
 
-        /* LISTADO DE SESIONES Y WORKSPACE INTERNO */
-        .seccion-titulo { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; margin: 40px 0 15px 0; }
+        /* LISTADO DE SESIONES (ESTILO EXACTO SEMANA 1) */
+        .seccion-titulo { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; margin: 40px 0 15px 0; }
         .lista-sesiones { display: flex; flex-direction: column; gap: 16px; }
         
         .btn-sesion {
             display: block;
             text-decoration: none;
-            background-color: #f8fafc;
+            background-color: #ffffff;
             border: 1px solid #e2e8f0;
-            border-left: 6px solid #1e40af;
-            padding: 20px;
+            border-left: 6px solid #1e40af; /* Azul de tu imagen */
+            padding: 22px 20px;
             border-radius: 12px;
             color: #334155;
             font-weight: 600;
@@ -147,10 +161,10 @@
             transition: all 0.2s ease;
             cursor: pointer;
         }
-        .btn-sesion:hover { background-color: #f1f5f9; transform: translateX(4px); }
-        .btn-sesion.ae { border-left-color: #10b981; }
+        .btn-sesion:hover { background-color: #f8fafc; transform: translateX(4px); }
+        .btn-sesion.ae { border-left-color: #10b981; } /* Verde Esmeralda de tu imagen */
 
-        /* ARQUITECTURA DE CONTENIDO INTERNO DESPLEGABLE */
+        /* PANELES DE CONTENIDO INTERNO */
         .workspace-sesion {
             display: none;
             border: 1px solid #cbd5e1;
@@ -159,25 +173,23 @@
             padding: 24px;
             margin-top: -8px;
             margin-bottom: 24px;
-            animation: slideDown 0.25s ease-out;
         }
         .pilar-wrapper { display: flex; gap: 12px; margin-bottom: 24px; }
         .btn-pilar {
-            flex: 1; padding: 16px 12px; border-radius: 12px; color: white; text-align: center;
+            flex: 1; padding: 14px 12px; border-radius: 10px; color: white; text-align: center;
             font-weight: 800; font-size: 13px; cursor: pointer; user-select: none;
-            transition: transform 0.05s ease, border-bottom 0.05s ease;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+            border: none;
         }
-        .btn-pilar:active { transform: translateY(4px); }
-        .pilar-teoria { background-color: #1e40af; border-bottom: 5px solid #1e3a8a; }
-        .pilar-clase { background-color: #a855f7; border-bottom: 5px solid #7e22ce; }
-        .pilar-simulador { background-color: #10b981; border-bottom: 5px solid #047857; }
-        .pilar-tarea { background-color: #f97316; border-bottom: 5px solid #c2410c; }
+        .pilar-teoria { background-color: #1e40af; }
+        .pilar-clase { background-color: #7c3aed; }
+        .pilar-simulador { background-color: #10b981; }
+        .pilar-tarea { background-color: #f97316; }
 
         .sub-bloque { display: none; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; }
         li { margin-left: 20px; margin-top: 6px; font-size: 13.5px; line-height: 1.5; }
 
-        /* SIMULADORES */
+        /* DISPOSITIVOS DE CONTROL DE LOS SIMULADORES */
         .toggle-container { display: flex; gap: 8px; margin-bottom: 20px; background: #e2e8f0; padding: 4px; border-radius: 8px; }
         .toggle-btn { flex: 1; padding: 10px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; background: transparent; color: #64748b; font-size: 12px; }
         .toggle-btn.active { background: white; color: #0f172a; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
@@ -197,33 +209,28 @@
             <h1>Semana 2: Contenido y Actividades</h1>
         </header>
 
-        <!-- ÉPOCA 1 (CORREGIDA) -->
+        <!-- ÉPOCA 1 (CORREGIDA CON ESTILO SEMANA 1) -->
         <div class="epoca-collapse-btn" onclick="toggleEpoca('ep1')">📖 Época 1: Periodo Pre-Clásico y Clásico (Fines del Siglo XVIII - XIX) <span class="indicator">▼</span></div>
-        <div id="ep1" class="timeline-slider-box">
+        <div id="ep1" class="timeline-slider-box" style="display: none;">
             <div class="timeline-mini-track">
                 <div class="timeline-node-card disabled-node">
                     <div class="node-year">1776</div>
                     <div class="node-title">La Riqueza de las Naciones</div>
-                    <div class="node-desc">• Adam Smith<br>• Asignación de recursos y valor-trabajo estructural.</div>
+                    <div class="node-desc">• Adam Smith<br>• Asignación de recursos y valor-trabajo estructural corporativo.</div>
                 </div>
             </div>
         </div>
 
-        <!-- ÉPOCA 2 (CORREGIDA) -->
+        <!-- ÉPOCA 2 (CORREGIDA CON ESTILO SEMANA 1) -->
         <div class="epoca-collapse-btn" onclick="toggleEpoca('ep2')">📖 Época 2: Periodo Neoclásico Marginalista (Fines del Siglo XIX - 1950) <span class="indicator">▼</span></div>
-        <div id="ep2" class="timeline-slider-box">
+        <div id="ep2" class="timeline-slider-box" style="display: none;">
             <div class="timeline-mini-track">
                 <div class="timeline-node-card disabled-node">
                     <div class="node-year">1871</div>
                     <div class="node-title">Revolución Marginalista</div>
-                    <div class="node-desc">• Menger, Jevons, Walras<br>• Optimización matemática bajo escasez y utilidad marginal.</div>
+                    <div class="node-desc">• Menger, Jevons, Walras<br>• Optimización matemática bajo escasez y valor de utilidad.</div>
                 </div>
             </div>
         </div>
 
-        <!-- ÉPOCA 3 (CORREGIDA CON AVANCE OPERATIVO) -->
-        <div class="epoca-collapse-btn e3" onclick="toggleEpoca('ep3')">📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span class="indicator">▲</span></div>
-        <div id="ep3" class="timeline-slider-box active">
-            <div class="arrow-nav arrow-left" onclick="moveSlider(-1)">❮</div>
-            <div class="arrow-nav arrow-right" onclick="moveSlider(1)">❯</div>
-
+        <!-- ÉPOCA 3 (COMPLETAMENTE ABIERTA Y OPERATIVA) -->
