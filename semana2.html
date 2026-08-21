@@ -38,7 +38,7 @@
         .btn-regresar:hover { color: #1e40af; }
         h1 { font-size: 28px; color: #0f172a; }
         
-        /* LÍNEA DE TIEMPO INTERACTIVA COMPLETA (ÉPOCA 3) */
+        /* LÍNEA DE TIEMPO INTERACTIVA CON CONTROLES DE AVANCE */
         .etapa3-header {
             background-color: #f97316;
             color: white;
@@ -50,20 +50,83 @@
             text-transform: uppercase;
             margin-top: 10px;
         }
-        .timeline-mini {
-            display: flex;
-            gap: 12px;
+        
+        /* Contenedor relativo para posicionar las flechas */
+        .timeline-container-rel {
+            position: relative;
             background-color: #fff7ed;
-            padding: 20px;
             border-radius: 0 0 12px 12px;
             border: 1px solid #ffedd5;
             margin-bottom: 32px;
-            overflow-x: auto;
-            scrollbar-width: thin;
         }
+
+        .timeline-mini {
+            display: flex;
+            gap: 12px;
+            padding: 20px 40px; /* Margen interno para que las flechas no tapen el texto */
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none; /* Oculta barra en Firefox */
+        }
+        .timeline-mini::-webkit-scrollbar {
+            display: none; /* Oculta barra en Chrome/Safari */
+        }
+
+        /* Botones de flechas de avance */
+        .arrow-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            background-color: #ffffff;
+            border: 1px solid #fed7aa;
+            border-radius: 50%;
+            color: #ea580c;
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            user-select: none;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            z-order: 10;
+            transition: all 0.2s;
+        }
+        .arrow-nav:hover {
+            background-color: #ea580c;
+            color: #ffffff;
+            border-color: #ea580c;
+            box-shadow: 0 6px 10px -1px rgba(234, 88, 12, 0.2);
+        }
+        .arrow-left { left: 10px; }
+        .arrow-right { right: 10px; }
+
+        /* Máscaras de difuminado a los bordes */
+        .timeline-container-rel::before,
+        .timeline-container-rel::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 40px;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .timeline-container-rel::before {
+            left: 0;
+            background: linear-gradient(to right, #fff7ed, transparent);
+            border-radius: 0 0 0 12px;
+        }
+        .timeline-container-rel::after {
+            right: 0;
+            background: linear-gradient(to left, #fff7ed, transparent);
+            border-radius: 0 0 12px 0;
+        }
+
         .timeline-node {
-            flex: 1;
-            min-width: 190px;
+            flex: 0 0 200px; /* Ancho fijo para mantener simetría al avanzar */
             background: white;
             border: 1px solid #fed7aa;
             border-radius: 10px;
@@ -159,7 +222,7 @@
             padding: 24px;
         }
 
-        /* CONFIGURACIÓN INTERNA DEL SIMULADOR MULTI-MOTOR */
+        /* SIMULADORES */
         .toggle-container { display: flex; gap: 8px; margin-bottom: 20px; background: #e2e8f0; padding: 4px; border-radius: 8px; }
         .toggle-btn { flex: 1; padding: 10px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; background: transparent; color: #64748b; font-size: 12px; }
         .toggle-btn.active { background: white; color: #0f172a; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
@@ -181,61 +244,17 @@
             <h1>Semana 2: Contenido y Actividades</h1>
         </header>
 
-        <!-- LÍNEA DE TIEMPO INTERACTIVA COMPLETA (ÉPOCA 3) -->
+        <!-- LÍNEA DE TIEMPO INTERACTIVA ENVOLVENTE -->
         <div class="etapa3-header">📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976)</div>
-        <div class="timeline-mini">
+        <div class="timeline-container-rel">
             
-            <!-- 1952: Markowitz -->
-            <div class="timeline-node active-node" onclick="abrirDesdeHito('markowitz')">
-                <div class="node-year">1952</div>
-                <div class="node-title">El Portafolio Moderno</div>
-                <div class="node-desc">• Markowitz (Portfolio Selection)<br>• Riesgo por varianza/covarianza<br>• Frontera eficiente de mínima varianza</div>
-            </div>
+            <!-- Controles de navegación de avance -->
+            <div class="arrow-nav arrow-left" onclick="scrollTimeline(-1)">❮</div>
+            <div class="arrow-nav arrow-right" onclick="scrollTimeline(1)">❯</div>
 
-            <!-- 1956: Gordon -->
-            <div class="timeline-node" style="opacity: 0.85;">
-                <div class="node-year">1956</div>
-                <div class="node-title">Valor del Dinero en el Tiempo</div>
-                <div class="node-desc">• Gordon (Modelo Dividendos)<br>• Crecimiento constante a perpetuidad</div>
-            </div>
-
-            <!-- 1958: Modigliani & Miller -->
-            <div class="timeline-node" style="opacity: 0.85;">
-                <div class="node-year">1958</div>
-                <div class="node-title">Irrelevancia de Estructura</div>
-                <div class="node-desc">• Modigliani y Miller<br>• Financiamiento irrelevante en mercados perfectos</div>
-            </div>
-
-            <!-- 1964-1966: Sharpe, Lintner, Mossin -->
-            <div class="timeline-node active-node" onclick="abrirDesdeHito('sml')">
-                <div class="node-year">1964-1966</div>
-                <div class="node-title">El Nacimiento del CAPM</div>
-                <div class="node-desc">• Sharpe, Lintner y Mossin<br>• Riesgo Beta y Modelo SML<br>• Portafolio del mercado</div>
-            </div>
-
-            <!-- 1970: Fama -->
-            <div class="timeline-node" style="opacity: 0.5;">
-                <div class="node-year">1970</div>
-                <div class="node-title">Eficiencia Informativa</div>
-                <div class="node-desc">• Fama (Mercados Eficientes)<br>• Precios absorben información instantáneamente</div>
-            </div>
-
-            <!-- 1973: Black, Scholes, Merton -->
-            <div class="timeline-node" style="opacity: 0.5;">
-                <div class="node-year">1973</div>
-                <div class="node-title">Revolución de Derivados</div>
-                <div class="node-desc">• Black, Scholes y Merton<br>• Fórmula matemática exacta para opciones</div>
-            </div>
-
-            <!-- 1976: Ross -->
-            <div class="timeline-node" style="opacity: 0.5;">
-                <div class="node-year">1976</div>
-                <div class="node-title">Alternativa Multifactorial</div>
-                <div class="node-desc">• Ross (Valuación Arbitraje - APT)<br>• Modelo de Valuación Multifactorial</div>
-            </div>
-
-        </div>
-
-        <!-- LISTADO PRINCIPAL DE SESIONES -->
-        <div class="lista-sesiones">
-            
+            <div class="timeline-mini" id="timelineScrollContainer">
+                
+                <!-- 1952: Markowitz -->
+                <div class="timeline-node active-node" onclick="abrirDesdeHito('markowitz')">
+                    <div class="node-year">1952</div>
+                    <div class="node-title">El Portafolio Moderno</div>
