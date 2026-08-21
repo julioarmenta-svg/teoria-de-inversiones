@@ -37,7 +37,6 @@
         }
         h1 { font-size: 28px; color: #0f172a; }
         
-        /* BOTONES COLAPSABLES */
         .epoca-collapse-btn {
             background-color: #f8fafc;
             color: #475569;
@@ -63,7 +62,6 @@
             border-color: #d1e0ff;
         } 
 
-        /* CAJA CONTENEDORA DE LA ETAPA */
         .timeline-slider-box {
             background-color: #f8fafc;
             border-radius: 0 0 12px 12px;
@@ -75,7 +73,6 @@
             width: 100%;
         }
 
-        /* FORMATO DE TARJETA ESTÁNDAR COMPLETA */
         .timeline-node-card {
             background: #ffffff !important;
             border: 1px solid #e2e8f0 !important;
@@ -88,7 +85,6 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
 
-        /* ESTILOS DE TEXTO INTERNO OBLIGATORIOS */
         .node-year { 
             font-size: 18px !important; 
             font-weight: 800 !important; 
@@ -136,11 +132,9 @@
             <h1>Semana 2: Contenido y Actividades</h1>
         </header>
 
-        <!-- ==========================================
-             PASO 1: VAMOS A DEJAR PERFECTA ESTA ÉPOCA 
-             ========================================== -->
+        <!-- ETAPA 1 VALIDADA -->
         <div class="epoca-collapse-btn" onclick="var el=document.getElementById('ep1'); el.style.display=(el.style.display==='none')?'block':'none';">
-            Briefing Época 1: Periodo Pre-Clásico y Clásico (Fines del Siglo XVIII - XIX) <span>▼</span>
+            Paso 1: Época 1: Periodo Pre-Clásico y Clásico (Fines del Siglo XVIII - XIX) <span>▼</span>
         </div>
         <div id="ep1" class="timeline-slider-box" style="display: block;">
             <div class="timeline-node-card">
@@ -153,15 +147,22 @@
             </div>
         </div>
 
-        <!-- ÉPOCA 2 (Cerrada temporalmente para el paso 2) -->
+        <!-- ETAPA 2 VALIDADA -->
         <div class="epoca-collapse-btn" onclick="var el=document.getElementById('ep2'); el.style.display=(el.style.display==='none')?'block':'none';">
-            Briefing Época 2: Periodo Neoclásico Marginalista (Fines del Siglo XIX - 1950) <span>▼</span>
+            Paso 2: Época 2: Periodo Neoclásico Marginalista (Fines del Siglo XIX - 1950) <span>▼</span>
         </div>
-        <div id="ep2" class="timeline-slider-box" style="display: none;">
-            <p style="font-size: 13px; color:#94a3b8;">(En pausa para desarrollo ordenado...)</p>
+        <div id="ep2" class="timeline-slider-box" style="display: block;">
+            <div class="timeline-node-card">
+                <div class="node-year">1871</div>
+                <div class="node-title">Revolución Marginalista</div>
+                <div class="node-desc">
+                    • Menger, Jevons, Walras<br>
+                    • Optimización matemática bajo condiciones de escasez y análisis de utilidad.
+                </div>
+            </div>
         </div>
 
-        <!-- ÉPOCA 3 (Cerrada temporalmente para el paso 3) -->
+        <!-- ETAPA 3 (En espera del Paso 3) -->
         <div class="epoca-collapse-btn e3" onclick="var el=document.getElementById('ep3'); el.style.display=(el.style.display==='none')?'block':'none';">
             Briefing Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span>▼</span>
         </div>
