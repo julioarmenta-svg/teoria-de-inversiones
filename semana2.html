@@ -182,18 +182,11 @@
  
  <div class="timeline-mini-track" id="masterTrack">
  
- <!-- ACCESO 1: SIMULADOR ESTADÍSTICO (LA BARRA) -->
- <a href="markowitz-barra.html" class="timeline-node-card" style="border-left: 4px solid #10b981;">
- <div class="node-year" style="color: #10b981;">1952 (A)</div>
- <div class="node-title">Simulador de Riesgo</div>
- <div class="node-desc">• Análisis numérico de volatilidad<br• Descomposición de la varianza total<br>• Monitoreo de riesgo diversificable</div>
- </a>
-
- <!-- ACCESO 2: FRONTERA ESTADÍSTICA (LA GRÁFICA) -->
- <a href="markowitz-grafica.html" class="timeline-node-card" style="border-left: 4px solid #1e40af;">
- <div class="node-year" style="color: #1e40af;">1952 (B)</div>
- <div class="node-title">Frontera de Markowitz</div>
- <div class="node-desc">• Curva de reducción del riesgo<br>• Límite asintótico de mercado (12%)<br>• Posición exacta del portafolio</div>
+ <!-- Enlace directo original unificado -->
+ <a href="markowitz.html" class="timeline-node-card">
+ <div class="node-year">1952</div>
+ <div class="node-title">El Portafolio Moderno</div>
+ <div class="node-desc">• Markowitz (Portfolio Selection)<br>• Riesgo medido con varianza/covarianza<br>• Frontera de posibilidades de inversión</div>
  </a>
 
  <a href="#" onclick="alert('Módulo en construcción')" class="timeline-node-card">
@@ -208,7 +201,6 @@
  <div class="node-desc">• Modigliani y Miller<br>• Financiamiento irrelevante en mercados perfectos</div>
  </a>
 
- <!-- Apunta a la subpágina independiente de Sharpe/CAPM -->
  <a href="capm.html" class="timeline-node-card">
  <div class="node-year">1964-1966</div>
  <div class="node-title">El Nacimiento del CAPM</div>
@@ -247,7 +239,7 @@
  </div>
  </div>
 
- <script>
+ <script {
  function moveSlider(direction) {
  const track = document.getElementById('masterTrack');
  track.scrollLeft += (direction * 276);
