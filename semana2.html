@@ -26,10 +26,9 @@
  .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.3; }
  .node-desc { font-size: 11px; color: #64748b; line-height: 1.4; }
  .seccion-titulo { font-size: 13px; font-weight: 700; text-transform: uppercase; color: #94a3b8; margin: 40px 0 15px 0; }
- .lista-sesiones { display: flex; flex-direction: column; gap: 16px; min-height: 100px; }
- .btn-sesion { display: flex !important; justify-content: space-between; align-items: center; width: 100%; background-color: #f8fafc; border: 1px solid #e2e8f0; border-left: 6px solid #1e40af; padding: 22px 20px; border-radius: 12px; color: #334155; font-weight: 600; font-size: 16px; cursor: pointer; transition: all 0.2s ease; user-select: none; }
+ .lista-sesiones { display: flex; flex-direction: column; gap: 16px; }
+ .btn-sesion { display: flex; justify-content: space-between; align-items: center; width: 100%; background-color: #f8fafc; border: 1px solid #e2e8f0; border-left: 6px solid #1e40af; padding: 22px 20px; border-radius: 12px; color: #334155; font-weight: 600; font-size: 16px; cursor: pointer; transition: all 0.2s ease; user-select: none; }
  .btn-sesion:hover { background-color: #f1f5f9; transform: translateX(4px); }
- .btn-sesion.ae { border-left-color: #10b981 !important; display: flex !important; }
  .bloque-desplegable { display: none; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 16px; padding: 24px; margin-top: -6px; margin-bottom: 12px; }
  .item-subcontenido { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 12px; }
  .item-subcontenido:last-child { margin-bottom: 0; }
@@ -37,14 +36,6 @@
  .item-subcontenido p { font-size: 13px; color: #64748b; line-height: 1.4; }
  ul { margin-left: 20px; margin-top: 6px; font-size: 13px; color: #475569; }
  li { margin-bottom: 4px; }
- .toggle-container { display: flex; gap: 8px; margin-bottom: 20px; background: #e2e8f0; padding: 4px; border-radius: 8px; }
- .toggle-btn { flex: 1; padding: 10px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; background: transparent; color: #64748b; }
- .toggle-btn.active { background: white; color: #0f172a; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
- .grid-inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 20px; }
- label { display: block; font-size: 11px; font-weight: 700; color: #64748b; margin-bottom: 4px; text-transform: uppercase; }
- input { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 600; color: #0f172a; }
- .btn-calc { background: #10b981; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; width: 100%; margin-bottom: 16px; }
- .panel-resultado { padding: 16px; border-radius: 8px; background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; font-size: 14px; }
  </style>
 </head>
 <body>
@@ -108,17 +99,17 @@
       </div>
   </div>
 
-  <div class="btn-sesion ae" onclick="toggleBloque('bloque-simuladores')">
-      <span>🧪 Simuladores Prácticos Avanzados (2)</span> <span>▼</span>
-  </div>
-  <div id="bloque-simuladores" class="bloque-desplegable">
-      <div class="toggle-container">
-          <button id="tglM" class="toggle-btn active" onclick="switchSim('markowitz')">📊 Simulador Markowitz</button>
-          <button id="tglS" class="toggle-btn" onclick="switchSim('sml')">📈 Simulador SML / CAPM</button>
-      </div>
-      <div id="engine-markowitz" style="display: block;">
-          <div class="grid-inputs">
-              <div><label>Peso A (%)</label><input type="number" id="mwW" value="50"></div>
-              <div><label>Volatilidad A (%)</label><input type="number" id="mwSA" value="20"></div>
-              <div><label>Volatilidad B (%)</label><input type="number" id="mwSB" value="15"></div>
-              <div><label>Correlación (ρ)</label><input type="number" id="mwR" value="-0.2" step="0.1"></div>
+ </div>
+ </div>
+
+ <script>
+ function moveSlider(d) { document.getElementById('masterTrack').scrollLeft += (d * 276); }
+ function toggleBloque(id) {
+ const b = document.getElementById(id);
+ const act = b.style.display;
+ document.querySelectorAll('.bloque-desplegable').forEach(x => x.style.display = 'none');
+ b.style.display = (act === 'block') ? 'none' : 'block';
+ }
+ </script>
+</body>
+</html>
