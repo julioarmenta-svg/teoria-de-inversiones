@@ -78,7 +78,7 @@
             overflow-x: auto;
             scroll-behavior: smooth;
             white-space: nowrap;
-            padding: 10px 0;
+            padding: 15px 0;
             width: 100%;
             scrollbar-width: none;
         }
@@ -107,11 +107,13 @@
         .arrow-left { left: 8px; }
         .arrow-right { right: 8px; }
 
+        /* AJUSTE FINO DE ALTURA MINIMA PARA MOSTRAR TODO EL DESPLIEGUE EXPLICATIVO */
         .timeline-node-card {
             flex: 0 0 260px !important;
             width: 260px !important;
             min-width: 260px !important;
             max-width: 260px !important;
+            min-height: 140px !important; /* Asegura que la descripción quepa completa */
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
@@ -194,7 +196,7 @@
             📖 Época 1: Periodo Pre-Clásico y Clásico (Fines del Siglo XVIII - XIX) <span>▼</span>
         </div>
         <div id="ep1" class="timeline-slider-box" style="display: none;">
-            <div class="timeline-mini-track">
+            <div class="timeline-mini-track" id="track1">
                 <div class="timeline-node-card disabled-node">
                     <div class="node-year">1776</div>
                     <div class="node-title">La Riqueza de las Naciones</div>
@@ -208,7 +210,7 @@
             📖 Época 2: Periodo Neoclásico Marginalista (Fines del Siglo XIX - 1950) <span>▼</span>
         </div>
         <div id="ep2" class="timeline-slider-box" style="display: none;">
-            <div class="timeline-mini-track">
+            <div class="timeline-mini-track" id="track2">
                 <div class="timeline-node-card disabled-node">
                     <div class="node-year">1871</div>
                     <div class="node-title">Revolución Marginalista</div>
@@ -217,15 +219,13 @@
             </div>
         </div>
 
-        <!-- ÉPOCA 3 (ID CORREGIDO A 'TRACK3' PARA MOSTRAR LAS TARJETAS) -->
+        <!-- ÉPOCA 3 (NIVELACIÓN DE DISTANCIAS DE AVANCE MATEMÁTICO) -->
         <div class="epoca-collapse-btn e3" onclick="var el=document.getElementById('ep3'); el.style.display=(el.style.display==='none')?'block':'none';">
             📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span>▲</span>
         </div>
         <div id="ep3" class="timeline-slider-box" style="display: block;">
-            <div class="arrow-nav arrow-left" onclick="event.stopPropagation(); document.getElementById('track3').scrollLeft -= 276;">❮</div>
-            <div class="arrow-nav arrow-right" onclick="event.stopPropagation(); document.getElementById('track3').scrollLeft += 276;">❯</div>
+            <div class="arrow-nav arrow-left" onclick="event.stopPropagation(); document.getElementById('track3').scrollLeft -= 280;">❮</div>
+            <div class="arrow-nav arrow-right" onclick="event.stopPropagation(); document.getElementById('track3').scrollLeft += 280;">❯</div>
 
             <div class="timeline-mini-track" id="track3">
                 <div class="timeline-node-card" onclick="document.getElementById('workspace21').style.display='block'; document.querySelectorAll('.sub-bloque').forEach(b=>b.style.display='none'); document.getElementById('sb-simulador').style.display='block';">
-                    <div class="node-year">1952</div>
-                    <div class="node-title">El Portafolio Moderno</div>
