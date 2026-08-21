@@ -38,17 +38,7 @@
  .btn-regresar:hover { color: #1e40af; }
  h1 { font-size: 28px; color: #0f172a; }
  
- h2.sub-bloque-titulo {
- font-size: 14px;
- font-weight: 700;
- text-transform: uppercase;
- letter-spacing: 0.05em;
- color: #64748b;
- margin-bottom: 16px;
- margin-top: 12px;
- }
-
- /* BANNER SIMULADORES */
+ /* BANNER ÉPOCA 3 ORIGINAL */
  .etapa3-header {
  background-color: #1e40af;
  color: white;
@@ -61,7 +51,7 @@
  margin-top: 10px;
  }
  
- /* CONTENEDOR MAESTRO DE LA LÍNEA DE TIEMPO - SIMULADORES */
+ /* CONTENEDOR MAESTRO DE LA LÍNEA DE TIEMPO */
  .timeline-slider-box {
  position: relative;
  background-color: #f0f9ff; 
@@ -111,7 +101,7 @@
  .arrow-left { left: 8px; }
  .arrow-right { right: 8px; }
 
- /* TARJETAS - REDIRECCIONAN A SIMULADORES */
+ /* TARJETAS ORIGINALES (REDIRECCIONAN AL PRESIONAR) */
  .timeline-node-card {
  display: block; 
  text-decoration: none; 
@@ -130,48 +120,54 @@
  border-color: #0284c7;
  box-shadow: 0 8px 16px -4px rgba(2, 132, 199, 0.15);
  }
- .node-year { font-size: 11px; font-weight: 800; color: #ffffff; background-color: #0284c7; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-bottom: 6px; }
+ .node-year { font-size: 16px; font-weight: 800; color: #0284c7; margin-bottom: 6px; }
  .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.3; }
- .node-desc { font-size: 11px; color: #64748b; line-height: 1.4; margin-bottom: 8px;}
- .node-action { font-size: 10px; font-weight: 700; color: #0284c7; text-transform: uppercase; display: block; text-align: right;}
+ .node-desc { font-size: 11px; color: #64748b; line-height: 1.4; }
 
- /* DISEÑO EN DOS COLUMNAS PARA PRESENTACIONES Y TAREAS */
- .secciones-grid {
+ /* BOTONES ESTRUCTURALES GRANDES */
+ .menu-modulos-grid {
  display: grid;
  grid-template-columns: 1fr 1fr;
  gap: 24px;
+ margin-top: 20px;
  }
- .columna-recursos {
- background-color: #ffffff;
- }
- .lista-sesiones {
- display: flex;
- flex-direction: column;
- gap: 12px;
- }
- .btn-sesion {
+ .btn-modulo-principal {
  display: block;
  text-decoration: none;
- background-color: #f8fafc;
- border: 1px solid #e2e8f0;
- border-left: 6px solid #1e40af;
- padding: 16px 20px;
- border-radius: 12px;
- color: #334155;
- font-weight: 600;
- font-size: 14px;
- transition: all 0.2s ease;
+ background-color: #ffffff;
+ border: 2px solid #e2e8f0;
+ border-left: 8px solid #1e40af;
+ padding: 32px 24px;
+ border-radius: 16px;
+ color: #0f172a;
+ transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+ box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
  }
- .btn-sesion:hover {
- background-color: #f1f5f9;
- transform: translateX(4px);
+ .btn-modulo-principal:hover {
+ transform: translateY(-2px);
  border-color: #cbd5e1;
+ box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
  }
- /* Ajuste de color para la sección práctica */
- .btn-sesion.ae { border-left-color: #10b981; }
+ .btn-modulo-principal.practico {
+ border-left-color: #10b981;
+ }
+ .modulo-titulo {
+ font-size: 18px;
+ font-weight: 800;
+ margin-bottom: 6px;
+ display: flex;
+ align-items: center;
+ gap: 8px;
+ }
+ .modulo-subtxt {
+ font-size: 13px;
+ color: #64748b;
+ font-weight: 400;
+ line-height: 1.4;
+ }
  
  @media (max-width: 768px) {
- .secciones-grid { grid-template-columns: 1fr; }
+ .menu-modulos-grid { grid-template-columns: 1fr; }
  }
  </style>
 </head>
@@ -182,8 +178,8 @@
  <h1>Semana 2: Contenido y Actividades</h1>
  </header>
 
- <!-- SECCIÓN 1: SIMULADORES DINÁMICOS (LÍNEA DE TIEMPO) -->
- <div class="etapa3-header">📈 Simuladores Dinámicos de Clase</div>
+ <!-- LÍNEA DE TIEMPO COMPLETA ORIGINAL -->
+ <div class="etapa3-header">📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976)</div>
  <div class="timeline-slider-box">
  
  <div class="arrow-nav arrow-left" onclick="moveSlider(-1)">❮</div>
@@ -191,78 +187,64 @@
  
  <div class="timeline-mini-track" id="masterTrack">
  
- <!-- Cada tarjeta apunta a su respectivo archivo simulador simulador -->
  <a href="markowitz.html" class="timeline-node-card">
- <span class="node-year">1952</span>
- <div class="node-title">Simulador: Portafolio de Markowitz</div>
- <div class="node-desc">Optimización de la frontera eficiente calculando varianzas y covarianzas de activos.</div>
- <span class="node-action">Abrir Simulador ➔</span>
+ <div class="node-year">1952</div>
+ <div class="node-title">El Portafolio Moderno</div>
+ <div class="node-desc">• Markowitz (Portfolio Selection)<br>• Riesgo medido con varianza/covarianza<br>• Frontera de posibilidades de inversión</div>
  </a>
 
  <a href="gordon.html" class="timeline-node-card">
- <span class="node-year">1956</span>
- <div class="node-title">Simulador: Modelo de Gordon</div>
- <div class="node-desc">Valuación de acciones mediante dividendos descontados con crecimiento constante.</div>
- <span class="node-action">Abrir Simulador ➔</span>
+ <div class="node-year">1956</div>
+ <div class="node-title">Valor del Dinero en el Tiempo</div>
+ <div class="node-desc">• Gordon (Modelo de Dividendos Descontados - DDM)<br>• Crecimiento constante a perpetuidad</div>
  </a>
 
  <a href="modigliani-miller.html" class="timeline-node-card">
- <span class="node-year">1958</span>
- <div class="node-title">Simulador: Estructura de Capital</div>
- <div class="node-desc">Análisis de la relevancia y el apalancamiento bajo el teorema Modigliani-Miller.</div>
- <span class="node-action">Abrir Simulador ➔</span>
+ <div class="node-year">1958</div>
+ <div class="node-title">Irrelevancia de Estructura</div>
+ <div class="node-desc">• Modigliani y Miller<br>• Financiamiento irrelevante en mercados perfectos</div>
  </a>
 
  <a href="capm.html" class="timeline-node-card">
- <span class="node-year">1964</span>
- <div class="node-title">Simulador: Modelo CAPM</div>
- <div class="node-desc">Evaluación del riesgo sistemático (Beta) y cálculo del retorno esperado del mercado.</div>
- <span class="node-action">Abrir Simulador ➔</span>
+ <div class="node-year">1964-1966</div>
+ <div class="node-title">El Nacimiento del CAPM</div>
+ <div class="node-desc">• Sharpe, Lintner y Mossin<br>• Modelo CAPM y Riesgo Beta<br>• Portafolio del mercado</div>
  </a>
 
  <a href="eficiencia-mercados.html" class="timeline-node-card">
- <span class="node-year">1970</span>
- <div class="node-title">Análisis: Mercados Eficientes</div>
- <div class="node-desc">Pruebas estocásticas de absorción de información e hipótesis de Eugene Fama.</div>
- <span class="node-action">Abrir Simulador ➔</span>
+ <div class="node-year">1970</div>
+ <div class="node-title">Eficiencia Informativa</div>
+ <div class="node-desc">• Fama (Hipótesis de Mercados Eficientes)<br>• Precios absorben la información instantáneamente</div>
  </a>
 
  <a href="derivados.html" class="timeline-node-card">
- <span class="node-year">1973</span>
- <div class="node-title">Simulador: Black-Scholes</div>
- <div class="node-desc">Valuación matemática exacta para el precio de opciones financieras y derivados.</div>
- <span class="node-action">Abrir Simulador ➔</span>
+ <div class="node-year">1973</div>
+ <div class="node-title">Revolución de Derivados</div>
+ <div class="node-desc">• Black, Scholes y Merton<br>• Fórmula matemática exacta para opciones</div>
  </a>
 
  <a href="apt.html" class="timeline-node-card">
- <span class="node-year">1976</span>
- <div class="node-title">Simulador: Modelo APT</div>
- <div class="node-desc">Valuación multifactorial de activos como alternativa al riesgo de un solo factor.</div>
- <span class="node-action">Abrir Simulador ➔</span>
+ <div class="node-year">1976</div>
+ <div class="node-title">Alternativa Multifactorial</div>
+ <div class="node-desc">• Ross (Teoría de Valuación por Arbitraje - APT)<br>• Modelo de Valuación Multifactorial</div>
  </a>
  </div>
  </div>
 
- <!-- GRID INFERIOR SEPARADO POR PILARES -->
- <div class="secciones-grid">
+ <!-- NUEVOS ACCESOS INDEPENDIENTES PARA PROTEGER LA PORTADA -->
+ <div class="menu-modulos-grid">
  
- <!-- COLUMNA A: PRESENTACIONES -->
- <div class="columna-recursos">
- <h2 class="sub-bloque-titulo">📁 Presentaciones de Clase</h2>
- <div class="lista-sesiones">
- <a href="Sesion-1_1-Introduccion-a-la-Teoria-Neoclasica-de-las-Finanzas.pdf" target="_blank" class="btn-sesion">📖 Sesión 2.1 - Medidas del Riesgo y Eficiencia (PDF)</a>
- <a href="sesion22.html" class="btn-sesion">📖 Sesión 2.2 - Modelos de Valuación de Activos (Diapositivas)</a>
- </div>
- </div>
+  <!-- BOTÓN A NUEVA SECCIÓN DE PRESENTACIONES -->
+ <a href="presentaciones-semana2.html" class="btn-modulo-principal">
+  <div class="modulo-titulo">📁 Presentaciones de Clase</div>
+  <p class="modulo-subtxt">Accede al repositorio completo de lecturas y diapositivas teóricas de la semana.</p>
+ </a>
 
- <!-- COLUMNA B: EJERCICIOS Y TAREAS -->
- <div class="columna-recursos">
- <h2 class="sub-bloque-titulo">✏️ Ejercicios en Clase y Tareas</h2>
- <div class="lista-sesiones">
- <a href="ejercicios-gordon.html" class="btn-sesion ae">📊 Ejercicio Práctico: Valuación por Modelo de Gordon</a>
- <!-- Aquí puedes añadir más enlaces a tareas del repositorio más adelante -->
- </div>
- </div>
+  <!-- BOTÓN A NUEVA SECCIÓN DE EJERCICIOS Y TAREAS -->
+ <a href="ejercicios-semana2.html" class="btn-modulo-principal practico">
+  <div class="modulo-titulo">✏️ Ejercicios en Clase y Tareas</div>
+  <p class="modulo-subtxt">Revisa las actividades prácticas, retos de Excel y entregas de evaluación de este módulo.</p>
+ </a>
 
  </div>
  </div>
