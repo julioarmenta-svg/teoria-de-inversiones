@@ -32,17 +32,14 @@
             font-size: 14px;
             margin-bottom: 24px;
         }
-        
         .workspace {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             margin-top: 20px;
         }
-
         h1 { font-size: 24px; color: #0f172a; margin-bottom: 10px; font-weight: 800; }
         .intro { font-size: 14px; color: #64748b; margin-bottom: 20px; line-height: 1.5; }
-        
         .formula-card {
             background-color: #f1f5f9;
             border-radius: 12px;
@@ -55,7 +52,6 @@
             margin-bottom: 24px;
             border-left: 5px solid #1e40af;
         }
-
         .control-wrapper {
             background-color: #f8fafc;
             padding: 20px;
@@ -67,7 +63,6 @@
         label { display: block; font-weight: 700; margin-bottom: 10px; color: #1e293b; font-size: 14px; }
         input[type=range] { width: 100%; max-width: 400px; margin-bottom: 8px; cursor: pointer; }
         .num-acciones { font-size: 24px; font-weight: 800; color: #1e40af; }
-
         .panel-metricas {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -77,7 +72,6 @@
         .metrica-box { text-align: center; background: #f8fafc; border: 1px solid #e2e8f0; padding: 16px; border-radius: 12px; }
         .metrica-titulo { font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: bold; }
         .metrica-valor { font-size: 24px; font-weight: 800; color: #0f172a; margin-top: 4px; }
-
         .card-visualizador {
             background-color: #f8fafc;
             border: 1px solid #e2e8f0;
@@ -95,7 +89,6 @@
         }
         .medidor-sist { background-color: #1e40af; height: 100%; width: 30%; }
         .medidor-no-sist { background-color: #10b981; height: 100%; transition: width 0.1s ease; }
-
         .panel-grafico {
             background: #ffffff;
             border: 1px solid #e2e8f0;
@@ -106,14 +99,8 @@
             align-items: center;
             justify-content: center;
         }
-        svg {
-            background-color: #fafafa;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
-        }
-        @media (max-width: 768px) {
-            .workspace { grid-template-columns: 1fr; }
-        }
+        svg { background-color: #fafafa; border-radius: 12px; border: 1px solid #e2e8f0; }
+        @media (max-width: 768px) { .workspace { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -125,17 +112,12 @@
             <!-- COLUMNA IZQUIERDA -->
             <div>
                 <h1>Simulador Estadístico de Riesgo (Markowitz)</h1>
-                <p class="intro">
-                    Matemáticamente, el riesgo de un portafolio se mide a través de la Desviación Estándar (σ). Al reducir la covarianza mediante la diversificación, el riesgo no sistemático decrece exponencialmente.
-                </p>
-
-                <div class="formula-card">
-                    Riesgo del Portafolio (σₚ) = √[ (Riesgo Sistemático)² + (Riesgo No Sistemático / N) ]
-                </div>
+                <p class="intro">Matemáticamente, el riesgo de un portafolio se mide a través de la Desviación Estándar (σ). Al reducir la covarianza mediante la diversificación, el riesgo no sistemático decrece exponencialmente.</p>
+                <div class="formula-card">Riesgo del Portafolio (σₚ) = √[ (Riesgo Sistemático)² + (Riesgo No Sistemático / N) ]</div>
 
                 <div class="control-wrapper">
                     <label for="accionesSlider">Modificar tamaño del portafolio (Número de Activos N):</label>
-                    <input type="range" id="accionesSlider" min="1" max="40" value="2" oninput="calcularTodo(this.value)">
+                    <input type="range" id="accionesSlider" min="1" max="40" value="2" oninput="calcularMecanica(this.value)">
                     <div>Activos en Portafolio (N): <span id="valorAcciones" class="num-acciones">2</span></div>
                 </div>
 
@@ -167,13 +149,8 @@
             <div class="panel-grafico">
                 <div style="width: 100%;">
                     <h1>Frontera Estadística de Markowitz (1952)</h1>
-                    <p class="intro">
-                        Mueve la barra para observar el efecto cuantitativo real: a medida que el número de acciones (N) tiende al infinito, el riesgo específico se pulveriza de forma asintótica, convergiendo perfectamente hacia la volatilidad sistemática del mercado.
-                    </p>
-
-                    <div class="formula-card">
-                        σₚ = √[ σₛ² + (σns² / N) ] ➔ Covarianza Promedio Proporcional
-                    </div>
+                    <p class="intro">Mueve la barra para observar el efecto cuantitativo real: a medida que el número de acciones (N) tiende al infinito, el riesgo específico se pulveriza de forma asintótica, convergiendo perfectamente hacia la volatilidad sistemática del mercado.</p>
+                    <div class="formula-card">σₚ = √[ σₛ² + (σns² / N) ] ➔ Covarianza Promedio Proporcional</div>
                 </div>
 
                 <h4 style="font-size: 12px; text-transform: uppercase; color: #1e293b; margin-bottom: 12px; font-weight: bold; width: 100%; text-align: center;">Curva de Reducción del Riesgo Total</h4>
@@ -190,12 +167,11 @@
                 </svg>
                 <div style="font-size: 11px; color: #94a3b8; margin-top: 10px; text-align: center; font-weight: 500;">El punto verde muestra tu posición matemática exacta.</div>
             </div>
-
         </div>
     </div>
 
     <script>
-        function calcularTodo(val) {
+        function calcularMecanica(val) {
             const n = parseInt(val);
             document.getElementById('valorAcciones').textContent = n;
             
@@ -218,3 +194,9 @@
             let puntoY = 190 - (total * (170 / 40));
             document.getElementById('puntoPortafolio').setAttribute("cx", puntoX);
             document.getElementById('puntoPortafolio').setAttribute("cy", puntoY);
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            let pathData = "";
+            for (let i = 1; i <= 40; i++) {
+                let xSvg = 60 + ((i - 1) * (370 / 39));
