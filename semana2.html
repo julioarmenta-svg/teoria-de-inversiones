@@ -84,12 +84,13 @@
         }
 
         .timeline-mini-track {
-            display: flex;
+            display: flex !important;
             gap: 16px;
             overflow-x: auto;
             scroll-behavior: smooth;
             white-space: nowrap;
             padding: 10px 0;
+            width: 100%;
             scrollbar-width: none;
         }
         .timeline-mini-track::-webkit-scrollbar { display: none; }
@@ -127,6 +128,7 @@
             white-space: normal;
             width: 260px;
             min-width: 260px;
+            max-width: 260px;
             vertical-align: top;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -198,7 +200,7 @@
             <h1>Semana 2: Contenido y Actividades</h1>
         </header>
 
-        <!-- ÉPOCA 1 (CLIC EN LÍNEA ACCIONABLE) -->
+        <!-- ÉPOCA 1 -->
         <div class="epoca-collapse-btn" onclick="var el=document.getElementById('ep1_box'); el.style.display=(el.style.display==='none')?'block':'none';">
             📖 Época 1: Periodo Pre-Clásico y Clásico (Fines del Siglo XVIII - XIX) <span>▼</span>
         </div>
@@ -207,7 +209,7 @@
             • Enfoque principal en la asignación estructural de recursos y el valor-trabajo dentro del desarrollo económico temprano.
         </div>
 
-        <!-- ÉPOCA 2 (CLIC EN LÍNEA ACCIONABLE) -->
+        <!-- ÉPOCA 2 -->
         <div class="epoca-collapse-btn" onclick="var el=document.getElementById('ep2_box'); el.style.display=(el.style.display==='none')?'block':'none';">
             📖 Época 2: Periodo Neoclásico Marginalista (Fines del Siglo XIX - 1950) <span>▼</span>
         </div>
@@ -216,13 +218,13 @@
             • Introducción de la optimización matemática bajo condiciones de escasez y análisis de utilidad para la toma de decisiones.
         </div>
 
-        <!-- ÉPOCA 3 (CLIC EN LÍNEA ACCIONABLE Y FLECHAS ANCLADAS DIRECTAMENTE) -->
+        <!-- ÉPOCA 3 -->
         <div class="epoca-collapse-btn e3" onclick="var el=document.getElementById('ep3'); el.style.display=(el.style.display==='none')?'block':'none';">
             📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span>▲</span>
         </div>
         <div id="ep3" class="timeline-slider-box" style="display: block;">
-            <div class="arrow-nav arrow-left" onclick="event.stopPropagation(); document.getElementById('masterTrack').scrollLeft -= 280;">❮</div>
-            <div class="arrow-nav arrow-right" onclick="event.stopPropagation(); document.getElementById('masterTrack').scrollLeft += 280;">❯</div>
+            <div class="arrow-nav arrow-left" onclick="event.stopPropagation(); document.getElementById('masterTrack').scrollBy({left: -300, behavior: 'smooth'});">❮</div>
+            <div class="arrow-nav arrow-right" onclick="event.stopPropagation(); document.getElementById('masterTrack').scrollBy({left: 300, behavior: 'smooth'});">❯</div>
 
             <div class="timeline-mini-track" id="masterTrack">
                 <div class="timeline-node-card" onclick="document.getElementById('workspace21').style.display='block'; document.getElementById('sb-simulador').style.display='block';">
