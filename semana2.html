@@ -72,7 +72,6 @@
             border-top: none;
         }
 
-        /* DISEÑO DE CARRUSEL PROTEGIDO CONTRA APLASTAMIENTOS */
         .timeline-mini-track {
             display: flex !important;
             gap: 16px;
@@ -81,10 +80,9 @@
             white-space: nowrap;
             padding: 10px 0;
             width: 100%;
+            scrollbar-width: none;
         }
-        /* Oculta barra de scroll en todos los navegadores */
         .timeline-mini-track::-webkit-scrollbar { display: none; }
-        .timeline-mini-track { -ms-overflow-style: none; scrollbar-width: none; }
 
         .arrow-nav {
             position: absolute;
@@ -109,9 +107,8 @@
         .arrow-left { left: 8px; }
         .arrow-right { right: 8px; }
 
-        /* FORMATO DE TARJETA CON ANCHO ABSOLUTO BLINDADO */
         .timeline-node-card {
-            flex: 0 0 260px !important; /* Evita que el navegador cambie el tamaño o mande al vacío */
+            flex: 0 0 260px !important;
             width: 260px !important;
             min-width: 260px !important;
             max-width: 260px !important;
@@ -192,7 +189,7 @@
             <h1>Semana 2: Contenido y Actividades</h1>
         </header>
 
-        <!-- ÉPOCA 1 (RESTAURADA CON FORMATO TARJETA) -->
+        <!-- ÉPOCA 1 -->
         <div class="epoca-collapse-btn" onclick="var el=document.getElementById('ep1'); el.style.display=(el.style.display==='none')?'block':'none';">
             📖 Época 1: Periodo Pre-Clásico y Clásico (Fines del Siglo XVIII - XIX) <span>▼</span>
         </div>
@@ -206,7 +203,7 @@
             </div>
         </div>
 
-        <!-- ÉPOCA 2 (RESTAURADA CON FORMATO TARJETA) -->
+        <!-- ÉPOCA 2 -->
         <div class="epoca-collapse-btn" onclick="var el=document.getElementById('ep2'); el.style.display=(el.style.display==='none')?'block':'none';">
             📖 Época 2: Periodo Neoclásico Marginalista (Fines del Siglo XIX - 1950) <span>▼</span>
         </div>
@@ -220,7 +217,7 @@
             </div>
         </div>
 
-        <!-- ÉPOCA 3 (CORREGIDA ABSOLUTAMENTE EN COMPUTADORA Y CELULAR) -->
+        <!-- ÉPOCA 3 (ID CORREGIDO A 'TRACK3' PARA MOSTRAR LAS TARJETAS) -->
         <div class="epoca-collapse-btn e3" onclick="var el=document.getElementById('ep3'); el.style.display=(el.style.display==='none')?'block':'none';">
             📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span>▲</span>
         </div>
@@ -229,3 +226,6 @@
             <div class="arrow-nav arrow-right" onclick="event.stopPropagation(); document.getElementById('track3').scrollLeft += 276;">❯</div>
 
             <div class="timeline-mini-track" id="track3">
+                <div class="timeline-node-card" onclick="document.getElementById('workspace21').style.display='block'; document.querySelectorAll('.sub-bloque').forEach(b=>b.style.display='none'); document.getElementById('sb-simulador').style.display='block';">
+                    <div class="node-year">1952</div>
+                    <div class="node-title">El Portafolio Moderno</div>
