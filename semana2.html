@@ -13,7 +13,7 @@
             color: #334155;
         }
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             background-color: #ffffff;
             border-radius: 24px;
@@ -38,46 +38,50 @@
         .btn-regresar:hover { color: #1e40af; }
         h1 { font-size: 28px; color: #0f172a; }
         
-        /* MINI LÍNEA DE TIEMPO INTERACTIVA (ETAPA 3) */
+        /* LÍNEA DE TIEMPO INTERACTIVA COMPLETA (ÉPOCA 3) */
         .etapa3-header {
             background-color: #f97316;
             color: white;
-            padding: 10px 16px;
+            padding: 12px 18px;
             border-radius: 12px 12px 0 0;
             font-weight: 800;
-            font-size: 12px;
+            font-size: 13px;
             letter-spacing: 0.05em;
             text-transform: uppercase;
             margin-top: 10px;
         }
         .timeline-mini {
             display: flex;
-            gap: 8px;
+            gap: 12px;
             background-color: #fff7ed;
-            padding: 16px;
+            padding: 20px;
             border-radius: 0 0 12px 12px;
             border: 1px solid #ffedd5;
             margin-bottom: 32px;
             overflow-x: auto;
+            scrollbar-width: thin;
         }
         .timeline-node {
             flex: 1;
-            min-width: 110px;
+            min-width: 190px;
             background: white;
             border: 1px solid #fed7aa;
-            border-radius: 8px;
-            padding: 10px;
-            text-align: center;
+            border-radius: 10px;
+            padding: 14px;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+        .timeline-node.active-node {
             cursor: pointer;
-            transition: all 0.2s;
         }
-        .timeline-node:hover {
-            transform: translateY(-2px);
+        .timeline-node.active-node:hover {
+            transform: translateY(-4px);
             border-color: #f97316;
-            box-shadow: 0 4px 6px -1px rgba(249, 115, 22, 0.1);
+            box-shadow: 0 6px 12px -2px rgba(249, 115, 22, 0.15);
         }
-        .node-year { font-size: 14px; font-weight: 800; color: #ea580c; }
-        .node-desc { font-size: 10px; font-weight: 600; color: #64748b; }
+        .node-year { font-size: 16px; font-weight: 800; color: #ea580c; margin-bottom: 4px; }
+        .node-title { font-size: 11.5px; font-weight: 700; color: #0f172a; margin-bottom: 6px; line-height: 1.2; }
+        .node-desc { font-size: 10px; color: #64748b; line-height: 1.4; }
 
         .lista-sesiones {
             display: flex;
@@ -105,7 +109,7 @@
         }
         .btn-sesion.ae { border-left-color: #10b981; }
 
-        /* ARQUITECTURA DE CONTENIDO EXPANDIBLE PARA LA SESIÓN 2.1 */
+        /* CONTENEDOR DESPLEGABLE SESIÓN 2.1 */
         .workspace-sesion {
             display: none;
             border: 1px solid #cbd5e1;
@@ -118,7 +122,7 @@
         }
         @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* BOTONERA INTERNA DE 4 PILARES EN 3D */
+        /* BOTONERA EN 3D DE 4 PILARES */
         .pilar-wrapper {
             display: flex;
             gap: 12px;
@@ -155,7 +159,7 @@
             padding: 24px;
         }
 
-        /* DISEÑO DE CONTROLADORES DEL SIMULADOR */
+        /* CONFIGURACIÓN INTERNA DEL SIMULADOR MULTI-MOTOR */
         .toggle-container { display: flex; gap: 8px; margin-bottom: 20px; background: #e2e8f0; padding: 4px; border-radius: 8px; }
         .toggle-btn { flex: 1; padding: 10px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; background: transparent; color: #64748b; font-size: 12px; }
         .toggle-btn.active { background: white; color: #0f172a; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
@@ -165,9 +169,8 @@
         .btn-calc { background: #0f172a; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; width: 100%; margin-bottom: 16px; }
         .panel-resultado { padding: 16px; border-radius: 8px; background: white; border: 1px solid #e2e8f0; }
 
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .pilar-wrapper { flex-direction: column; }
-            .timeline-mini { flex-direction: column; }
         }
     </style>
 </head>
@@ -178,52 +181,61 @@
             <h1>Semana 2: Contenido y Actividades</h1>
         </header>
 
-        <!-- LÍNEA DE TIEMPO INTERACTIVA INCORPORADA -->
-        <div class="etapa3-header">🎯 Época 3: Revolución Cuantitativa (Hitos de la Semana)</div>
+        <!-- LÍNEA DE TIEMPO INTERACTIVA COMPLETA (ÉPOCA 3) -->
+        <div class="etapa3-header">📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976)</div>
         <div class="timeline-mini">
-            <div class="timeline-node" onclick="abrirDesdeHito('markowitz')">
+            
+            <!-- 1952: Markowitz -->
+            <div class="timeline-node active-node" onclick="abrirDesdeHito('markowitz')">
                 <div class="node-year">1952</div>
-                <div class="node-desc">Portafolios</div>
+                <div class="node-title">El Portafolio Moderno</div>
+                <div class="node-desc">• Markowitz (Portfolio Selection)<br>• Riesgo por varianza/covarianza<br>• Frontera eficiente de mínima varianza</div>
             </div>
-            <div class="timeline-node" style="opacity:0.4; cursor:not-allowed;">
+
+            <!-- 1956: Gordon -->
+            <div class="timeline-node" style="opacity: 0.85;">
                 <div class="node-year">1956</div>
-                <div class="node-desc">Gordon</div>
+                <div class="node-title">Valor del Dinero en el Tiempo</div>
+                <div class="node-desc">• Gordon (Modelo Dividendos)<br>• Crecimiento constante a perpetuidad</div>
             </div>
-            <div class="timeline-node" style="opacity:0.4; cursor:not-allowed;">
+
+            <!-- 1958: Modigliani & Miller -->
+            <div class="timeline-node" style="opacity: 0.85;">
                 <div class="node-year">1958</div>
-                <div class="node-desc">Modigliani-Miller</div>
+                <div class="node-title">Irrelevancia de Estructura</div>
+                <div class="node-desc">• Modigliani y Miller<br>• Financiamiento irrelevante en mercados perfectos</div>
             </div>
-            <div class="timeline-node" onclick="abrirDesdeHito('sml')">
-                <div class="node-year">1964</div>
-                <div class="node-desc">CAPM / SML</div>
+
+            <!-- 1964-1966: Sharpe, Lintner, Mossin -->
+            <div class="timeline-node active-node" onclick="abrirDesdeHito('sml')">
+                <div class="node-year">1964-1966</div>
+                <div class="node-title">El Nacimiento del CAPM</div>
+                <div class="node-desc">• Sharpe, Lintner y Mossin<br>• Riesgo Beta y Modelo SML<br>• Portafolio del mercado</div>
             </div>
+
+            <!-- 1970: Fama -->
+            <div class="timeline-node" style="opacity: 0.5;">
+                <div class="node-year">1970</div>
+                <div class="node-title">Eficiencia Informativa</div>
+                <div class="node-desc">• Fama (Mercados Eficientes)<br>• Precios absorben información instantáneamente</div>
+            </div>
+
+            <!-- 1973: Black, Scholes, Merton -->
+            <div class="timeline-node" style="opacity: 0.5;">
+                <div class="node-year">1973</div>
+                <div class="node-title">Revolución de Derivados</div>
+                <div class="node-desc">• Black, Scholes y Merton<br>• Fórmula matemática exacta para opciones</div>
+            </div>
+
+            <!-- 1976: Ross -->
+            <div class="timeline-node" style="opacity: 0.5;">
+                <div class="node-year">1976</div>
+                <div class="node-title">Alternativa Multifactorial</div>
+                <div class="node-desc">• Ross (Valuación Arbitraje - APT)<br>• Modelo de Valuación Multifactorial</div>
+            </div>
+
         </div>
 
+        <!-- LISTADO PRINCIPAL DE SESIONES -->
         <div class="lista-sesiones">
-            <!-- Botón de la Sesión 2.1 habilitado como colapsable -->
-            <div class="btn-sesion" onclick="toggleSesion21()">• Sesión 2.1- Medidas del riesgo y eficiencia de mercado</div>
             
-            <!-- CONTENEDOR MODULAR DESPLEGABLE DE LA SESIÓN 2.1 -->
-            <div id="workspace21" class="workspace-sesion">
-                <div class="pilar-wrapper">
-                    <div class="btn-pilar pilar-teoria" onclick="verSubBloque('teoria')">📖 Teoría</div>
-                    <div class="btn-pilar pilar-clase" onclick="verSubBloque('clase')">✏️ Ejercicio Clase</div>
-                    <div class="btn-pilar pilar-simulador" onclick="verSubBloque('simulador')">🧪 Simuladores</div>
-                    <div class="btn-pilar pilar-tarea" onclick="verSubBloque('tarea')">📥 Tarea Semanal</div>
-                </div>
-
-                <!-- SUB-BLOQUE: TEORÍA -->
-                <div id="sb-teoria" class="sub-bloque" style="display:block;">
-                    <h3 style="margin-bottom:12px;">📖 Lectura y Presentación Base</h3>
-                    <p style="margin-bottom:16px; font-size:14px; color:#64748b;">Descarga o revisa las láminas de la sesión aquí.</p>
-                    <a href="Sesion-1_1-Introduccion-a-la-Teoria-Neoclasica-de-las-Finanzas.pdf" target="_blank" style="display:inline-block; padding:10px 20px; background:#1e40af; color:white; border-radius:8px; text-decoration:none; font-weight:700; font-size:13px;">📖 Abrir PDF de Lectura</a>
-                </div>
-
-                <!-- SUB-BLOQUE: EJERCICIO EN CLASE -->
-                <div id="sb-clase" class="sub-bloque">
-                    <h3>✏️ Caso Práctico en el Aula</h3>
-                    <p style="margin-top:10px; font-size:14px; line-height:1.5;">Espacio listo para insertar el reto o las preguntas guiadas que se resolverán en la sesión síncrona.</p>
-                </div>
-
-                <!-- SUB-BLOQUE: SIMULADORES COMBINADOS -->
-                <div id="sb-simulador" class="sub-bloque">
