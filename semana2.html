@@ -59,8 +59,9 @@
             border-top: none;
         }
 
+        /* CORRECCIÓN CRUCIAL: DISPLAY FLEX RESTAURADO PARA PERMITIR DESPLAZAMIENTO */
         .timeline-mini-track {
-            display: flex;
+            display: flex !important;
             gap: 16px;
             overflow-x: auto;
             scroll-behavior: smooth;
@@ -104,6 +105,12 @@
             padding: 16px;
             text-align: left;
             box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+        }
+        .timeline-node-card:hover {
+            transform: translateY(-2px);
+            border-color: #0033a0;
+            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.08);
         }
         .timeline-node-card.disabled-node { opacity: 0.45; cursor: not-allowed; }
 
@@ -111,7 +118,7 @@
         .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.3; }
         .node-desc { font-size: 11px; color: #64748b; line-height: 1.4; }
 
-        /* SECCIÓN INFERIOR COMPLETA RECONSTRUIDA */
+        /* INTERFAZ MODULAR INFERIOR REINTEGRADA */
         .seccion-titulo { font-size: 13px; font-weight: 700; text-transform: uppercase; color: #94a3b8; margin: 40px 0 15px 0; }
         
         .btn-sesion {
@@ -151,7 +158,7 @@
         .sub-bloque { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; }
         li { margin-left: 20px; margin-top: 6px; font-size: 13.5px; }
 
-        .toggle-container { display: flex; gap: 8px; margin-bottom: 20px; background: #e2e8f0; padding: 4px; border-radius: 8px; }
+        .toggle-container { display: flex; gap: 8px; margin-bottom: 20px; background: #e2e2e2; padding: 4px; border-radius: 8px; }
         .toggle-btn { flex: 1; padding: 10px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; background: transparent; color: #64748b; }
         .toggle-btn.active { background: white; color: #0f172a; }
         .grid-inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 20px; }
@@ -168,12 +175,12 @@
             <h1>Semana 2: Contenido y Actividades</h1>
         </header>
 
-        <!-- CONTENEDOR DE ÉPOCA 3 CON TODAS LAS TARJETAS REALES -->
+        <!-- CONTENEDOR RESTAURADO DE ÉPOCA 3 -->
         <div class="epoca-header-fixed">
             📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976)
         </div>
         <div class="timeline-slider-box">
-            <!-- Acciones de JS mapeadas exactamente al ID "track3" -->
+            <!-- Navegación corregida apuntando exactamente al track3 -->
             <button class="arrow-nav arrow-left" onclick="document.getElementById('track3').scrollLeft -= 276;">❮</button>
             <button class="arrow-nav arrow-right" onclick="document.getElementById('track3').scrollLeft += 276;">❯</button>
             
@@ -206,7 +213,7 @@
             </div>
         </div>
 
-        <!-- MÓDULOS DE TRABAJO COMPLETO -->
+        <!-- MÓDULOS DE TRABAJO INFERIORES RESTAURADOS -->
         <h2 class="seccion-titulo">Módulos de Trabajo Semanal</h2>
         
         <div class="btn-sesion" onclick="var el=document.getElementById('workspace21'); el.style.display=(el.style.display==='none')?'block':'none';">
@@ -216,4 +223,3 @@
         <div id="workspace21" class="workspace-sesion" style="display: block;">
             <div class="pilar-wrapper">
                 <div class="btn-pilar pilar-teoria" onclick="document.querySelectorAll('.sub-bloque').forEach(b=>b.style.display='none'); document.getElementById('sb-teoria').style.display='block';">📖 Teoría</div>
-                <div class="btn-pilar pilar-clase" onclick="document.querySelectorAll('.sub-bloque').forEach(b=>b.style.display='none'); document.getElementById('sb-clase').style.display='block';">✏️ Ejercicio Clase</div>
