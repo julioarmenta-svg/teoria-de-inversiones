@@ -38,9 +38,9 @@
  .btn-regresar:hover { color: #1e40af; }
  h1 { font-size: 28px; color: #0f172a; }
  
- /* BANNER ÉPOCA 3 */
+ /* BANNER ÉPOCA 3 - AJUSTADO AL AZUL CORPORATIVO */
  .etapa3-header {
- background-color: #f97316;
+ background-color: #1e40af;
  color: white;
  padding: 14px 18px;
  border-radius: 12px 12px 0 0;
@@ -58,22 +58,22 @@
  border-radius: 0 0 12px 12px;
  border: 1px solid #e2e8f0;
  margin-bottom: 40px;
- padding: 20px 50px; /* Espacio para las flechas fijas */
+ padding: 20px 50px;
  }
- /* Tira horizontal donde se alinean las tarjetas */
  .timeline-mini-track {
  display: flex;
  gap: 16px;
  overflow-x: auto;
  scroll-behavior: smooth;
- white-space: nowrap; /* Fuerza a mantenerse en una sola línea */
+ white-space: nowrap;
  padding: 10px 0;
- scrollbar-width: none; /* Oculta barra en Firefox */
+ scrollbar-width: none;
  }
  .timeline-mini-track::-webkit-scrollbar {
- display: none; /* Oculta barra en Chrome/Safari */
+ display: none;
  }
- /* BOTONES DE FLECHAS FIJAS */
+ 
+ /* BOTONES DE FLECHAS - AJUSTADOS AL AZUL CORPORATIVO */
  .arrow-nav {
  position: absolute;
  top: 50%;
@@ -81,9 +81,9 @@
  width: 40px;
  height: 40px;
  background-color: #ffffff;
- border: 2px solid #fed7aa;
+ border: 2px solid #d1e0ff;
  border-radius: 50%;
- color: #ea580c;
+ color: #1e40af;
  font-size: 18px;
  font-weight: bold;
  display: flex;
@@ -96,34 +96,36 @@
  transition: all 0.2s ease;
  }
  .arrow-nav:hover {
- background-color: #ea580c;
+ background-color: #1e40af;
  color: #ffffff;
- border-color: #ea580c;
+ border-color: #1e40af;
  }
  .arrow-left { left: 8px; }
  .arrow-right { right: 8px; }
- /* TARJETAS DE HITOS (ANCHO FIJO GARANTIZADO) */
+ 
+ /* TARJETAS DE HITOS - BORDE SUAVE DE CONTROL */
  .timeline-node-card {
- display: block; /* Se comporta como bloque clickeable */
- text-decoration: none; /* Quita el subrayado del link */
- flex: 0 0 260px; /* Fuerza un ancho exacto de 260px, NO se reduce */
+ display: block;
+ text-decoration: none;
+ flex: 0 0 260px;
  width: 260px;
  background: #ffffff;
- border: 1px solid #fed7aa;
+ border: 1px solid #d1e0ff;
  border-radius: 12px;
  padding: 16px;
  text-align: left;
- white-space: normal; /* Permite que el texto interno sí rompa renglón */
+ white-space: normal;
  transition: all 0.2s ease;
  }
  .timeline-node-card:hover {
  transform: translateY(-4px);
- border-color: #f97316;
- box-shadow: 0 8px 16px -4px rgba(249, 115, 22, 0.15);
+ border-color: #1e40af;
+ box-shadow: 0 8px 16px -4px rgba(30, 64, 175, 0.15);
  }
- .node-year { font-size: 16px; font-weight: 800; color: #ea580c; margin-bottom: 6px; }
+ .node-year { font-size: 16px; font-weight: 800; color: #1e40af; margin-bottom: 6px; }
  .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.3; }
  .node-desc { font-size: 11px; color: #64748b; line-height: 1.4; }
+ 
  /* LISTADO DE SESIONES */
  .lista-sesiones {
  display: flex;
@@ -156,15 +158,14 @@
  <a href="index.html" class="btn-regresar">⬅ Volver al Inicio</a>
  <h1>Semana 2: Contenido y Actividades</h1>
  </header>
- <!-- LÍNEA DE TIEMPO COMPLETA -->
+ 
+ <!-- LÍNEA DE TIEMPO CON NUEVA IDENTIDAD AZUL -->
  <div class="etapa3-header">📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976)</div>
  <div class="timeline-slider-box">
  
- <!-- Flechas de navegación del Slider -->
  <div class="arrow-nav arrow-left" onclick="moveSlider(-1)">❮</div>
  <div class="arrow-nav arrow-right" onclick="moveSlider(1)">❯</div>
  
- <!-- Track contenedor de las tarjetas -->
  <div class="timeline-mini-track" id="masterTrack">
  
  <!-- 1952: Markowitz -->
@@ -183,7 +184,7 @@
  <a href="modigliani-miller.html" class="timeline-node-card">
  <div class="node-year">1958</div>
  <div class="node-title">Irrelevancia de Estructura</div>
- <div class="node-desc">• Modigliani y Miller<br>• Financiamiento irrelevant en mercados perfectos</div>
+ <div class="node-desc">• Modigliani y Miller<br>• Financiamiento irrelevante en mercados perfectos</div>
  </a>
  <!-- 1964-1966: Sharpe, Lintner, Mossin -->
  <a href="capm.html" class="timeline-node-card">
@@ -211,7 +212,8 @@
  </a>
  </div>
  </div>
- <!-- REPERTORIO DE SESIONES TRADICIONALES -->
+
+ <!-- REPERTORIO DE SESIONES TRADICIONALES CON LOS COLORES CORREGIDOS -->
  <div class="lista-sesiones">
  <a href="sesion21.html" class="btn-sesion">• Sesión 2.1- Medidas del riesgo y eficiencia de mercado</a>
  <a href="sesion22.html" class="btn-sesion">• Sesión 2.2- Modelos de valuación de activos</a>
@@ -219,7 +221,6 @@
  </div>
  </div>
  <script>
- // Lógica de avance por clics en las flechas
  function moveSlider(direction) {
  const track = document.getElementById('masterTrack');
  track.scrollLeft += (direction * 276);
