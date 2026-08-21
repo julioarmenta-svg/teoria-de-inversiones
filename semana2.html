@@ -37,6 +37,7 @@
         }
         h1 { font-size: 28px; color: #0f172a; }
         
+        /* BOTONES COLAPSABLES */
         .epoca-collapse-btn {
             background-color: #f8fafc;
             color: #475569;
@@ -61,82 +62,55 @@
             background-color: #f0f4ff;
             border-color: #d1e0ff;
         } 
-        
+
+        /* CAJA CONTENEDORA DE LA ETAPA */
         .timeline-slider-box {
-            position: relative;
             background-color: #f8fafc;
             border-radius: 0 0 12px 12px;
             border: 1px solid #e2e8f0;
             margin-bottom: 20px;
-            padding: 24px 55px;
+            padding: 24px;
             border-top: none;
-            height: auto !important; /* Permite crecimiento vertical libre */
-            min-height: 180px;
+            display: block;
+            width: 100%;
         }
 
-        .timeline-mini-track {
-            display: block !important;
-            white-space: nowrap !important;
-            overflow-x: auto !important;
-            scroll-behavior: smooth !important;
-            padding: 15px 0 !important;
-            width: 100% !important;
-            scrollbar-width: none;
-        }
-        .timeline-mini-track::-webkit-scrollbar { display: none; }
-
-        .arrow-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            background-color: #ffffff;
-            border: 1px solid #cbd5e1;
-            border-radius: 50%;
-            color: #0033a0;
-            font-size: 16px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            user-select: none;
-        }
-        .arrow-nav:hover { background-color: #0033a0; color: white; border-color: #0033a0; }
-        .arrow-left { left: 8px; }
-        .arrow-right { right: 8px; }
-
-        /* ARQUITECTURA DE TARJETA CORREGIDA PARA PREVENIR EL RECORTE */
+        /* FORMATO DE TARJETA ESTÁNDAR COMPLETA */
         .timeline-node-card {
-            display: inline-block !important;
-            vertical-align: top !important;
-            width: 260px !important;
-            min-width: 260px !important;
-            max-width: 260px !important;
-            height: auto !important; /* Altura adaptable al texto */
-            min-height: 140px !important;
             background: #ffffff !important;
             border: 1px solid #e2e8f0 !important;
             border-radius: 12px !important;
-            padding: 16px !important;
-            margin-right: 14px !important;
+            padding: 20px !important;
+            width: 280px !important;
+            max-width: 100% !important;
+            display: block !important;
             text-align: left !important;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
-        .timeline-node-card:hover {
-            transform: translateY(-2px);
-            border-color: #0033a0;
-            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.08);
-        }
-        .timeline-node-card.disabled-node { opacity: 0.45; cursor: not-allowed; }
 
-        /* INYECCIÓN DE RESPONSIVIDAD PARA EL TEXTO INTERNO */
-        .node-year { font-size: 16px; font-weight: 800; color: #0033a0; margin-bottom: 6px; display: block !important; white-space: normal !important; }
-        .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; display: block !important; white-space: normal !important; }
-        .node-desc { font-size: 11px; color: #64748b; line-height: 1.4; display: block !important; white-space: normal !important; }
+        /* ESTILOS DE TEXTO INTERNO OBLIGATORIOS */
+        .node-year { 
+            font-size: 18px !important; 
+            font-weight: 800 !important; 
+            color: #0033a0 !important; 
+            margin-bottom: 6px !important; 
+            display: block !important;
+        }
+        .node-title { 
+            font-size: 14px !important; 
+            font-weight: 700 !important; 
+            color: #0f172a !important; 
+            margin-bottom: 8px !important; 
+            display: block !important;
+            white-space: normal !important;
+        }
+        .node-desc { 
+            font-size: 12px !important; 
+            color: #64748b !important; 
+            line-height: 1.5 !important; 
+            display: block !important;
+            white-space: normal !important;
+        }
 
         .seccion-titulo { font-size: 13px; font-weight: 700; text-transform: uppercase; color: #94a3b8; margin: 40px 0 15px 0; }
         
@@ -152,39 +126,7 @@
             font-size: 16px;
             margin-bottom: 12px;
             cursor: pointer;
-            transition: all 0.2s ease;
         }
-        .btn-sesion:hover { transform: translateX(4px); background-color: #f8fafc; }
-        .btn-sesion.ae { border-left-color: #10b981; }
-
-        .workspace-sesion {
-            border: 1px solid #cbd5e1;
-            background: #ffffff;
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 24px;
-        }
-        .pilar-wrapper { display: flex; gap: 12px; margin-bottom: 24px; }
-        .btn-pilar {
-            flex: 1; padding: 14px 12px; border-radius: 10px; color: white; text-align: center;
-            font-weight: 800; font-size: 13px; cursor: pointer; user-select: none;
-        }
-        .pilar-teoria { background-color: #1e40af; }
-        .pilar-clase { background-color: #7c3aed; }
-        .pilar-simulador { background-color: #10b981; }
-        .pilar-tarea { background-color: #f97316; }
-
-        .sub-bloque { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; }
-        li { margin-left: 20px; margin-top: 6px; font-size: 13.5px; }
-
-        .toggle-container { display: flex; gap: 8px; margin-bottom: 20px; background: #e2e8f0; padding: 4px; border-radius: 8px; }
-        .toggle-btn { flex: 1; padding: 10px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; background: transparent; color: #64748b; }
-        .toggle-btn.active { background: white; color: #0f172a; }
-        .grid-inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 20px; }
-        label { display: block; font-size: 11px; font-weight: 700; color: #64748b; margin-bottom: 4px; }
-        input { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 600; }
-        .btn-calc { background: #0f172a; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; width: 100%; margin-bottom: 16px; }
-        .panel-resultado { padding: 16px; border-radius: 8px; background: white; border: 1px solid #e2e8f0; }
     </style>
 </head>
 <body>
@@ -194,36 +136,41 @@
             <h1>Semana 2: Contenido y Actividades</h1>
         </header>
 
-        <!-- ÉPOCA 1 -->
+        <!-- ==========================================
+             PASO 1: VAMOS A DEJAR PERFECTA ESTA ÉPOCA 
+             ========================================== -->
         <div class="epoca-collapse-btn" onclick="var el=document.getElementById('ep1'); el.style.display=(el.style.display==='none')?'block':'none';">
-            📖 Época 1: Periodo Pre-Clásico y Clásico (Fines del Siglo XVIII - XIX) <span>▼</span>
+            Briefing Época 1: Periodo Pre-Clásico y Clásico (Fines del Siglo XVIII - XIX) <span>▼</span>
         </div>
-        <div id="ep1" class="timeline-slider-box" style="display: none; padding: 24px;">
-            <div class="timeline-mini-track" id="track1">
-                <div class="timeline-node-card disabled-node">
-                    <div class="node-year">1776</div>
-                    <div class="node-title">La Riqueza de las Naciones</div>
-                    <div class="node-desc">• Adam Smith<br>• Asignación estructural de recursos y valor-trabajo económico temprano.</div>
+        <div id="ep1" class="timeline-slider-box" style="display: block;">
+            <div class="timeline-node-card">
+                <div class="node-year">1776</div>
+                <div class="node-title">La Riqueza de las Naciones</div>
+                <div class="node-desc">
+                    • Adam Smith<br>
+                    • Asignación estructural de recursos y valor-trabajo económico temprano.
                 </div>
             </div>
         </div>
 
-        <!-- ÉPOCA 2 -->
+        <!-- ÉPOCA 2 (Cerrada temporalmente para el paso 2) -->
         <div class="epoca-collapse-btn" onclick="var el=document.getElementById('ep2'); el.style.display=(el.style.display==='none')?'block':'none';">
-            📖 Época 2: Periodo Neoclásico Marginalista (Fines del Siglo XIX - 1950) <span>▼</span>
+            Briefing Época 2: Periodo Neoclásico Marginalista (Fines del Siglo XIX - 1950) <span>▼</span>
         </div>
-        <div id="ep2" class="timeline-slider-box" style="display: none; padding: 24px;">
-            <div class="timeline-mini-track" id="track2">
-                <div class="timeline-node-card disabled-node">
-                    <div class="node-year">1871</div>
-                    <div class="node-title">Revolución Marginalista</div>
-                    <div class="node-desc">• Menger, Jevons, Walras<br>• Optimización matemática bajo condiciones de escasez y análisis de utilidad.</div>
-                </div>
-            </div>
+        <div id="ep2" class="timeline-slider-box" style="display: none;">
+            <p style="font-size: 13px; color:#94a3b8;">(En pausa para desarrollo ordenado...)</p>
         </div>
 
-        <!-- ÉPOCA 3 -->
+        <!-- ÉPOCA 3 (Cerrada temporalmente para el paso 3) -->
         <div class="epoca-collapse-btn e3" onclick="var el=document.getElementById('ep3'); el.style.display=(el.style.display==='none')?'block':'none';">
-            📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span>▼</span>
+            Briefing Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span>▼</span>
         </div>
         <div id="ep3" class="timeline-slider-box" style="display: none;">
+            <p style="font-size: 13px; color:#94a3b8;">(En pausa para desarrollo ordenado...)</p>
+        </div>
+
+        <h2 class="seccion-titulo">Módulos de Trabajo Semanal</h2>
+        <div class="btn-sesion">• Sesión 2.1- Medidas del riesgo y eficiencia de mercado</div>
+    </div>
+</body>
+</html>
