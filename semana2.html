@@ -62,7 +62,6 @@
             border-color: #d1e0ff;
         } 
         
-        /* CAJA CONTENEDORA DEL SLIDER UNIVERSAL */
         .timeline-slider-box {
             position: relative;
             background-color: #f8fafc;
@@ -71,7 +70,6 @@
             margin-bottom: 20px;
             padding: 24px 55px;
             border-top: none;
-            overflow: hidden;
         }
 
         .timeline-mini-track {
@@ -86,7 +84,6 @@
         }
         .timeline-mini-track::-webkit-scrollbar { display: none; }
 
-        /* DISEÑO DE LAS FLECHAS */
         .arrow-nav {
             position: absolute;
             top: 50%;
@@ -110,7 +107,6 @@
         .arrow-left { left: 8px; }
         .arrow-right { right: 8px; }
 
-        /* FORMATO DE TARJETA ESTÁNDAR */
         .timeline-node-card {
             flex: 0 0 260px !important;
             width: 260px !important;
@@ -194,13 +190,11 @@
             <h1>Semana 2: Contenido y Actividades</h1>
         </header>
 
-        <!-- ÉPOCA 1 (CON FORMATO SLIDER IDÉNTICO) -->
+        <!-- ÉPOCA 1 (Mantiene formato recuadro, sin flechas innecesarias) -->
         <div class="epoca-collapse-btn" onclick="var el=document.getElementById('ep1'); el.style.display=(el.style.display==='none')?'block':'none';">
             📖 Época 1: Periodo Pre-Clásico y Clásico (Fines del Siglo XVIII - XIX) <span>▼</span>
         </div>
-        <div id="ep1" class="timeline-slider-box" style="display: none;">
-            <div class="arrow-nav arrow-left" onclick="event.stopPropagation(); document.getElementById('track1').scrollLeft -= 280;">❮</div>
-            <div class="arrow-nav arrow-right" onclick="event.stopPropagation(); document.getElementById('track1').scrollLeft += 280;">❯</div>
+        <div id="ep1" class="timeline-slider-box" style="display: none; padding: 24px;">
             <div class="timeline-mini-track" id="track1">
                 <div class="timeline-node-card disabled-node">
                     <div class="node-year">1776</div>
@@ -210,13 +204,11 @@
             </div>
         </div>
 
-        <!-- ÉPOCA 2 (CON FORMATO SLIDER IDÉNTICO) -->
+        <!-- ÉPOCA 2 (Mantiene formato recuadro, sin flechas innecesarias) -->
         <div class="epoca-collapse-btn" onclick="var el=document.getElementById('ep2'); el.style.display=(el.style.display==='none')?'block':'none';">
             📖 Época 2: Periodo Neoclásico Marginalista (Fines del Siglo XIX - 1950) <span>▼</span>
         </div>
-        <div id="ep2" class="timeline-slider-box" style="display: none;">
-            <div class="arrow-nav arrow-left" onclick="event.stopPropagation(); document.getElementById('track2').scrollLeft -= 280;">❮</div>
-            <div class="arrow-nav arrow-right" onclick="event.stopPropagation(); document.getElementById('track2').scrollLeft += 280;">❯</div>
+        <div id="ep2" class="timeline-slider-box" style="display: none; padding: 24px;">
             <div class="timeline-mini-track" id="track2">
                 <div class="timeline-node-card disabled-node">
                     <div class="node-year">1871</div>
@@ -226,7 +218,12 @@
             </div>
         </div>
 
-        <!-- ÉPOCA 3 (RESTAURADA POR COMPLETO CON AVANCE ABSOLUTO CORREGIDO) -->
+        <!-- ÉPOCA 3 (Despliegue completo con flechas de navegación funcionales por hito) -->
         <div class="epoca-collapse-btn e3" onclick="var el=document.getElementById('ep3'); el.style.display=(el.style.display==='none')?'block':'none';">
             📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span>▲</span>
         </div>
+        <div id="ep3" class="timeline-slider-box" style="display: block;">
+            <div class="arrow-nav arrow-left" onclick="event.stopPropagation(); document.getElementById('track3').scrollLeft -= 276;">❮</div>
+            <div class="arrow-nav arrow-right" onclick="event.stopPropagation(); document.getElementById('track3').scrollLeft += 276;">❯</div>
+
+            <div class="timeline-mini-track" id="track3">
