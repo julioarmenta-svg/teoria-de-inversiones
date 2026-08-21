@@ -52,6 +52,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            user-select: none;
         }
         
         .epoca-collapse-btn.e3 { 
@@ -75,6 +76,7 @@
             display: flex;
             gap: 16px;
             overflow-x: auto;
+            scroll-behavior: smooth;
             white-space: nowrap;
             padding: 10px 0;
             scrollbar-width: none;
@@ -98,7 +100,9 @@
             justify-content: center;
             cursor: pointer;
             z-index: 10;
+            user-select: none;
         }
+        .arrow-nav:hover { background-color: #0033a0; color: white; border-color: #0033a0; }
         .arrow-left { left: 8px; }
         .arrow-right { right: 8px; }
 
@@ -114,6 +118,11 @@
             min-width: 260px;
             vertical-align: top;
             cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .timeline-node-card:hover {
+            transform: translateY(-2px);
+            border-color: #0033a0;
         }
         .timeline-node-card.disabled-node { opacity: 0.45; cursor: not-allowed; }
 
@@ -135,7 +144,9 @@
             font-size: 16px;
             margin-bottom: 12px;
             cursor: pointer;
+            transition: all 0.2s ease;
         }
+        .btn-sesion:hover { transform: translateX(4px); background-color: #f8fafc; }
         .btn-sesion.ae { border-left-color: #10b981; }
 
         .workspace-sesion {
@@ -148,7 +159,7 @@
         .pilar-wrapper { display: flex; gap: 12px; margin-bottom: 24px; }
         .btn-pilar {
             flex: 1; padding: 14px 12px; border-radius: 10px; color: white; text-align: center;
-            font-weight: 800; font-size: 13px; cursor: pointer;
+            font-weight: 800; font-size: 13px; cursor: pointer; user-select: none;
         }
         .pilar-teoria { background-color: #1e40af; }
         .pilar-clase { background-color: #7c3aed; }
@@ -175,31 +186,31 @@
             <h1>Semana 2: Contenido y Actividades</h1>
         </header>
 
-        <!-- EPOCA 1 -->
+        <!-- ÉPOCA 1 -->
         <div class="epoca-collapse-btn" onclick="toggleEpoca('ep1')">📖 Época 1: Periodo Pre-Clásico y Clásico (Fines del Siglo XVIII - XIX) <span id="ind-ep1">▼</span></div>
         <div id="ep1" class="timeline-slider-box" style="display: none;">
             <div class="timeline-mini-track">
                 <div class="timeline-node-card disabled-node">
                     <div class="node-year">1776</div>
                     <div class="node-title">La Riqueza de las Naciones</div>
-                    <div class="node-desc">• Adam Smith<br>• Asignación de recursos estructural corporativo.</div>
+                    <div class="node-desc">• Adam Smith<br>• Asignación estructural de recursos y valor-trabajo.</div>
                 </div>
             </div>
         </div>
 
-        <!-- EPOCA 2 -->
+        <!-- ÉPOCA 2 -->
         <div class="epoca-collapse-btn" onclick="toggleEpoca('ep2')">📖 Época 2: Periodo Neoclásico Marginalista (Fines del Siglo XIX - 1950) <span id="ind-ep2">▼</span></div>
         <div id="ep2" class="timeline-slider-box" style="display: none;">
             <div class="timeline-mini-track">
                 <div class="timeline-node-card disabled-node">
                     <div class="node-year">1871</div>
                     <div class="node-title">Revolución Marginalista</div>
-                    <div class="node-desc">• Menger, Jevons, Walras<br>• Optimización matemática bajo escasez.</div>
+                    <div class="node-desc">• Menger, Jevons, Walras<br>• Optimización matemática bajo condiciones de escasez.</div>
                 </div>
             </div>
         </div>
 
-        <!-- EPOCA 3 (TOTALMENTE VALIDADOS LOS ATRIBUTOS DE VISIBILIDAD) -->
+        <!-- ÉPOCA 3 (ABIERTA POR DEFECTO) -->
         <div class="epoca-collapse-btn e3" onclick="toggleEpoca('ep3')">📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span id="ind-ep3">▲</span></div>
         <div id="ep3" class="timeline-slider-box" style="display: block;">
             <div class="arrow-nav arrow-left" onclick="moveSlider(-1)">❮</div>
@@ -220,11 +231,3 @@
                     <div class="node-year">1958</div>
                     <div class="node-title">Irrelevancia de Estructura</div>
                     <div class="node-desc">• Modigliani y Miller<br>• Estructura de financiamiento neutral</div>
-                </div>
-                <div class="timeline-node-card" onclick="atajoHito('S')">
-                    <div class="node-year">1964-1966</div>
-                    <div class="node-title">El Nacimiento del CAPM</div>
-                    <div class="node-desc">• Sharpe, Lintner y Mossin<br>• Riesgo Beta y Modelo SML</div>
-                </div>
-                <div class="timeline-node-card" onclick="atajoHito('M')">
-                    <div class="node-year">1970</div>
