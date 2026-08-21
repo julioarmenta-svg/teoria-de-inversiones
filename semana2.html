@@ -38,7 +38,6 @@
  .btn-regresar:hover { color: #1e40af; }
  h1 { font-size: 28px; color: #0f172a; }
  
- /* BANNER ÉPOCA 3 - TONOS CORPORATIVOS */
  .etapa3-header {
  background-color: #1e40af;
  color: white;
@@ -51,7 +50,6 @@
  margin-top: 10px;
  }
  
- /* CONTENEDOR DE LA LÍNEA DE TIEMPO */
  .timeline-slider-box {
  position: relative;
  background-color: #f8fafc;
@@ -69,11 +67,8 @@
  padding: 10px 0;
  scrollbar-width: none;
  }
- .timeline-mini-track::-webkit-scrollbar {
- display: none;
- }
+ .timeline-mini-track::-webkit-scrollbar { display: none; }
  
- /* FLECHAS DE NAVEGACIÓN AZULES */
  .arrow-nav {
  position: absolute;
  top: 50%;
@@ -95,15 +90,10 @@
  z-index: 10;
  transition: all 0.2s ease;
  }
- .arrow-nav:hover {
- background-color: #1e40af;
- color: #ffffff;
- border-color: #1e40af;
- }
+ .arrow-nav:hover { background-color: #1e40af; color: #ffffff; border-color: #1e40af; }
  .arrow-left { left: 8px; }
  .arrow-right { right: 8px; }
  
- /* TARJETAS DE HITOS */
  .timeline-node-card {
  display: block;
  text-decoration: none;
@@ -126,30 +116,65 @@
  .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.3; }
  .node-desc { font-size: 11px; color: #64748b; line-height: 1.4; }
  
- /* LISTADO DE SESIONES SEMANALES */
- .lista-sesiones {
+ .seccion-titulo { font-size: 13px; font-weight: 700; text-transform: uppercase; color: #94a3b8; margin: 40px 0 15px 0; }
+ 
+ /* NUEVOS BOTONES MAESTROS AGRUPADOS */
+ .lista-sesiones { display: flex; flex-direction: column; gap: 16px; }
+ 
+ .btn-agrupador {
  display: flex;
- flex-direction: column;
- gap: 16px;
- }
- .btn-sesion {
- display: block;
- text-decoration: none;
+ justify-content: space-between;
+ align-items: center;
+ width: 100%;
  background-color: #f8fafc;
  border: 1px solid #e2e8f0;
  border-left: 6px solid #1e40af;
- padding: 20px;
+ padding: 22px 20px;
  border-radius: 12px;
  color: #334155;
  font-weight: 600;
  font-size: 16px;
+ cursor: pointer;
  transition: all 0.2s ease;
+ user-select: none;
  }
- .btn-sesion:hover {
- background-color: #f1f5f9;
- transform: translateX(4px);
+ .btn-agrupador:hover { background-color: #f1f5f9; transform: translateX(4px); }
+ .btn-agrupador.practica { border-left-color: #10b981; }
+ 
+ /* CONTENEDOR DESPLEGABLE INTERNO */
+ .bloque-desplegable {
+ display: none;
+ background: #f8fafc;
+ border: 1px solid #e2e8f0;
+ border-radius: 12px;
+ padding: 24px;
+ margin-top: -6px;
+ margin-bottom: 10px;
  }
- .btn-sesion.ae { border-left-color: #10b981; }
+ 
+ .item-subcontenido {
+ background: #ffffff;
+ border: 1px solid #e2e8f0;
+ border-radius: 8px;
+ padding: 16px;
+ margin-bottom: 12px;
+ }
+ .item-subcontenido:last-child { margin-bottom: 0; }
+ .item-subcontenido h3 { font-size: 15px; color: #0f172a; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+ .item-subcontenido p { font-size: 13px; color: #64748b; line-height: 1.4; }
+ ul { margin-left: 20px; margin-top: 6px; font-size: 13px; color: #475569; }
+ li { margin-bottom: 4px; }
+
+ /* INTERFAZ INTERACTIVA DE SIMULADORES */
+ .toggle-container { display: flex; gap: 8px; margin-bottom: 20px; background: #e2e8f0; padding: 4px; border-radius: 8px; }
+ .toggle-btn { flex: 1; padding: 10px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; background: transparent; color: #64748b; }
+ .toggle-btn.active { background: white; color: #0f172a; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+ .grid-inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 20px; }
+ label { display: block; font-size: 11px; font-weight: 700; color: #64748b; margin-bottom: 4px; text-transform: uppercase; }
+ input { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 600; color: #0f172a; }
+ .btn-calc { background: #10b981; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; width: 100%; margin-bottom: 16px; transition: background 0.2s; }
+ .btn-calc:hover { background: #059669; }
+ .panel-resultado { padding: 16px; border-radius: 8px; background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; font-size: 14px; }
  </style>
 </head>
 <body>
@@ -161,7 +186,6 @@
  
  <div class="etapa3-header">📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976)</div>
  <div class="timeline-slider-box">
- 
  <div class="arrow-nav arrow-left" onclick="moveSlider(-1)">❮</div>
  <div class="arrow-nav arrow-right" onclick="moveSlider(1)">❯</div>
  
@@ -204,17 +228,41 @@
  </div>
  </div>
 
+ <h2 class="seccion-titulo">Módulos de Trabajo Integrados</h2>
  <div class="lista-sesiones">
- <a href="sesion21.html" class="btn-sesion">• Sesión 2.1- Medidas del riesgo y eficiencia de mercado</a>
- <a href="sesion22.html" class="btn-sesion">• Sesión 2.2- Modelos de valuación de activos</a>
- <a href="ejercicios-gordon.html" class="btn-sesion ae">• Ejercicios sobre Valuación por el Modelo de Gordon</a>
- </div>
- </div>
- <script>
- function moveSlider(direction) {
- const track = document.getElementById('masterTrack');
- track.scrollLeft += (direction * 276);
- }
- </script>
-</body>
-</html>
+ 
+  <!-- BOTÓN 1: MATERIAL DE CLASE -->
+  <div class="btn-agrupador" onclick="toggleBloque('bloque-material')">
+      <span>📘 Material de Clase (Sesiones 2.1 y 2.2)</span> <span>▼</span>
+  </div>
+  <div id="bloque-material" class="bloque-desplegable">
+      <div class="item-subcontenido">
+          <h3>🔹 Sesión 2.1: Medidas de Riesgo y Eficiencia</h3>
+          <p>Análisis profundo de los mecanismos matemáticos del mercado y la volatilidad:</p>
+          <ul>
+              <li><b>Riesgo Sistemático (Beta):</b> Riesgo de mercado no diversificable.</li>
+              <li><b>Riesgo No Sistemático:</b> Riesgo propio de la empresa que se puede eliminar diversificando.</li>
+              <li><b>Hipótesis de Mercados Eficientes (Fama):</b> Forma débil, semi-fuerte y fuerte.</li>
+          </ul>
+      </div>
+      <div class="item-subcontenido">
+          <h3>🔹 Sesión 2.2: Modelos de Valuación de Activos</h3>
+          <p>Exploración de las metodologías fundamentales para calcular el valor teórico de instrumentos de inversión.</p>
+      </div>
+  </div>
+
+  <!-- BOTÓN 2: EJERCICIOS Y TAREAS -->
+  <div class="btn-agrupador" onclick="toggleBloque('bloque-ejercicios')">
+      <span>✏️ Ejercicios y Tarea Semanal</span> <span>▼</span>
+  </div>
+  <div id="bloque-ejercicios" class="bloque-desplegable">
+      <div class="item-subcontenido">
+          <h3>🔸 Ejercicio Práctico en Clase</h3>
+          <p><b>Caso Práctico:</b> Construcción de la Línea del Mercado de Valores (SML) utilizando las acciones activas del IPC de la Bolsa Mexicana de Valores.</p>
+      </div>
+      <div class="item-subcontenido">
+          <h3>🔸 Ejercicios sobre Valuación por el Modelo de Gordon</h3>
+          <p><b>Modelado Matemático:</b> Determinación del precio teórico de acciones con crecimiento constante a perpetuidad de dividendos.</p>
+      </div>
+      <div class="item-subcontenido">
+          <h3>🔸 Tarea Semanal Académica</h3>
