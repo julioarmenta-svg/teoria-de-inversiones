@@ -4,7 +4,6 @@
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <title>Semana 2 - Teoría de Inversiones</title>
- <!-- Cargamos Chart.js para los gráficos dinámicos -->
  <script src="https://jsdelivr.net"></script>
  <style>
  * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -40,7 +39,6 @@
  .btn-regresar:hover { color: #1e40af; }
  h1 { font-size: 28px; color: #0f172a; }
  
- /* BANNER ÉPOCA 3 ORIGINAL */
  .etapa3-header {
  background-color: #1e40af;
  color: white;
@@ -53,7 +51,6 @@
  margin-top: 10px;
  }
  
- /* CONTENEDOR MAESTRO DE LA LÍNEA DE TIEMPO */
  .timeline-slider-box {
  position: relative;
  background-color: #f0f9ff; 
@@ -103,7 +100,6 @@
  .arrow-left { left: 8px; }
  .arrow-right { right: 8px; }
 
- /* TARJETAS CON CONEXIÓN DINÁMICA */
  .timeline-node-card {
  display: block; 
  text-decoration: none; 
@@ -132,7 +128,6 @@
  .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.3; }
  .node-desc { font-size: 11px; color: #64748b; line-height: 1.4; }
 
- /* SECCIÓN DE CONTENEDORES DE CONTENIDO INTERACTIVO */
  .workspace-title {
  font-size: 16px;
  font-weight: 800;
@@ -188,7 +183,6 @@
  margin-bottom: 16px;
  }
 
- /* BOTONES ESTRUCTURALES GRANDES */
  .menu-modulos-grid {
  display: grid;
  grid-template-columns: 1fr 1fr;
@@ -242,7 +236,6 @@
  <h1>Semana 2: Contenido y Actividades</h1>
  </header>
 
- <!-- LÍNEA DE TIEMPO COMPLETA -->
  <div class="etapa3-header">📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) (Haz clic en Markowitz o Sharpe para experimentar)</div>
  <div class="timeline-slider-box">
  
@@ -251,7 +244,6 @@
  
  <div class="timeline-mini-track" id="masterTrack">
  
- <!-- Nodo Markowitz -->
  <div onclick="selectAuthor('markowitz', this)" class="timeline-node-card" id="node-markowitz">
  <div class="node-year">1952</div>
  <div class="node-title">El Portafolio Moderno</div>
@@ -270,14 +262,12 @@
  <div class="node-desc">• Modigliani y Miller<br>• Estructura financiera óptima en teoría</div>
  </div>
 
- <!-- Nodo Sharpe -->
  <div onclick="selectAuthor('sharpe', this)" class="timeline-node-card" id="node-sharpe">
  <div class="node-year">1964-1966</div>
  <div class="node-title">El Nacimiento del CAPM</div>
  <div class="node-desc">• Sharpe, Lintner y Mossin<br>• Modelo CAPM y Riesgo Beta<br>• Línea del Mercado de Valores (SML)</div>
  </div>
 
- <!-- Nodo Fama -->
  <div onclick="selectAuthor('fama', this)" class="timeline-node-card" id="node-fama">
  <div class="node-year">1970</div>
  <div class="node-title">Eficiencia Informativa</div>
@@ -297,12 +287,7 @@
  </div>
  </div>
  </div>
-
- <!-- ======================================================== -->
- <!-- ÁREA DE TRABAJO DINÁMICA: SIMULADORES POR AUTOR          -->
- <!-- ======================================================== -->
  
- <!-- SIMULADOR 1: HARRY MARKOWITZ -->
  <div id="workspace-markowitz" class="author-workspace">
      <div class="workspace-title">💡 Simulador de Harry Markowitz (1952) - El Poder de Diversificar</div>
      <div class="workspace-grid">
@@ -320,8 +305,10 @@
      </div>
  </div>
 
- <!-- SIMULADOR 2: WILLIAM SHARPE -->
  <div id="workspace-sharpe" class="author-workspace">
      <div class="workspace-title">📊 Simulador de William Sharpe (1964) - Riesgo Sistemático y Línea SML</div>
      <div class="workspace-grid">
          <div class="control-panel">
+             <p style="font-size:13px; margin-bottom:15px; line-height:1.4;">Sharpe avanzó sobre el modelo de Markowitz. Separó el riesgo en dos y determinó que el mercado no paga por el riesgo diversificable. Solo te premia por asumir el <strong>Riesgo Sistemático (no medible con diversificación)</strong> usando el coeficiente <strong>Beta (&beta;)</strong>.</p>
+             <label class="slider-label">Coeficiente Beta (&beta;) del activo: <span id="val-s-beta" style="color:#eab308; font-weight:800;">1.0</span></label>
+             <input type="range" id="slider-s-beta" min="0" max="25" value="10" class="input-slider" oninput="updateSharpe()">
