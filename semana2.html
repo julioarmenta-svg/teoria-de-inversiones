@@ -13,9 +13,38 @@
  .btn-regresar:hover { color: #1e40af; }
  h1 { font-size: 28px; color: #0f172a; }
  .etapa3-header { background-color: #1e40af; color: white; padding: 14px 18px; border-radius: 12px 12px 0 0; font-weight: 800; font-size: 13px; text-transform: uppercase; margin-top: 10px; }
+ 
+ /* CONTENEDOR CON FLECHAS DE NAVEGACIÓN */
  .timeline-slider-box { position: relative; background-color: #f0f9ff; border-radius: 0 0 12px 12px; border: 1px solid #e0f2fe; margin-bottom: 30px; padding: 20px 50px; }
- .timeline-mini-track { display: flex; gap: 16px; overflow-x: auto; padding: 10px 0; }
- .timeline-node-card { display: block; text-decoration: none; flex: 0 0 260px; width: 260px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; text-align: left; }
+ .timeline-mini-track { display: flex; gap: 16px; overflow-x: auto; padding: 10px 0; scroll-behavior: smooth; scrollbar-width: none; }
+ .timeline-mini-track::-webkit-scrollbar { display: none; }
+ 
+ .arrow-nav {
+ position: absolute;
+ top: 50%;
+ transform: translateY(-50%);
+ width: 40px;
+ height: 40px;
+ background-color: #ffffff;
+ border: 1px solid #bae6fd;
+ border-radius: 50%;
+ color: #0284c7;
+ font-size: 16px;
+ font-weight: bold;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ cursor: pointer;
+ user-select: none;
+ box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+ z-index: 10;
+ transition: all 0.2s ease;
+ }
+ .arrow-nav:hover { background-color: #0284c7; color: #ffffff; border-color: #0284c7; }
+ .arrow-left { left: 8px; }
+ .arrow-right { right: 8px; }
+
+ .timeline-node-card { display: block; text-decoration: none; flex: 0 0 260px; width: 260px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; text-align: left; color: inherit; }
  .timeline-node-card:hover { transform: translateY(-4px); border-color: #0284c7; }
  .node-year { font-size: 16px; font-weight: 800; color: #0284c7; margin-bottom: 6px; }
  .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.3; }
@@ -36,9 +65,13 @@
 
  <div class="etapa3-header">📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976)</div>
  <div class="timeline-slider-box">
- <div class="timeline-mini-track">
+  <!-- Agregamos las flechas visuales -->
+  <div class="arrow-nav arrow-left" onclick="moveSlider(-1)">❮</div>
+  <div class="arrow-nav arrow-right" onclick="moveSlider(1)">❯</div>
  
-  <!-- Tarjeta Markowitz: Te mandará a su propia página independiente -->
+  <div class="timeline-mini-track" id="masterTrack">
+ 
+  <!-- Tarjeta Markowitz -->
   <a href="markowitz.html" class="timeline-node-card">
    <div class="node-year">1952</div>
    <div class="node-title">El Portafolio Moderno</div>
@@ -57,7 +90,7 @@
    <div class="node-desc">• Modigliani y Miller<br>• Estructura teórica óptima</div>
   </div>
 
-  <!-- Tarjeta Sharpe: Te mandará a su propia página independiente -->
+  <!-- Tarjeta Sharpe -->
   <a href="capm.html" class="timeline-node-card">
    <div class="node-year">1964-1966</div>
    <div class="node-title">El Nacimiento del CAPM</div>
@@ -78,5 +111,13 @@
  </div>
  </div>
  </div>
+
+ <script>
+ /* Función para que las flechas desplacen el contenedor */
+ function moveSlider(direction) {
+     const track = document.getElementById('masterTrack');
+     track.scrollLeft += (direction * 276);
+ }
+ </script>
 </body>
 </html>
