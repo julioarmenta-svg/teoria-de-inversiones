@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Riesgo - Teoría de Inversiones</title>
+    <title>Simulador de Riesgo Avanzado - Tec de Monterrey</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
@@ -13,7 +13,7 @@
             color: #334155;
         }
         .container {
-            max-width: 950px;
+            max-width: 1000px;
             margin: 0 auto;
             background-color: #ffffff;
             border-radius: 24px;
@@ -34,34 +34,36 @@
             transition: background-color 0.2s;
         }
         .btn-regresar:hover { background-color: #1e293b; }
-        h1 { font-size: 28px; color: #0f172a; margin-bottom: 12px; }
-        .intro { font-size: 16px; color: #64748b; margin-bottom: 32px; line-height: 1.5; }
+        h1 { font-size: 28px; color: #0f172a; margin-bottom: 4px; }
+        .sub { font-size: 12px; font-weight: bold; color: #0033a0; text-transform: uppercase; margin-bottom: 16px; letter-spacing: 0.05em;}
+        .intro { font-size: 15px; color: #64748b; margin-bottom: 24px; line-height: 1.5; }
         
-        .card-simulador {
+        /* Layout en dos columnas para el Simulador Pro */
+        .workspace {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 24px;
+            margin-top: 24px;
+        }
+        
+        .card-control {
             background-color: #f8fafc;
             border: 1px solid #e2e8f0;
             border-radius: 16px;
             padding: 24px;
-            margin-bottom: 32px;
         }
-        .conceptos-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 24px;
-        }
-        .caja-riesgo {
-            padding: 20px;
-            border-radius: 12px;
-            color: white;
-        }
-        .sistematico { background-color: #1e40af; } 
-        .no-sistematico { background-color: #10b981; transition: opacity 0.3s ease; } 
         
-        .caja-riesgo h3 { font-size: 16px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
-        .caja-riesgo p { font-size: 14px; opacity: 0.9; line-height: 1.4; }
+        .graph-box {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
 
-        /* Panel de Muestreo Matemático */
         .panel-metricas {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -72,8 +74,8 @@
             border-radius: 12px;
             border: 1px solid #e2e8f0;
         }
-        .metrica-box { text-align: center; padding: 10px; }
-        .metrica-titulo { font-size: 12px; text-transform: uppercase; color: #64748b; font-weight: bold; }
+        .metrica-box { text-align: center; }
+        .metrica-titulo { font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: bold; }
         .metrica-valor { font-size: 22px; font-weight: 800; color: #0f172a; margin-top: 4px; }
 
         .control-wrapper {
@@ -88,29 +90,33 @@
         .num-acciones { font-size: 24px; font-weight: 800; color: #1e40af; }
 
         .barra-grafico-contenedor {
-            height: 40px;
+            height: 35px;
             width: 100%;
             background-color: #cbd5e1;
             border-radius: 8px;
             overflow: hidden;
             display: flex;
-            margin-top: 24px;
+            margin-top: 20px;
         }
         .medidor-sist { background-color: #1e40af; height: 100%; width: 30%; }
         .medidor-no-sist { background-color: #10b981; height: 100%; transition: width 0.1s ease; }
 
-        /* Sección de Fórmula */
         .formula-card {
             background-color: #f1f5f9;
             border-radius: 12px;
-            padding: 16px;
+            padding: 12px;
             text-align: center;
-            font-family: "Courier New", Courier, monospace;
-            font-size: 15px;
+            font-family: monospace;
+            font-size: 14px;
             font-weight: bold;
             color: #1e293b;
-            margin-bottom: 24px;
             border-left: 5px solid #1e40af;
+        }
+
+        svg {
+            background-color: #fafafa;
+            border-radius: 8px;
+            border: 1px dashed #cbd5e1;
         }
     </style>
 </head>
@@ -119,55 +125,75 @@
     <div class="container">
         <a href="semana2.html" class="btn-regresar">← Volver a Semana 2</a>
         
-        <h1>Simulador Estadístico de Riesgo (Markowitz)</h1>
+        <span class="sub">Laboratorio Financiero de Economía</span>
+        <h1>Frontera Estadística de Markowitz (1952)</h1>
         <p class="intro">
-            Matemáticamente, el riesgo de un portafolio se mide a través de la <strong>Desviación Estándar (&sigma;)</strong>. Al reducir la covarianza mediante la diversificación, el riesgo no sistemático decrece exponencialmente.
+            Mueve la barra para observar el efecto cuantitativo real: a medida que el número de acciones (\(N\)) tiende al infinito, el riesgo específico se pulveriza de forma asintótica, convergiendo perfectamente hacia la volatilidad sistemática del mercado.
         </p>
 
-        <!-- Fórmula Académica Explicativa -->
         <div class="formula-card">
-            Riesgo del Portafolio (&sigma;ₚ) = &radic;[ (Riesgo Sistemático)² + (Riesgo No Sistemático / N) ]
+            &sigma;ₚ = &radic;[ &sigma;ₛ² + (&sigma;ns² / N) ] ➔ Covarianza Promedio Proporcional
         </div>
 
-        <div class="conceptos-grid">
-            <div class="caja-riesgo sistematico">
-                <h3>Riesgo Sistemático Volatilidad (&sigma;ₛ)</h3>
-                <p>Constante de mercado no diversificable. Fijado estadísticamente para este ejercicio en <strong>12.0%</strong> de desviación estándar.</p>
-            </div>
-            <div id="tarjeta-no-sist" class="caja-riesgo no-sistematico">
-                <h3>Riesgo No Sistemático Volatilidad (&sigma;ns)</h3>
-                <p>Riesgo propio del activo individual. Comienza en <strong>28.0%</strong> y se pulveriza matemáticamente conforme sumas activos.</p>
-            </div>
-        </div>
-
-        <div class="card-simulador">
-            <div class="control-wrapper">
-                <label for="accionesSlider">Modificar tamaño del portafolio (Número de Activos N):</label>
-                <input type="range" id="accionesSlider" min="1" max="40" value="1">
-                <div>Activos en Portafolio (N): <span id="valorAcciones" class="num-acciones">1</span></div>
-            </div>
-
-            <!-- Panel Estadístico Agregado -->
-            <div class="panel-metricas">
-                <div class="metrica-box" style="border-right: 1px solid #e2e8f0;">
-                    <div class="metrica-titulo">Riesgo Diversificable Restante (&sigma;)</div>
-                    <div id="valNoSist" class="metrica-valor" style="color: #10b981;">28.00%</div>
+        <div class="workspace">
+            
+            <!-- PANEL IZQUIERDO: CONTROLES Y BARRAS -->
+            <div class="card-control">
+                <div class="control-wrapper">
+                    <label for="accionesSlider">Tamaño del Portafolio (Número de Activos N):</label>
+                    <input type="range" id="accionesSlider" min="1" max="40" value="1">
+                    <div>Activos seleccionados: <span id="valorAcciones" class="num-acciones">1</span></div>
                 </div>
-                <div class="metrica-box">
-                    <div class="metrica-titulo">Desviación Estándar Total del Portafolio (&sigma;ₚ)</div>
-                    <div id="valTotal" class="metrica-valor" style="color: #0f172a;">40.00%</div>
+
+                <div class="panel-metricas">
+                    <div class="metrica-box" style="border-right: 1px solid #e2e8f0;">
+                        <div class="metrica-titulo">Riesgo Idiosincrásico (&sigma;ns)</div>
+                        <div id="valNoSist" class="metrica-valor" style="color: #10b981;">28.00%</div>
+                    </div>
+                    <div class="metrica-box">
+                        <div class="metrica-titulo">Volatilidad Total (&sigma;ₚ)</div>
+                        <div id="valTotal" class="metrica-valor" style="color: #0f172a;">40.00%</div>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 20px; font-size: 12px; text-transform: uppercase; color: #64748b;">Estructura de la Varianza Total:</h3>
+                <div class="barra-grafico-contenedor">
+                    <div class="medidor-sist"></div>
+                    <div id="barraNoSist" class="medidor-no-sist" style="width: 70%;"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; font-weight: bold;">
+                    <span style="color: #1e40af;">■ Sistemático de Mercado (12.0%)</span>
+                    <span id="txtNoSist" style="color: #10b981;">■ Diversificable (28.0%)</span>
                 </div>
             </div>
 
-            <h3 style="margin-top: 24px; font-size: 14px; text-transform: uppercase; color: #64748b;">Descomposición de la Volatilidad Total del Portafolio:</h3>
-            <div class="barra-grafico-contenedor">
-                <div class="medidor-sist"></div>
-                <div id="barraNoSist" class="medidor-no-sist" style="width: 70%;"></div>
+            <!-- PANEL DERECHO: GRÁFICA ASINTÓTICA EN TIEMPO REAL -->
+            <div class="graph-box">
+                <h4 style="font-size: 12px; text-transform: uppercase; color: #1e293b; margin-bottom: 10px; font-weight: bold;">Curva de Reducción del Riesgo Total</h4>
+                
+                <!-- Gráfico SVG Dinámico -->
+                <svg width="360" height="240" id="graficaSvg">
+                    <!-- Ejes -->
+                    <line x1="40" y1="200" x2="340" y2="200" stroke="#64748b" stroke-width="2"/>
+                    <line x1="40" y1="20" x2="40" y2="200" stroke="#64748b" stroke-width="2"/>
+                    
+                    <!-- Línea del Riesgo de Mercado Mínimo (Límite Asintótico) -->
+                    <line x1="40" y1="140" x2="340" y2="140" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="4,4"/>
+                    <text x="210" y="132" fill="#1e40af" font-size="9" font-weight="bold">Límite Sistemático (12%)</text>
+                    
+                    <!-- Etiquetas de los Ejes -->
+                    <text x="310" y="215" fill="#64748b" font-size="10" font-weight="bold">N activos</text>
+                    <text x="10" y="30" fill="#64748b" font-size="10" font-weight="bold" transform="rotate(-90,10,30)">Riesgo &sigma;ₚ</text>
+                    
+                    <!-- Curva de Markowitz Dinámica -->
+                    <path id="curvaRiesgo" d="" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+                    
+                    <!-- Punto Interactiva de Nuestro Portafolio Actual -->
+                    <circle id="puntoPortafolio" cx="40" cy="40" r="6" fill="#10b981" stroke="#ffffff" stroke-width="2"/>
+                </svg>
+                <div style="font-size: 10px; color: #94a3b8; margin-top: 8px; text-align: center;">El punto verde muestra tu posición matemática exacta.</div>
             </div>
-            <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 12px; font-weight: bold;">
-                <span style="color: #1e40af;">■ Riesgo de Mercado Base (&sigma;ₛ = 12.0%)</span>
-                <span id="txtNoSist" style="color: #10b981;">■ Riesgo Diversificable (&sigma;ns = 28.0%)</span>
-            </div>
+
         </div>
     </div>
 
@@ -175,53 +201,28 @@
         const slider = document.getElementById('accionesSlider');
         const valorAcciones = document.getElementById('valorAcciones');
         const barraNoSist = document.getElementById('barraNoSist');
-        const tarjetaNoSist = document.getElementById('tarjeta-no-sist');
         const txtNoSist = document.getElementById('txtNoSist');
-        
-        // Elementos numéricos estadísticos
         const valNoSist = document.getElementById('valNoSist');
         const valTotal = document.getElementById('valTotal');
+        
+        // Elementos de la Gráfica SVG
+        const curvaRiesgo = document.getElementById('curvaRiesgo');
+        const puntoPortafolio = document.getElementById('puntoPortafolio');
 
-        slider.addEventListener('input', function() {
-            const n = parseInt(this.value);
-            valorAcciones.textContent = n;
-
-            // Constantes base de volatilidad estándar
-            const sigmaSistematico = 12.0; 
-            const sigmaNoSistInicial = 28.0;
-
-            // Modelo matemático real: El riesgo diversificable cae en función de la raíz de N
-            let sigmaNoSistActual = sigmaNoSistInicial / Math.sqrt(n);
-            
-            if (n === 1) {
-                sigmaNoSistActual = sigmaNoSistInicial;
-            } else if (n >= 38) {
-                sigmaNoSistActual = 0; // Simular diversificación perfecta de mercado extendido
+        // Dibujar la curva matemática estática de fondo al cargar la página
+        function dibujarCurvaBase() {
+            let pathD = "";
+            for (let i = 1; i <= 40; i++) {
+                let xSvg = 40 + ((i - 1) * (300 / 39));
+                let simNoSist = 28.0 / Math.sqrt(i);
+                let simTotal = 12.0 + simNoSist;
+                // Mapear el riesgo (0% a 40%) al alto del SVG (200px a 40px)
+                let ySvg = 200 - (simTotal * (160 / 40));
+                
+                if (i === 1) pathD += `M ${xSvg} ${ySvg}`;
+                else pathD += ` L ${xSvg} ${ySvg}`;
             }
+            curvaRiesgo.setAttribute("d", pathD);
+        }
+        dibujarCurvaBase();
 
-            // Desviación Estándar Total del Portafolio calculada por ecuación cuadrática clásica
-            let sigmaPortafolioTotal = sigmaSistematico + sigmaNoSistActual;
-
-            // Proporciones visuales para el escalado gráfico de la barra verde
-            let porcentajeVisualVerde = (sigmaNoSistActual / sigmaNoSistInicial) * 70;
-            barraNoSist.style.width = porcentajeVisualVerde + '%';
-            
-            // Renderizar los valores estadísticos exactos en pantalla con dos decimales
-            valNoSist.textContent = sigmaNoSistActual.toFixed(2) + "%";
-            valTotal.textContent = sigmaPortafolioTotal.toFixed(2) + "%";
-            
-            // Modificación del indicador textual inferior
-            if(sigmaNoSistActual === 0) {
-                txtNoSist.textContent = "■ Riesgo Diversificable Pulverizado (0.00%)";
-            } else {
-                txtNoSist.textContent = "■ Riesgo Diversificable (&sigma;ns = " + sigmaNoSistActual.toFixed(1) + "%)";
-            }
-            
-            // Opacidad interactiva de la tarjeta superior
-            let opacidad = 1 - (n / 35);
-            if(opacidad < 0.15) opacidad = 0.15;
-            tarjetaNoSist.style.opacity = opacidad;
-        });
-    </script>
-</body>
-</html>
