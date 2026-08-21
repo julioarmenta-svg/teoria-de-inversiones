@@ -31,11 +31,14 @@
             font-weight: 600;
             font-size: 14px;
             margin-bottom: 24px;
+            transition: background-color 0.2s;
+        }
+        .btn-regresar:hover {
+            background-color: #1e293b;
         }
         h1 { font-size: 28px; color: #0f172a; margin-bottom: 12px; }
         .intro { font-size: 16px; color: #64748b; margin-bottom: 32px; line-height: 1.5; }
         
-        /* Gráfico del Simulador simulado con CSS Dinámico */
         .card-simulador {
             background-color: #f8fafc;
             border: 1px solid #e2e8f0;
@@ -54,13 +57,14 @@
             border-radius: 12px;
             color: white;
         }
-        .sistematico { background-color: #1e40af; }
-        .no-sistematico { background-color: #10b981; transition: opacity 0.3s ease; }
+        /* Ajuste de colores alineados a tu menú principal */
+        .sistematico { background-color: #1e40af; } /* Azul Tec */
+        .no-sistematico { background-color: #10b981; transition: opacity 0.3s ease; } /* Verde Semana 2 */
         
         .caja-riesgo h3 { font-size: 16px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
         .caja-riesgo p { font-size: 14px; opacity: 0.9; line-height: 1.4; }
 
-        /* Controles */
+        /* Controles interactivos corregidos */
         .control-wrapper {
             background-color: #ffffff;
             padding: 20px;
@@ -69,7 +73,12 @@
             text-align: center;
         }
         label { display: block; font-weight: 700; margin-bottom: 12px; color: #1e293b; }
-        input[type=range] { width: 100%; max-width: 400px; margin-bottom: 12px; }
+        input[type=range] { 
+            width: 100%; 
+            max-width: 400px; 
+            margin-bottom: 12px; 
+            cursor: pointer;
+        }
         .num-acciones { font-size: 24px; font-weight: 800; color: #1e40af; }
 
         /* Visualizador de Riesgo Total */
@@ -82,8 +91,8 @@
             display: flex;
             margin-top: 24px;
         }
-        .medidor-sist { background-color: #1e40af; height: 100%; transition: width 0.3s ease; }
-        .medidor-no-sist { background-color: #10b981; height: 100%; transition: width 0.3s ease; }
+        .medidor-sist { background-color: #1e40af; height: 100%; transition: width 0.1s ease; }
+        .medidor-no-sist { background-color: #10b981; height: 100%; transition: width 0.1s ease; }
     </style>
 </head>
 <body>
@@ -99,18 +108,19 @@
         <div class="conceptos-grid">
             <div class="caja-riesgo sistematico">
                 <h3>Riesgo Sistemático (De Mercado)</h3>
-                <p>No se puede eliminar. Afecta a todas las empresas por igual (inflación, tasas de interés, guerras, pandemias).</p>
+                <p>No se puede eliminar. Afecta a todas las empresas por igual (inflación, tasas de interés, eventos macroeconómicos).</p>
             </div>
             <div id="tarjeta-no-sist" class="caja-riesgo no-sistematico">
                 <h3>Riesgo No Sistemático (Diversificable)</h3>
-                <p>Propio de cada empresa (huelgas, fallas de producto, malas decisiones). <strong>¡Se reduce a cero diversificando!</strong></p>
+                <p>Propio de cada empresa (huelgas, fallas operativas). <strong>¡Se reduce a cero aumentando activos!</strong></p>
             </div>
         </div>
 
         <div class="card-simulador">
             <div class="control-wrapper">
                 <label for="accionesSlider">Mueve la barra para añadir acciones a tu portafolio:</label>
-                <input type="custom" type="range" id="accionesSlider" min="1" max= "30" value="1">
+                <!-- Corrección aquí: tipo range limpio -->
+                <input type="range" id="accionesSlider" min="1" max="30" value="1">
                 <div>Cantidad de acciones: <span id="valorAcciones" class="num-acciones">1</span></div>
             </div>
 
@@ -129,6 +139,7 @@
     <script>
         const slider = document.getElementById('accionesSlider');
         const valorAcciones = document.getElementById('valorAcciones');
+        const barraSist = document.getElementById('barraSist');
         const barraNoSist = document.getElementById('barraNoSist');
         const tarjetaNoSist = document.getElementById('tarjeta-no-sist');
         const txtNoSist = document.getElementById('txtNoSist');
@@ -137,24 +148,34 @@
             const num = parseInt(this.value);
             valorAcciones.textContent = num;
 
-            // Fórmula visual simulada: El riesgo no sistemático decae rápidamente conforme aumenta N
-            // Al llegar a 20-30 acciones, desaparece casi por completo
-            let nuevoRiesgoNoSist = Math.round(70 / num); 
+            // El riesgo diversificable cae exponencialmente según la teoría financiera
+            let nuevoRiesgoNoSist = Math.round(70 / Math.sqrt(num));
             
-            if (num === 1) nuevoRiesgoNoSist = 70;
+            if (num === 1) {
+                nuevoRiesgoNoSist = 70;
+            } else if (num >= 28) {
+                nuevoRiesgoNoSist = 0; // Totalmente diversificado
+            }
 
-            barraNoSist.style.width = nuevoRiesgoNoSist + '%';
+            // El riesgo sistemático se mantiene fijo en 30%, calculamos el total proporcional
+            let total = 30 + nuevoRiesgoNoSist;
+            let pctSist = (30 / total) * 100;
+            let pctNoSist = (nuevoRiesgoNoSist / total) * 100;
+
+            barraSist.style.width = pctSist + '%';
+            barraNoSist.style.width = pctNoSist + '%';
             
-            // Opacidad de la tarjeta teórica para simular su desaparición
-            let opacidad = 1 - (num / 35);
-            if(opacidad < 0.2) opacidad = 0.2;
+            // Opacidad de la tarjeta teórica verde para simular que se desvanece
+            let opacidad = 1 - (num / 32);
+            if(opacidad < 0.15) opacidad = 0.15;
             tarjetaNoSist.style.opacity = opacidad;
 
-            if(num >= 25) {
+            if(nuevoRiesgoNoSist === 0) {
                 txtNoSist.textContent = "■ ¡Riesgo Diversificable Eliminado! (0%)";
             } else {
-                txtNoSist.textContent = "■ Riesgo Diversificable (" + nuevoRiesgoNoSist + "%)";
+                txtNoSist.textContent = "■ Riesgo Diversificable (" + Math.round(pctNoSist) + "%)";
             }
-        </script>
+        });
+    </script>
 </body>
 </html>
