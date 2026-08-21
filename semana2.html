@@ -38,11 +38,11 @@
         .btn-regresar:hover { color: #0033a0; }
         h1 { font-size: 28px; color: #0f172a; }
         
-        /* CONTENEDORES DE LAS ÉPOCAS HISTÓRICAS (ESTILO HOMOGÉNEO SEMANA 1) */
+        /* CONTENEDORES DE LAS ÉPOCAS HISTÓRICAS */
         .epoca-collapse-btn {
             background-color: #f8fafc;
             color: #475569;
-            padding: 16px 20px;
+            padding: 18px 20px;
             border-radius: 12px;
             border: 1px solid #e2e8f0;
             border-left: 6px solid #475569;
@@ -58,17 +58,18 @@
             user-select: none;
             transition: all 0.2s ease;
         }
-        .epoca-collapse-btn:hover {
-            background-color: #f1f5f9;
-        }
+        .epoca-collapse-btn:hover { background-color: #f1f5f9; }
+        
         .epoca-collapse-btn.e3 { 
-            border-left-color: #0033a0; /* Azul Tec de tu Semana 1 */
+            border-left-color: #0033a0;
             color: #0033a0;
             background-color: #f0f4ff;
             border-color: #d1e0ff;
         } 
         
+        /* Cajas deslizables controladas por CSS robusto */
         .timeline-slider-box {
+            display: none; 
             position: relative;
             background-color: #f8fafc;
             border-radius: 0 0 12px 12px;
@@ -77,6 +78,8 @@
             padding: 24px 55px;
             border-top: none;
         }
+        /* Clase de estado de activación */
+        .timeline-slider-box.show { display: block !important; }
 
         .timeline-mini-track {
             display: flex;
@@ -89,7 +92,7 @@
         }
         .timeline-mini-track::-webkit-scrollbar { display: none; }
 
-        /* CONTROL DE FLECHAS AJUSTADO */
+        /* CONTROL DE FLECHAS */
         .arrow-nav {
             position: absolute;
             top: 50%;
@@ -115,7 +118,7 @@
         .arrow-left { left: 8px; }
         .arrow-right { right: 8px; }
 
-        /* TARJETAS INTERNAS DE HITOS */
+        /* TARJETAS DE HITOS */
         .timeline-node-card {
             display: inline-block;
             text-decoration: none;
@@ -143,16 +146,16 @@
         .node-title { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.3; }
         .node-desc { font-size: 11px; color: #64748b; line-height: 1.4; }
 
-        /* LISTADO DE SESIONES (ESTILO EXACTO SEMANA 1) */
+        /* LISTADO DE SESIONES */
         .seccion-titulo { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; margin: 40px 0 15px 0; }
-        .lista-sesiones { display: flex; flex-direction: column; gap: 16px; }
+        .lista-sesiones { display: flex; flex-direction: column; gap: 16px; margin-bottom: 30px; }
         
         .btn-sesion {
             display: block;
             text-decoration: none;
             background-color: #ffffff;
             border: 1px solid #e2e8f0;
-            border-left: 6px solid #1e40af; /* Azul de tu imagen */
+            border-left: 6px solid #1e40af; 
             padding: 22px 20px;
             border-radius: 12px;
             color: #334155;
@@ -162,9 +165,9 @@
             cursor: pointer;
         }
         .btn-sesion:hover { background-color: #f8fafc; transform: translateX(4px); }
-        .btn-sesion.ae { border-left-color: #10b981; } /* Verde Esmeralda de tu imagen */
+        .btn-sesion.ae { border-left-color: #10b981; } 
 
-        /* PANELES DE CONTENIDO INTERNO */
+        /* WORKSPACE DESPLEGABLE INTERNO */
         .workspace-sesion {
             display: none;
             border: 1px solid #cbd5e1;
@@ -189,7 +192,7 @@
         .sub-bloque { display: none; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; }
         li { margin-left: 20px; margin-top: 6px; font-size: 13.5px; line-height: 1.5; }
 
-        /* DISPOSITIVOS DE CONTROL DE LOS SIMULADORES */
+        /* SIMULADORES CONTROLES */
         .toggle-container { display: flex; gap: 8px; margin-bottom: 20px; background: #e2e8f0; padding: 4px; border-radius: 8px; }
         .toggle-btn { flex: 1; padding: 10px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; background: transparent; color: #64748b; font-size: 12px; }
         .toggle-btn.active { background: white; color: #0f172a; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
@@ -209,9 +212,9 @@
             <h1>Semana 2: Contenido y Actividades</h1>
         </header>
 
-        <!-- ÉPOCA 1 (CORREGIDA CON ESTILO SEMANA 1) -->
+        <!-- ÉPOCA 1 -->
         <div class="epoca-collapse-btn" onclick="toggleEpoca('ep1')">📖 Época 1: Periodo Pre-Clásico y Clásico (Fines del Siglo XVIII - XIX) <span class="indicator">▼</span></div>
-        <div id="ep1" class="timeline-slider-box" style="display: none;">
+        <div id="ep1" class="timeline-slider-box">
             <div class="timeline-mini-track">
                 <div class="timeline-node-card disabled-node">
                     <div class="node-year">1776</div>
@@ -221,9 +224,9 @@
             </div>
         </div>
 
-        <!-- ÉPOCA 2 (CORREGIDA CON ESTILO SEMANA 1) -->
+        <!-- ÉPOCA 2 -->
         <div class="epoca-collapse-btn" onclick="toggleEpoca('ep2')">📖 Época 2: Periodo Neoclásico Marginalista (Fines del Siglo XIX - 1950) <span class="indicator">▼</span></div>
-        <div id="ep2" class="timeline-slider-box" style="display: none;">
+        <div id="ep2" class="timeline-slider-box">
             <div class="timeline-mini-track">
                 <div class="timeline-node-card disabled-node">
                     <div class="node-year">1871</div>
@@ -233,4 +236,5 @@
             </div>
         </div>
 
-        <!-- ÉPOCA 3 (COMPLETAMENTE ABIERTA Y OPERATIVA) -->
+        <!-- ÉPOCA 3 (INICIA VISIBLE CON LA CLASE 'SHOW') -->
+        <div class="epoca-collapse-btn e3" onclick="toggleEpoca('ep3')">📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span class="indicator">▲</span></div>
