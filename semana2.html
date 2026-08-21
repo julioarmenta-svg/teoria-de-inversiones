@@ -201,22 +201,22 @@
             <h1>Semana 2: Contenido y Actividades</h1>
         </header>
 
-        <!-- ÉPOCA 1 (MÉTODO SIMPLE) -->
-        <div class="epoca-collapse-btn" onclick="toggleSimple('ep1_box', 'ind_ep1')">📖 Época 1: Periodo Pre-Clásico y Clásico (Fines del Siglo XVIII - XIX) <span id="ind-ep1">▼</span></div>
+        <!-- ÉPOCA 1 (ID DE INDICADOR REPARADO) -->
+        <div class="epoca-collapse-btn" onclick="toggleSimple('ep1_box', 'ind-ep1')">📖 Época 1: Periodo Pre-Clásico y Clásico (Fines del Siglo XVIII - XIX) <span id="ind-ep1">▼</span></div>
         <div id="ep1_box" class="epoca-texto-plano" style="display: none;">
             <b>Año 1776 - La Riqueza de las Naciones (Adam Smith)</b><br>
             • Enfoque principal en la asignación estructural de recursos y el valor-trabajo dentro del desarrollo económico temprano.
         </div>
 
-        <!-- ÉPOCA 2 (MÉTODO SIMPLE) -->
-        <div class="epoca-collapse-btn" onclick="toggleSimple('ep2_box', 'ind_ep2')">📖 Época 2: Periodo Neoclásico Marginalista (Fines del Siglo XIX - 1950) <span id="ind-ep2">▼</span></div>
+        <!-- ÉPOCA 2 (ID DE INDICADOR REPARADO) -->
+        <div class="epoca-collapse-btn" onclick="toggleSimple('ep2_box', 'ind-ep2')">📖 Época 2: Periodo Neoclásico Marginalista (Fines del Siglo XIX - 1950) <span id="ind-ep2">▼</span></div>
         <div id="ep2_box" class="epoca-texto-plano" style="display: none;">
             <b>Año 1871 - Revolución Marginalista (Menger, Jevons, Walras)</b><br>
             • Introducción de la optimización matemática bajo condiciones de escasez y análisis de utilidad para la toma de decisiones.
         </div>
 
-        <!-- ÉPOCA 3 (RESTAURADA E INTACTA) -->
-        <div class="epoca-collapse-btn e3" onclick="toggleEpoca3()">📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span id="ind-ep3">▲</span></div>
+        <!-- ÉPOCA 3 (BOTÓN CORRECTAMENTE VINCULADO) -->
+        <div class="epoca-collapse-btn e3" onclick="toggleEpoca3('ep3', 'ind-ep3')">📅 Época 3: Revolución Cuantitativa y Normativa (1952-1976) <span id="ind-ep3">▲</span></div>
         <div id="ep3" class="timeline-slider-box" style="display: block;">
             <div class="arrow-nav arrow-left" onclick="moveSlider(-1)">❮</div>
             <div class="arrow-nav arrow-right" onclick="moveSlider(1)">❯</div>
@@ -233,4 +233,3 @@
                     <div class="node-desc">• Gordon (Modelo de Dividendos Descontados)<br>• Crecimiento constante a perpetuidad</div>
                 </div>
                 <div class="timeline-node-card disabled-node">
-                    <div class="node-year">1958</div>
