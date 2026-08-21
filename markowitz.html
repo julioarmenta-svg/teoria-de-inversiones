@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Riesgo - Teoría de Inversiones</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; 
+            background-color: #f1f5f9; 
+            padding: 40px 20px;
+            color: #334155;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+        .btn-regresar {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #0f172a;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+        h1 { font-size: 28px; color: #0f172a; margin-bottom: 12px; }
+        .intro { font-size: 16px; color: #64748b; margin-bottom: 32px; line-height: 1.5; }
+        
+        /* Gráfico del Simulador simulado con CSS Dinámico */
+        .card-simulador {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+        .conceptos-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+        .caja-riesgo {
+            padding: 20px;
+            border-radius: 12px;
+            color: white;
+        }
+        .sistematico { background-color: #1e40af; }
+        .no-sistematico { background-color: #10b981; transition: opacity 0.3s ease; }
+        
+        .caja-riesgo h3 { font-size: 16px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .caja-riesgo p { font-size: 14px; opacity: 0.9; line-height: 1.4; }
+
+        /* Controles */
+        .control-wrapper {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        label { display: block; font-weight: 700; margin-bottom: 12px; color: #1e293b; }
+        input[type=range] { width: 100%; max-width: 400px; margin-bottom: 12px; }
+        .num-acciones { font-size: 24px; font-weight: 800; color: #1e40af; }
+
+        /* Visualizador de Riesgo Total */
+        .barra-grafico-contenedor {
+            height: 40px;
+            width: 100%;
+            background-color: #cbd5e1;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            margin-top: 24px;
+        }
+        .medidor-sist { background-color: #1e40af; height: 100%; transition: width 0.3s ease; }
+        .medidor-no-sist { background-color: #10b981; height: 100%; transition: width 0.3s ease; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="semana2.html" class="btn-regresar">← Volver a Semana 2</a>
+        
+        <h1>Simulador de Riesgo de Markowitz</h1>
+        <p class="intro">
+            Harry Markowitz demostró en 1952 que el riesgo de un portafolio no es el promedio matemático de sus acciones. Al añadir activos, los riesgos particulares se cancelan entre sí.
+        </p>
+
+        <div class="conceptos-grid">
+            <div class="caja-riesgo sistematico">
+                <h3>Riesgo Sistemático (De Mercado)</h3>
+                <p>No se puede eliminar. Afecta a todas las empresas por igual (inflación, tasas de interés, guerras, pandemias).</p>
+            </div>
+            <div id="tarjeta-no-sist" class="caja-riesgo no-sistematico">
+                <h3>Riesgo No Sistemático (Diversificable)</h3>
+                <p>Propio de cada empresa (huelgas, fallas de producto, malas decisiones). <strong>¡Se reduce a cero diversificando!</strong></p>
+            </div>
+        </div>
+
+        <div class="card-simulador">
+            <div class="control-wrapper">
+                <label for="accionesSlider">Mueve la barra para añadir acciones a tu portafolio:</label>
+                <input type="custom" type="range" id="accionesSlider" min="1" max= "30" value="1">
+                <div>Cantidad de acciones: <span id="valorAcciones" class="num-acciones">1</span></div>
+            </div>
+
+            <h3 style="margin-top: 24px; font-size: 14px; text-transform: uppercase; color: #64748b;">Visualización del Riesgo Total del Portafolio:</h3>
+            <div class="barra-grafico-contenedor">
+                <div id="barraSist" class="medidor-sist" style="width: 30%;"></div>
+                <div id="barraNoSist" class="medidor-no-sist" style="width: 70%;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 12px; font-weight: bold;">
+                <span style="color: #1e40af;">■ Riesgo de Mercado Inevitable (30%)</span>
+                <span id="txtNoSist" style="color: #10b981;">■ Riesgo Diversificable (70%)</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const slider = document.getElementById('accionesSlider');
+        const valorAcciones = document.getElementById('valorAcciones');
+        const barraNoSist = document.getElementById('barraNoSist');
+        const tarjetaNoSist = document.getElementById('tarjeta-no-sist');
+        const txtNoSist = document.getElementById('txtNoSist');
+
+        slider.addEventListener('input', function() {
+            const num = parseInt(this.value);
+            valorAcciones.textContent = num;
+
+            // Fórmula visual simulada: El riesgo no sistemático decae rápidamente conforme aumenta N
+            // Al llegar a 20-30 acciones, desaparece casi por completo
+            let nuevoRiesgoNoSist = Math.round(70 / num); 
+            
+            if (num === 1) nuevoRiesgoNoSist = 70;
+
+            barraNoSist.style.width = nuevoRiesgoNoSist + '%';
+            
+            // Opacidad de la tarjeta teórica para simular su desaparición
+            let opacidad = 1 - (num / 35);
+            if(opacidad < 0.2) opacidad = 0.2;
+            tarjetaNoSist.style.opacity = opacidad;
+
+            if(num >= 25) {
+                txtNoSist.textContent = "■ ¡Riesgo Diversificable Eliminado! (0%)";
+            } else {
+                txtNoSist.textContent = "■ Riesgo Diversificable (" + nuevoRiesgoNoSist + "%)";
+            }
+        </script>
+</body>
+</html>
